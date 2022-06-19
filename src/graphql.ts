@@ -54,11 +54,24 @@ export class UpdateRentInput {
 }
 
 export class CreateToolInput {
-    exampleField?: Nullable<number>;
+    name: string;
+    desc: string;
+    image: string;
+    activated: boolean;
+    totalStock: number;
+    priceHour: number;
+    priceDay: number;
 }
 
 export class UpdateToolInput {
     id: number;
+    name: string;
+    desc: string;
+    image: string;
+    activated: boolean;
+    totalStock: number;
+    priceHour: number;
+    priceDay: number;
 }
 
 export class Admin {
@@ -102,7 +115,6 @@ export class Tool {
     totalStock: number;
     priceHour: number;
     priceDay: number;
-    exampleField?: Nullable<number>;
 }
 
 export abstract class IQuery {
