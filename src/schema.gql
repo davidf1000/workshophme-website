@@ -1,0 +1,32 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Admin {
+  adminId: String!
+  name: String!
+  email: String!
+  password: String!
+}
+
+type Query {
+  admins: [Admin!]!
+  admin(id: Int!): Admin!
+}
+
+type Mutation {
+  createAdmin(createAdminInput: CreateAdminInput!): Admin!
+  updateAdmin(updateAdminInput: UpdateAdminInput!): Admin!
+  removeAdmin(id: Int!): Admin!
+}
+
+input CreateAdminInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateAdminInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
