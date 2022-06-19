@@ -8,6 +8,8 @@ import { AdminsModule } from './admins/admins.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { GraphQLDateTime } from 'graphql-iso-date';
+import { RentsModule } from './rents/rents.module';
+import { ToolsModule } from './tools/tools.module';
 
 @Module({
   imports: [
@@ -25,6 +27,8 @@ import { GraphQLDateTime } from 'graphql-iso-date';
       },
     }),
     AdminsModule,
+    RentsModule,
+    ToolsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

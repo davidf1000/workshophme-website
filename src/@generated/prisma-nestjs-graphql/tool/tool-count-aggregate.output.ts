@@ -21,6 +21,9 @@ export class ToolCountAggregate {
     image!: number;
 
     @Field(() => Int, {nullable:false})
+    activated!: number;
+
+    @Field(() => Int, {nullable:false})
     totalStock!: number;
 
     @Field(() => Int, {nullable:false})

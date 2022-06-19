@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
-import { RentOrderByRelationAggregateInput } from '../rent/rent-order-by-relation-aggregate.input';
 
 @InputType()
 export class ToolOrderByWithRelationInput {
@@ -22,6 +21,9 @@ export class ToolOrderByWithRelationInput {
     image?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    activated?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     totalStock?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
@@ -29,7 +31,4 @@ export class ToolOrderByWithRelationInput {
 
     @Field(() => SortOrder, {nullable:true})
     priceDay?: keyof typeof SortOrder;
-
-    @Field(() => RentOrderByRelationAggregateInput, {nullable:true})
-    rents?: RentOrderByRelationAggregateInput;
 }

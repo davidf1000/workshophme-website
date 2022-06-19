@@ -1,8 +1,9 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { RentUpdatetoolsInput } from './rent-updatetools.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
-import { ToolUpdateManyWithoutRentsInput } from '../tool/tool-update-many-without-rents.input';
+import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 
 @InputType()
 export class RentUpdateWithoutAdminInput {
@@ -10,12 +11,51 @@ export class RentUpdateWithoutAdminInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     createdAt?: DateTimeFieldUpdateOperationsInput;
 
+    @Field(() => RentUpdatetoolsInput, {nullable:true})
+    tools?: RentUpdatetoolsInput;
+
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    status?: StringFieldUpdateOperationsInput;
+    rentName?: StringFieldUpdateOperationsInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    rentNim?: StringFieldUpdateOperationsInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    rentPhone?: StringFieldUpdateOperationsInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    rentLineId?: StringFieldUpdateOperationsInput;
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     organisation?: StringFieldUpdateOperationsInput;
 
-    @Field(() => ToolUpdateManyWithoutRentsInput, {nullable:true})
-    tools?: ToolUpdateManyWithoutRentsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    fromDate?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    expectedReturnDate?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    totalPrice?: IntFieldUpdateOperationsInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    status?: StringFieldUpdateOperationsInput;
+
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    fine?: IntFieldUpdateOperationsInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    pickupName?: StringFieldUpdateOperationsInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    pickupNim?: StringFieldUpdateOperationsInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    returnName?: StringFieldUpdateOperationsInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    returnNim?: StringFieldUpdateOperationsInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    returnDate?: StringFieldUpdateOperationsInput;
 }

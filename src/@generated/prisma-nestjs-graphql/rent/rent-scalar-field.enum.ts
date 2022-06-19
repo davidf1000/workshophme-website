@@ -3,9 +3,23 @@ import { registerEnumType } from '@nestjs/graphql';
 export enum RentScalarFieldEnum {
     id = "id",
     createdAt = "createdAt",
-    status = "status",
     adminId = "adminId",
-    organisation = "organisation"
+    tools = "tools",
+    rentName = "rentName",
+    rentNim = "rentNim",
+    rentPhone = "rentPhone",
+    rentLineId = "rentLineId",
+    organisation = "organisation",
+    fromDate = "fromDate",
+    expectedReturnDate = "expectedReturnDate",
+    totalPrice = "totalPrice",
+    status = "status",
+    fine = "fine",
+    pickupName = "pickupName",
+    pickupNim = "pickupNim",
+    returnName = "returnName",
+    returnNim = "returnNim",
+    returnDate = "returnDate"
 }
 
 

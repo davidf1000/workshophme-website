@@ -1,0 +1,24 @@
+type Tool {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input CreateToolInput {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input UpdateToolInput {
+  id: Int!
+}
+
+type Query {
+  tools: [Tool]!
+  tool(id: Int!): Tool
+}
+
+type Mutation {
+  createTool(createToolInput: CreateToolInput!): Tool!
+  updateTool(updateToolInput: UpdateToolInput!): Tool!
+  removeTool(id: Int!): Tool
+}

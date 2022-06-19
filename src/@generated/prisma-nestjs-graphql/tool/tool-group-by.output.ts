@@ -25,6 +25,9 @@ export class ToolGroupBy {
     @Field(() => String, {nullable:false})
     image!: string;
 
+    @Field(() => Boolean, {nullable:false})
+    activated!: boolean;
+
     @Field(() => Int, {nullable:false})
     totalStock!: number;
 

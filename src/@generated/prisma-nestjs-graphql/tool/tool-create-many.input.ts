@@ -22,6 +22,9 @@ export class ToolCreateManyInput {
     @Field(() => String, {nullable:false})
     image!: string;
 
+    @Field(() => Boolean, {nullable:true})
+    activated?: boolean;
+
     @Field(() => Int, {nullable:false})
     totalStock!: number;
 

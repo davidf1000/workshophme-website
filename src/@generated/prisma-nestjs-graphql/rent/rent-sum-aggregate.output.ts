@@ -10,4 +10,13 @@ export class RentSumAggregate {
 
     @Field(() => Int, {nullable:true})
     adminId?: number;
+
+    @Field(() => [Int], {nullable:true})
+    tools?: Array<number>;
+
+    @Field(() => Int, {nullable:true})
+    totalPrice?: number;
+
+    @Field(() => Int, {nullable:true})
+    fine?: number;
 }

@@ -19,7 +19,7 @@ datasource db {
 }
 
 model Admin {
-  id        Int   @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   email     String   @unique
   name      String
@@ -27,31 +27,40 @@ model Admin {
   rents     Rent[]
 }
 
-//  Admin create one to many relationship with model rent
-
+// Admin create one to many relationship with model rent
 // status = {waiting, pickup, finished, expired}
-
 model Rent {
-  id           Int   @id @default(autoincrement())
-  createdAt    DateTime @default(now())
-  status       String   @default("waiting")
-  admin        Admin    @relation(fields: [adminId], references: [id])
-  adminId      Int   
-  organisation String
-  tools        Tool[]   @relation(references: [id])
+  id                 Int      @id @default(autoincrement())
+  createdAt          DateTime @default(now())
+  admin              Admin    @relation(fields: [adminId], references: [id])
+  adminId            Int
+  tools              Int[] // Containing Tools id used
+  rentName           String
+  rentNim            String
+  rentPhone          String
+  rentLineId         String
+  organisation       String
+  fromDate           DateTime
+  expectedReturnDate DateTime
+  totalPrice         Int
+  status             String   @default("waiting")
+  fine               Int
+  pickupName         String
+  pickupNim          String
+  returnName         String
+  returnNim          String
+  returnDate         String
 }
 
-//  Rent create many to many relationship with model tools
-
 model Tool {
-  id         Int   @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   createdAt  DateTime @default(now())
   /// @Validator.MinLength(3)
   name       String
   desc       String
   image      String
+  activated  Boolean  @default(true) // True if active(used), False if deleted by used 
   totalStock Int
   priceHour  Int
   priceDay   Int
-  rents      Rent[]   @relation(references: [id])
 }

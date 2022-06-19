@@ -10,4 +10,13 @@ export class RentSumOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     adminId?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    tools?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    totalPrice?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    fine?: keyof typeof SortOrder;
 }

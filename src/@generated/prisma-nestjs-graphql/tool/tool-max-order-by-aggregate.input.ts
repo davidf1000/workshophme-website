@@ -21,6 +21,9 @@ export class ToolMaxOrderByAggregateInput {
     image?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    activated?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     totalStock?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
-import { RentUncheckedUpdateManyWithoutToolsInput } from '../rent/rent-unchecked-update-many-without-tools.input';
+import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
 
 @InputType()
 export class ToolUncheckedUpdateInput {
@@ -23,6 +23,9 @@ export class ToolUncheckedUpdateInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     image?: StringFieldUpdateOperationsInput;
 
+    @Field(() => BoolFieldUpdateOperationsInput, {nullable:true})
+    activated?: BoolFieldUpdateOperationsInput;
+
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     totalStock?: IntFieldUpdateOperationsInput;
 
@@ -31,7 +34,4 @@ export class ToolUncheckedUpdateInput {
 
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     priceDay?: IntFieldUpdateOperationsInput;
-
-    @Field(() => RentUncheckedUpdateManyWithoutToolsInput, {nullable:true})
-    rents?: RentUncheckedUpdateManyWithoutToolsInput;
 }

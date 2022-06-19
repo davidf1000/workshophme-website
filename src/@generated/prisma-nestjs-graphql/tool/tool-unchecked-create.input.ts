@@ -2,7 +2,6 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import * as Validator from 'class-validator';
-import { RentUncheckedCreateNestedManyWithoutToolsInput } from '../rent/rent-unchecked-create-nested-many-without-tools.input';
 
 @InputType()
 export class ToolUncheckedCreateInput {
@@ -23,6 +22,9 @@ export class ToolUncheckedCreateInput {
     @Field(() => String, {nullable:false})
     image!: string;
 
+    @Field(() => Boolean, {nullable:true})
+    activated?: boolean;
+
     @Field(() => Int, {nullable:false})
     totalStock!: number;
 
@@ -31,7 +33,4 @@ export class ToolUncheckedCreateInput {
 
     @Field(() => Int, {nullable:false})
     priceDay!: number;
-
-    @Field(() => RentUncheckedCreateNestedManyWithoutToolsInput, {nullable:true})
-    rents?: RentUncheckedCreateNestedManyWithoutToolsInput;
 }

@@ -1,14 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
+import { CreateAdminInput, UpdateAdminInput } from 'src/graphql';
 import { PrismaService } from '../prisma.service';
-import { CreateAdminInput } from './dto/create-admin.input';
-import { UpdateAdminInput } from './dto/update-admin.input';
 
 @Injectable()
 export class AdminsService {
   constructor(private prisma: PrismaService) {}
 
-  async create(createAdminInput: Prisma.AdminCreateInput) {
+  async create(createAdminInput: CreateAdminInput) {
     const created = await this.prisma.admin.create({ data: createAdminInput });
     return created;
   }
@@ -31,10 +30,10 @@ export class AdminsService {
     return admin;
   }
 
-  async update(adminId, updateAdminInput: Prisma.AdminUpdateInput) {
+  async update(updateAdminInput: UpdateAdminInput) {
     const updateAdmin = await this.prisma.admin.update({
       where: {
-        id: adminId,
+        id: updateAdminInput.id,
       },
       data: {
         ...updateAdminInput,

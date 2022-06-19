@@ -6,6 +6,7 @@ export enum ToolScalarFieldEnum {
     name = "name",
     desc = "desc",
     image = "image",
+    activated = "activated",
     totalStock = "totalStock",
     priceHour = "priceHour",
     priceDay = "priceDay"

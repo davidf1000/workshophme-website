@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { IntFilter } from '../prisma/int-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
-import { RentListRelationFilter } from '../rent/rent-list-relation-filter.input';
+import { BoolFilter } from '../prisma/bool-filter.input';
 
 @InputType()
 export class ToolWhereInput {
@@ -32,6 +32,9 @@ export class ToolWhereInput {
     @Field(() => StringFilter, {nullable:true})
     image?: StringFilter;
 
+    @Field(() => BoolFilter, {nullable:true})
+    activated?: BoolFilter;
+
     @Field(() => IntFilter, {nullable:true})
     totalStock?: IntFilter;
 
@@ -40,7 +43,4 @@ export class ToolWhereInput {
 
     @Field(() => IntFilter, {nullable:true})
     priceDay?: IntFilter;
-
-    @Field(() => RentListRelationFilter, {nullable:true})
-    rents?: RentListRelationFilter;
 }

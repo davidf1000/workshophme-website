@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
+import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
 
 @InputType()
 export class ToolUncheckedUpdateManyInput {
@@ -21,6 +22,9 @@ export class ToolUncheckedUpdateManyInput {
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     image?: StringFieldUpdateOperationsInput;
+
+    @Field(() => BoolFieldUpdateOperationsInput, {nullable:true})
+    activated?: BoolFieldUpdateOperationsInput;
 
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     totalStock?: IntFieldUpdateOperationsInput;

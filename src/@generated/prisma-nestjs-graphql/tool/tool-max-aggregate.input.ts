@@ -20,6 +20,9 @@ export class ToolMaxAggregateInput {
     image?: true;
 
     @Field(() => Boolean, {nullable:true})
+    activated?: true;
+
+    @Field(() => Boolean, {nullable:true})
     totalStock?: true;
 
     @Field(() => Boolean, {nullable:true})

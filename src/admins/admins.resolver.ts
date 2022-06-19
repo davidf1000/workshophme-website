@@ -1,6 +1,7 @@
 import { ParseIntPipe } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
+import { CreateAdminInput, UpdateAdminInput } from 'src/graphql';
 import { AdminsService } from './admins.service';
 
 @Resolver('Admin')
@@ -8,7 +9,7 @@ export class AdminsResolver {
   constructor(private readonly adminsService: AdminsService) {}
 
   @Mutation('createAdmin')
-  create(@Args('createAdminInput') createAdminInput: Prisma.AdminCreateInput) {
+  create(@Args('createAdminInput') createAdminInput: CreateAdminInput) {
     return this.adminsService.create(createAdminInput);
   }
 
@@ -26,10 +27,9 @@ export class AdminsResolver {
 
   @Mutation('updateAdmin')
   update(
-    @Args('id') id: number,
-    @Args('updateAdminInput') updateAdminInput: Prisma.AdminUpdateInput,
+    @Args('updateAdminInput') updateAdminInput: UpdateAdminInput,
   ) {
-    return this.adminsService.update(id, updateAdminInput);
+    return this.adminsService.update(updateAdminInput);
   }
 
   @Mutation('removeAdmin')

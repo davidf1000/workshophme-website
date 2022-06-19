@@ -2,8 +2,6 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
-import { Rent } from '../rent/rent.model';
-import { ToolCount } from './tool-count.output';
 
 @ObjectType()
 export class Tool {
@@ -23,6 +21,9 @@ export class Tool {
     @Field(() => String, {nullable:false})
     image!: string;
 
+    @Field(() => Boolean, {nullable:false,defaultValue:true})
+    activated!: boolean;
+
     @Field(() => Int, {nullable:false})
     totalStock!: number;
 
@@ -31,10 +32,4 @@ export class Tool {
 
     @Field(() => Int, {nullable:false})
     priceDay!: number;
-
-    @Field(() => [Rent], {nullable:true})
-    rents?: Array<Rent>;
-
-    @Field(() => ToolCount, {nullable:false})
-    _count?: ToolCount;
 }

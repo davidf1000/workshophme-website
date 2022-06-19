@@ -16,14 +16,56 @@ export class RentGroupBy {
     @Field(() => Date, {nullable:false})
     createdAt!: Date | string;
 
+    @Field(() => Int, {nullable:false})
+    adminId!: number;
+
+    @Field(() => [Int], {nullable:true})
+    tools?: Array<number>;
+
+    @Field(() => String, {nullable:false})
+    rentName!: string;
+
+    @Field(() => String, {nullable:false})
+    rentNim!: string;
+
+    @Field(() => String, {nullable:false})
+    rentPhone!: string;
+
+    @Field(() => String, {nullable:false})
+    rentLineId!: string;
+
+    @Field(() => String, {nullable:false})
+    organisation!: string;
+
+    @Field(() => Date, {nullable:false})
+    fromDate!: Date | string;
+
+    @Field(() => Date, {nullable:false})
+    expectedReturnDate!: Date | string;
+
+    @Field(() => Int, {nullable:false})
+    totalPrice!: number;
+
     @Field(() => String, {nullable:false})
     status!: string;
 
     @Field(() => Int, {nullable:false})
-    adminId!: number;
+    fine!: number;
 
     @Field(() => String, {nullable:false})
-    organisation!: string;
+    pickupName!: string;
+
+    @Field(() => String, {nullable:false})
+    pickupNim!: string;
+
+    @Field(() => String, {nullable:false})
+    returnName!: string;
+
+    @Field(() => String, {nullable:false})
+    returnNim!: string;
+
+    @Field(() => String, {nullable:false})
+    returnDate!: string;
 
     @Field(() => RentCountAggregate, {nullable:true})
     _count?: RentCountAggregate;

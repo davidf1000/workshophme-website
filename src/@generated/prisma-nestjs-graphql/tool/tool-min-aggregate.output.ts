@@ -20,6 +20,9 @@ export class ToolMinAggregate {
     @Field(() => String, {nullable:true})
     image?: string;
 
+    @Field(() => Boolean, {nullable:true})
+    activated?: boolean;
+
     @Field(() => Int, {nullable:true})
     totalStock?: number;
 
