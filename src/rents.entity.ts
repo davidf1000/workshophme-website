@@ -1,5 +1,5 @@
 import { Field, GraphQLISODateTime, Int, ObjectType } from '@nestjs/graphql';
-import { Tool } from 'src/toolsentity';
+import { Tool } from 'src/tools.entity';
 
 @ObjectType()
 export class Rent {
