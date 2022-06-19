@@ -1,8 +1,6 @@
 import { CreateAdminInput } from './create-admin.input';
-import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
+import { PartialType } from '@nestjs/mapped-types';
 
-@InputType()
 export class UpdateAdminInput extends PartialType(CreateAdminInput) {
-  @Field(() => Int)
   id: number;
 }

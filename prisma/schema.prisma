@@ -5,15 +5,22 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator nestgraphql {
+  provider               = "node node_modules/prisma-nestjs-graphql"
+  output                 = "../src/@generated/prisma-nestjs-graphql"
+  fields_Validator_from  = "class-validator"
+  fields_Validator_input = true
+
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model Admin {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id        Int   @id @default(autoincrement())
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
   email     String   @unique
   name      String
   password  String
@@ -25,12 +32,11 @@ model Admin {
 // status = {waiting, pickup, finished, expired}
 
 model Rent {
-  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id           Int   @id @default(autoincrement())
   createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
   status       String   @default("waiting")
   admin        Admin    @relation(fields: [adminId], references: [id])
-  adminId      String   @db.Uuid
+  adminId      Int   
   organisation String
   tools        Tool[]   @relation(references: [id])
 }
@@ -38,9 +44,9 @@ model Rent {
 //  Rent create many to many relationship with model tools
 
 model Tool {
-  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id         Int   @id @default(autoincrement())
   createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  /// @Validator.MinLength(3)
   name       String
   desc       String
   image      String

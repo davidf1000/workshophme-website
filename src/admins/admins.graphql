@@ -1,0 +1,57 @@
+scalar DateTime
+
+type Admin {
+  # Example field (placeholder)
+  id: Int!
+  createdAt: DateTime
+  email: String!
+  name: String!
+  password: String!
+  rents: [Rent!]
+}
+
+type Rent {
+  id: Int!
+  createdAt: DateTime
+  status: String!
+  admin: Admin
+  adminId: String!
+  organisation: String!
+  tools: [Tool!]
+}
+
+type Tool {
+  id: Int!
+  createdAt: DateTime
+  name: String!
+  desc: String!
+  image: String!
+  totalStock: Int!
+  priceHour: Int!
+  priceDay: Int!
+  rents: [Rent!]
+}
+
+input CreateAdminInput {
+  email: String!
+  name: String!
+  password: String!
+}
+
+input UpdateAdminInput {
+  id: Int!
+  email: String!
+  name: String!
+  password: String!
+}
+
+type Query {
+  admins: [Admin]!
+  admin(id: Int!): Admin
+}
+
+type Mutation {
+  createAdmin(createAdminInput: CreateAdminInput!): Admin!
+  updateAdmin(id: Int!, updateAdminInput: UpdateAdminInput!): Admin!
+  removeAdmin(id: Int!): Admin
+}
