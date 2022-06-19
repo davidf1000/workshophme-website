@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        Int      @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String   @unique
+  name      String
+  password  String
+  rents     Rent[]
+}
+
+//  Admin create one to many relationship with model rent
+
+// status = {waiting, pickup, finished, expired}
+
+model Rent {
+  id           Int      @id @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  status       String   @default("waiting")
+  adminId      String
+  admin        String   @relation(fields: [adminId], references: [id])
+  organisation String
+}
