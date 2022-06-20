@@ -1,7 +1,6 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { CreateRentInput, UpdateRentInput } from 'src/graphql';
 import { RentsService } from './rents.service';
-import { CreateRentInput } from './dto/create-rent.input';
-import { UpdateRentInput } from './dto/update-rent.input';
 
 @Resolver('Rent')
 export class RentsResolver {
@@ -24,7 +23,7 @@ export class RentsResolver {
 
   @Mutation('updateRent')
   update(@Args('updateRentInput') updateRentInput: UpdateRentInput) {
-    return this.rentsService.update(updateRentInput.id, updateRentInput);
+    return this.rentsService.update(updateRentInput);
   }
 
   @Mutation('removeRent')

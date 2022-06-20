@@ -42,14 +42,14 @@ model Rent {
   organisation       String
   fromDate           DateTime
   expectedReturnDate DateTime
-  totalPrice         Int
   status             String   @default("waiting")
-  fine               Int
-  pickupName         String
-  pickupNim          String
-  returnName         String
-  returnNim          String
-  returnDate         String
+  totalPrice         Int?
+  fine               Int?
+  pickupName         String?
+  pickupNim          String?
+  returnName         String?
+  returnNim          String?
+  returnDate         String?
 }
 
 model Tool {

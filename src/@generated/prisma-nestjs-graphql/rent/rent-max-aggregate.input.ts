@@ -35,10 +35,10 @@ export class RentMaxAggregateInput {
     expectedReturnDate?: true;
 
     @Field(() => Boolean, {nullable:true})
-    totalPrice?: true;
+    status?: true;
 
     @Field(() => Boolean, {nullable:true})
-    status?: true;
+    totalPrice?: true;
 
     @Field(() => Boolean, {nullable:true})
     fine?: true;

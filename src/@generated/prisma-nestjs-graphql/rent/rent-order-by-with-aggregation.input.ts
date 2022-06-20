@@ -44,10 +44,10 @@ export class RentOrderByWithAggregationInput {
     expectedReturnDate?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    totalPrice?: keyof typeof SortOrder;
+    status?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    status?: keyof typeof SortOrder;
+    totalPrice?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     fine?: keyof typeof SortOrder;

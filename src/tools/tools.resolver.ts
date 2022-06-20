@@ -1,7 +1,6 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { CreateToolInput, UpdateToolInput } from 'src/graphql';
 import { ToolsService } from './tools.service';
-import { CreateToolInput } from './dto/create-tool.input';
-import { UpdateToolInput } from './dto/update-tool.input';
 
 @Resolver('Tool')
 export class ToolsResolver {
@@ -24,7 +23,7 @@ export class ToolsResolver {
 
   @Mutation('updateTool')
   update(@Args('updateToolInput') updateToolInput: UpdateToolInput) {
-    return this.toolsService.update(updateToolInput.id, updateToolInput);
+    return this.toolsService.update(updateToolInput);
   }
 
   @Mutation('removeTool')

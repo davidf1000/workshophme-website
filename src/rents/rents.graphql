@@ -2,7 +2,7 @@ type Rent {
   id: Int!
   createdAt: DateTime
   admin: Admin
-  adminId: String!
+  adminId: Int!
   tools: [Int!]!
   rentName: String!
   rentNim: String!
@@ -21,7 +21,7 @@ type Rent {
 }
 
 input CreateRentInput {
-  adminId: String!
+  adminId: Int!
   tools: [Int!]!
   rentName: String!
   rentNim: String!
@@ -35,7 +35,7 @@ input CreateRentInput {
 
 input UpdateRentInput {
   id: Int!
-  adminId: String!
+  adminId: Int!
   tools: [Int!]!
   rentName: String!
   rentNim: String!

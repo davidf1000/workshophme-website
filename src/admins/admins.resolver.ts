@@ -26,9 +26,7 @@ export class AdminsResolver {
   }
 
   @Mutation('updateAdmin')
-  update(
-    @Args('updateAdminInput') updateAdminInput: UpdateAdminInput,
-  ) {
+  update(@Args('updateAdminInput') updateAdminInput: UpdateAdminInput) {
     return this.adminsService.update(updateAdminInput);
   }
 

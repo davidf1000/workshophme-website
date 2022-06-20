@@ -39,10 +39,10 @@ export class RentCountAggregate {
     expectedReturnDate!: number;
 
     @Field(() => Int, {nullable:false})
-    totalPrice!: number;
+    status!: number;
 
     @Field(() => Int, {nullable:false})
-    status!: number;
+    totalPrice!: number;
 
     @Field(() => Int, {nullable:false})
     fine!: number;

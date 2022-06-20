@@ -35,11 +35,11 @@ export class RentMaxAggregate {
     @Field(() => Date, {nullable:true})
     expectedReturnDate?: Date | string;
 
-    @Field(() => Int, {nullable:true})
-    totalPrice?: number;
-
     @Field(() => String, {nullable:true})
     status?: string;
+
+    @Field(() => Int, {nullable:true})
+    totalPrice?: number;
 
     @Field(() => Int, {nullable:true})
     fine?: number;

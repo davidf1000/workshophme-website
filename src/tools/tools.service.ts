@@ -1,26 +1,52 @@
 import { Injectable } from '@nestjs/common';
-import { CreateToolInput } from './dto/create-tool.input';
-import { UpdateToolInput } from './dto/update-tool.input';
+import { CreateToolInput, UpdateToolInput } from 'src/graphql';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class ToolsService {
-  create(createToolInput: CreateToolInput) {
-    return 'This action adds a new tool';
+  constructor(private prisma: PrismaService) {}
+
+  async create(createToolInput: CreateToolInput) {
+    const created = await this.prisma.tool.create({ data: createToolInput });
+    return created;
   }
 
-  findAll() {
-    return `This action returns all tools`;
+  async findAll() {
+    const tools = await this.prisma.tool.findMany({
+      orderBy: {
+        createdAt: 'asc',
+      },
+    });
+    return tools;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} tool`;
+  async findOne(id: number) {
+    const tool = await this.prisma.tool.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    return tool;
   }
 
-  update(id: number, updateToolInput: UpdateToolInput) {
-    return `This action updates a #${id} tool`;
+  async update(updateToolInput: UpdateToolInput) {
+    const updateTool = await this.prisma.tool.update({
+      where: {
+        id: updateToolInput.id,
+      },
+      data: {
+        ...updateToolInput,
+      },
+    });
+    return updateTool;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} tool`;
+  async remove(id: number) {
+    const deleteTool = await this.prisma.tool.delete({
+      where: {
+        id,
+      },
+    });
+    return deleteTool;
   }
 }

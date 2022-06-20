@@ -43,27 +43,27 @@ export class Rent {
     @Field(() => Date, {nullable:false})
     expectedReturnDate!: Date;
 
-    @Field(() => Int, {nullable:false})
-    totalPrice!: number;
-
     @Field(() => String, {nullable:false,defaultValue:'waiting'})
     status!: string;
 
-    @Field(() => Int, {nullable:false})
-    fine!: number;
+    @Field(() => Int, {nullable:true})
+    totalPrice!: number | null;
 
-    @Field(() => String, {nullable:false})
-    pickupName!: string;
+    @Field(() => Int, {nullable:true})
+    fine!: number | null;
 
-    @Field(() => String, {nullable:false})
-    pickupNim!: string;
+    @Field(() => String, {nullable:true})
+    pickupName!: string | null;
 
-    @Field(() => String, {nullable:false})
-    returnName!: string;
+    @Field(() => String, {nullable:true})
+    pickupNim!: string | null;
 
-    @Field(() => String, {nullable:false})
-    returnNim!: string;
+    @Field(() => String, {nullable:true})
+    returnName!: string | null;
 
-    @Field(() => String, {nullable:false})
-    returnDate!: string;
+    @Field(() => String, {nullable:true})
+    returnNim!: string | null;
+
+    @Field(() => String, {nullable:true})
+    returnDate!: string | null;
 }

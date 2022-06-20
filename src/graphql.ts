@@ -21,7 +21,7 @@ export class UpdateAdminInput {
 }
 
 export class CreateRentInput {
-    adminId: string;
+    adminId: number;
     tools: number[];
     rentName: string;
     rentNim: string;
@@ -35,7 +35,7 @@ export class CreateRentInput {
 
 export class UpdateRentInput {
     id: number;
-    adminId: string;
+    adminId: number;
     tools: number[];
     rentName: string;
     rentNim: string;
@@ -87,7 +87,7 @@ export class Rent {
     id: number;
     createdAt?: Nullable<DateTime>;
     admin?: Nullable<Admin>;
-    adminId: string;
+    adminId: number;
     tools: number[];
     rentName: string;
     rentNim: string;

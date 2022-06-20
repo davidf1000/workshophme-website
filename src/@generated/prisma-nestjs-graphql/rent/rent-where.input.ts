@@ -5,6 +5,8 @@ import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { AdminRelationFilter } from '../admin/admin-relation-filter.input';
 import { IntNullableListFilter } from '../prisma/int-nullable-list-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
+import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
+import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 
 @InputType()
 export class RentWhereInput {
@@ -54,27 +56,27 @@ export class RentWhereInput {
     @Field(() => DateTimeFilter, {nullable:true})
     expectedReturnDate?: DateTimeFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    totalPrice?: IntFilter;
-
     @Field(() => StringFilter, {nullable:true})
     status?: StringFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    fine?: IntFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    totalPrice?: IntNullableFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    pickupName?: StringFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    fine?: IntNullableFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    pickupNim?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    pickupName?: StringNullableFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    returnName?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    pickupNim?: StringNullableFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    returnNim?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    returnName?: StringNullableFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    returnDate?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    returnNim?: StringNullableFilter;
+
+    @Field(() => StringNullableFilter, {nullable:true})
+    returnDate?: StringNullableFilter;
 }
