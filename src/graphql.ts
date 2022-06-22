@@ -20,6 +20,11 @@ export class UpdateAdminInput {
     password: string;
 }
 
+export class LoginAdminInput {
+    email: string;
+    password: string;
+}
+
 export class CreateRentInput {
     adminId: number;
     tools: number[];
@@ -138,6 +143,8 @@ export abstract class IMutation {
 
     abstract removeAdmin(id: number): Nullable<Admin> | Promise<Nullable<Admin>>;
 
+    abstract login(createLoginInput: LoginAdminInput): LoginAdminResponse | Promise<LoginAdminResponse>;
+
     abstract createRent(createRentInput: CreateRentInput): Rent | Promise<Rent>;
 
     abstract updateRent(updateRentInput: UpdateRentInput): Rent | Promise<Rent>;
@@ -149,6 +156,18 @@ export abstract class IMutation {
     abstract updateTool(updateToolInput: UpdateToolInput): Tool | Promise<Tool>;
 
     abstract removeTool(id: number): Nullable<Tool> | Promise<Nullable<Tool>>;
+}
+
+export class AdminWithoutPassword {
+    id: number;
+    createdAt?: Nullable<DateTime>;
+    email: string;
+    name: string;
+}
+
+export class LoginAdminResponse {
+    accessToken: string;
+    admin: AdminWithoutPassword;
 }
 
 export type DateTime = any;

@@ -1,0 +1,29 @@
+type Admin {
+  id: Int!
+  createdAt: DateTime
+  email: String!
+  name: String!
+  password: String!
+  rents: [Rent!]
+}
+
+type AdminWithoutPassword {
+  id: Int!
+  createdAt: DateTime
+  email: String!
+  name: String!
+}
+
+type LoginAdminResponse {
+  accessToken: String!
+  admin: AdminWithoutPassword!
+}
+
+input LoginAdminInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  login(createLoginInput: LoginAdminInput!): LoginAdminResponse!
+}

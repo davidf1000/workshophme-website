@@ -1,6 +1,6 @@
-import { ParseIntPipe } from '@nestjs/common';
+import { ParseIntPipe, UseGuards } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { Prisma } from '@prisma/client';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateAdminInput, UpdateAdminInput } from 'src/graphql';
 import { AdminsService } from './admins.service';
 
@@ -14,13 +14,13 @@ export class AdminsResolver {
   }
 
   @Query('admins')
+  @UseGuards(JwtAuthGuard)
   findAll() {
-    console.log('Triggered');
-
     return this.adminsService.findAll();
   }
 
   @Query('admin')
+  @UseGuards(JwtAuthGuard)
   findOne(@Args('id') id: number) {
     return this.adminsService.findOne(id);
   }

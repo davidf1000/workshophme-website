@@ -30,6 +30,17 @@ export class AdminsService {
     return admin;
   }
 
+  // find if email exists and return the admin
+
+  async findAdmin(email: string){
+    const admin = await this.prisma.admin.findUnique({
+      where: {
+        email: email,
+      },
+    });
+    return admin;
+  }
+
   async update(updateAdminInput: UpdateAdminInput) {
     const updateAdmin = await this.prisma.admin.update({
       where: {
@@ -50,4 +61,5 @@ export class AdminsService {
     });
     return deleteAdmin;
   }
+
 }
