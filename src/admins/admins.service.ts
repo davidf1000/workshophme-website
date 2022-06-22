@@ -2,13 +2,23 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { CreateAdminInput, UpdateAdminInput } from 'src/graphql';
 import { PrismaService } from '../prisma.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AdminsService {
   constructor(private prisma: PrismaService) {}
 
   async create(createAdminInput: CreateAdminInput) {
-    const created = await this.prisma.admin.create({ data: createAdminInput });
+    const newPassword = await bcrypt.hash(
+      createAdminInput.password,
+      Number(process.env.SALT_ROUND),
+    );
+    const created = await this.prisma.admin.create({
+      data: {
+        ...createAdminInput,
+        password: newPassword,
+      },
+    });
     return created;
   }
 
@@ -32,7 +42,7 @@ export class AdminsService {
 
   // find if email exists and return the admin
 
-  async findAdmin(email: string){
+  async findAdmin(email: string) {
     const admin = await this.prisma.admin.findUnique({
       where: {
         email: email,
@@ -61,5 +71,4 @@ export class AdminsService {
     });
     return deleteAdmin;
   }
-
 }

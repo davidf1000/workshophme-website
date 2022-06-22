@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AdminsService } from 'src/admins/admins.service';
 import { LoginAdminInput, LoginAdminResponse } from 'src/graphql';
-
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class AuthService {
   constructor(
@@ -12,7 +12,7 @@ export class AuthService {
 
   async validateAdmin(email: string, password: string): Promise<any> {
     const admin = await this.adminService.findAdmin(email);
-    if (admin && admin.password === password) {
+    if (admin && bcrypt.compare(password, admin.password)) {
       const { password, ...result } = admin;
       return result;
     }

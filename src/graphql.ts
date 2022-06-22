@@ -88,6 +88,14 @@ export class Admin {
     rents?: Nullable<Rent[]>;
 }
 
+export class AdminResponse {
+    id: number;
+    createdAt?: Nullable<DateTime>;
+    email: string;
+    name: string;
+    rents?: Nullable<Rent[]>;
+}
+
 export class Rent {
     id: number;
     createdAt?: Nullable<DateTime>;
@@ -123,9 +131,9 @@ export class Tool {
 }
 
 export abstract class IQuery {
-    abstract admins(): Nullable<Admin>[] | Promise<Nullable<Admin>[]>;
+    abstract admins(): Nullable<AdminResponse>[] | Promise<Nullable<AdminResponse>[]>;
 
-    abstract admin(id: number): Nullable<Admin> | Promise<Nullable<Admin>>;
+    abstract admin(id: number): Nullable<AdminResponse> | Promise<Nullable<AdminResponse>>;
 
     abstract rents(): Nullable<Rent>[] | Promise<Nullable<Rent>[]>;
 
@@ -137,11 +145,11 @@ export abstract class IQuery {
 }
 
 export abstract class IMutation {
-    abstract createAdmin(createAdminInput: CreateAdminInput): Admin | Promise<Admin>;
+    abstract createAdmin(createAdminInput: CreateAdminInput): AdminResponse | Promise<AdminResponse>;
 
-    abstract updateAdmin(updateAdminInput: UpdateAdminInput): Admin | Promise<Admin>;
+    abstract updateAdmin(updateAdminInput: UpdateAdminInput): AdminResponse | Promise<AdminResponse>;
 
-    abstract removeAdmin(id: number): Nullable<Admin> | Promise<Nullable<Admin>>;
+    abstract removeAdmin(id: number): Nullable<AdminResponse> | Promise<Nullable<AdminResponse>>;
 
     abstract login(createLoginInput: LoginAdminInput): LoginAdminResponse | Promise<LoginAdminResponse>;
 

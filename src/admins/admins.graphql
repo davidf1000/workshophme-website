@@ -9,6 +9,14 @@ type Admin {
   rents: [Rent!]
 }
 
+type AdminResponse {
+  id: Int!
+  createdAt: DateTime
+  email: String!
+  name: String!
+  rents: [Rent!]
+}
+
 type Rent {
   id: Int!
   createdAt: DateTime
@@ -57,12 +65,12 @@ input UpdateAdminInput {
 }
 
 type Query {
-  admins: [Admin]!
-  admin(id: Int!): Admin
+  admins: [AdminResponse]!
+  admin(id: Int!): AdminResponse
 }
 
 type Mutation {
-  createAdmin(createAdminInput: CreateAdminInput!): Admin!
-  updateAdmin(updateAdminInput: UpdateAdminInput!): Admin!
-  removeAdmin(id: Int!): Admin
+  createAdmin(createAdminInput: CreateAdminInput!): AdminResponse!
+  updateAdmin(updateAdminInput: UpdateAdminInput!): AdminResponse!
+  removeAdmin(id: Int!): AdminResponse
 }
