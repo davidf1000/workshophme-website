@@ -9,6 +9,7 @@ export class AdminsResolver {
   constructor(private readonly adminsService: AdminsService) {}
 
   @Mutation('createAdmin')
+  @UseGuards(JwtAuthGuard)
   create(@Args('createAdminInput') createAdminInput: CreateAdminInput) {
     return this.adminsService.create(createAdminInput);
   }
@@ -26,11 +27,13 @@ export class AdminsResolver {
   }
 
   @Mutation('updateAdmin')
+  @UseGuards(JwtAuthGuard)
   update(@Args('updateAdminInput') updateAdminInput: UpdateAdminInput) {
     return this.adminsService.update(updateAdminInput);
   }
 
   @Mutation('removeAdmin')
+  @UseGuards(JwtAuthGuard)
   remove(@Args('id', ParseIntPipe) id: number) {
     return this.adminsService.remove(id);
   }
