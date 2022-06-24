@@ -17,7 +17,8 @@ const DisplayCarousel = (): JSX.Element => {
 
     }
     const [index, setIndex] = useState<number>(0);
-    return (<div className="h-[450px]" style={carouselContent[index].backgroundStyle}>
+    return (
+    <div className="h-[450px]" style={carouselContent[index].backgroundStyle}>
         <div className="flex flex-col h-full bg-black/60 font-sans justify-start">
             <div className="basis-11/12 flex flex-row">
                 <div className="basis-1/12 flex text-4xl h-full justify-start">
