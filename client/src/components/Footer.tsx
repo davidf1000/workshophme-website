@@ -3,7 +3,7 @@ import wslogo from '../assets/img/wslogo.png'
 
 const Footer = (): JSX.Element => (
   <footer className="bg-gray-100 text-center lg:text-left static bottom-0">
-    <div className="flex flex-col max-w-6xl justify-center items-center mx-auto">
+    <div className="flex flex-col max-w-7xl justify-center items-center mx-auto">
       <div className="flex flex-row justify-between items-center w-full">
 
         <div className="hidden md:block w-5/12 font-sans font-semibold justify-start">
@@ -25,7 +25,7 @@ const Footer = (): JSX.Element => (
           </ul>
         </div>
         <div className="mx-auto mt-4 mb-3 w-2/12 font-sans font-semibold justify-center">
-          <img className='h-24 mx-auto mb-5' src={wslogo} alt='WorkshopHME' />
+          <img className='w-24 mx-auto mb-5' src={wslogo} alt='WorkshopHME' />
           <div className="flex justify-center">
             <a href="https://www.instagram.com/wshmeitb/" target={'_blank'} className="mr-6 text-gray-600">
               <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram"

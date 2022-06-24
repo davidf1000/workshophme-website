@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import wslogo from '../assets/img/wslogo.png'
 
-const NavBar = ({ }: NavBarProps): JSX.Element => {
+const NavBar = ({ selected }: NavBarProps): JSX.Element => {
   const [dropdown, setDropdown] = useState<string>("hidden");
   const toggleDropdown = () => {
     if (dropdown === "visible") {
@@ -11,6 +11,13 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
       setDropdown("visible");
     }
   };
+  const navState = {
+    home: (selected === 'home') ? 'text-ws-orange' : 'text-gray:700',
+    rent: (selected === 'rent') ? 'text-ws-orange' : 'text-gray:700',
+    project: (selected === 'project') ? 'text-ws-orange' : 'text-gray:700',
+    shop: (selected === 'shop') ? 'text-ws-orange' : 'text-gray:700',
+    article: (selected === 'article') ? 'text-ws-orange' : 'text-gray:700',
+  }
   return (
     <>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 mx-0 w-screen rounded dark:bg-gray-800">
@@ -64,7 +71,7 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
             <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
               <li>
                 <p
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-ws-orange md:p-0"
+                  className={`block py-2 pr-4 pl-3 ${navState.home} border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-ws-orange md:p-0`}
                   aria-current="page"
                 >
                   <Link to='/'>
@@ -74,7 +81,7 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
               </li>
               <li>
                 <p
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-ws-orange md:p-0"
+                  className={`block py-2 pr-4 pl-3 ${navState.rent} border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-ws-orange md:p-0`}
                 >
                   <Link to='/rent'>
                     Rent
@@ -83,7 +90,7 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
               </li>
               <li>
                 <p
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-ws-orange md:p-0"
+                  className={`block py-2 pr-4 pl-3 ${navState.project} border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-ws-orange md:p-0`}
                 >
                   <Link to='/project'>
                     Project
@@ -92,7 +99,7 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
               </li>
               <li>
                 <p
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-ws-orange md:p-0"
+                  className={`block py-2 pr-4 pl-3 ${navState.shop} border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-ws-orange md:p-0`}
                 >
                   <Link to='/shop'>
                     Shop
@@ -100,7 +107,8 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
                 </p>
               </li>
               <li>
-                <p className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-ws-orange md:p-0">
+                <p
+                  className={`block py-2 pr-4 pl-3 ${navState.article} border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-ws-orange md:p-0`}>
                   <Link to="/article">
                     Article
                   </Link>
@@ -182,6 +190,7 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
 };
 
 interface NavBarProps {
+  selected: string;
 }
 
 export default NavBar;
