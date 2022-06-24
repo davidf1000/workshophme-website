@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import wslogo from '../assets/img/wslogo.png'
 
 const NavBar = ({ }: NavBarProps): JSX.Element => {
@@ -12,7 +12,7 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
     }
   };
   return (
-    <Fragment>
+    <>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 mx-0 w-screen rounded dark:bg-gray-800">
         <div className="container font-sans flex flex-wrap justify-between items-center mx-auto max-w-none">
           <Link to="/">
@@ -177,7 +177,7 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
           </div>
         </section>
       </nav>
-    </Fragment>
+    </>
   );
 };
 
