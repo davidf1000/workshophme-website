@@ -9,6 +9,7 @@ import Return from './components/dashboard/return/Return';
 import Summary from './components/dashboard/summary/Summary';
 import Tool from './components/dashboard/tool/Tool';
 import Landing from './components/landing/Landing';
+import NotFound from './components/NotFound';
 import Project from './components/project/Project';
 import Rent from './components/rent/Rent';
 import Shop from './components/shop/Shop';
@@ -29,10 +30,7 @@ const App = (): JSX.Element => {
           <Route path="/admin/return" element={<Return />} />
           <Route path="/admin/log" element={<RentLog />} />
           <Route path="/admin/tool" element={<Tool />} />
-          <Route
-            path="*"
-            element={<h1 className="text-4xl">404 Page Not Found</h1>}
-          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </Fragment>
