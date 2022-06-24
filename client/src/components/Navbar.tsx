@@ -16,7 +16,7 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 mx-0 w-screen rounded dark:bg-gray-800">
         <div className="container font-sans flex flex-wrap justify-between items-center mx-auto max-w-none">
           <Link to="/">
-            <p className="flex items-center animate-in slide-in-from-left ml-2">
+            <p className="flex items-center ml-2">
               <img className='h-10 mr-2' src={wslogo} alt='WorkshopHME' />
               <span className="self-center text-xl text-gray-800 font-sans font-semibold whitespace-nowrap dark:text-white mx-2">
                 WorkshopHME
@@ -60,7 +60,7 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
             </svg>
           </button>
 
-          <div className="hidden w-full md:block md:w-auto animate-in slide-in-from-right mr-4" id="mobile-menu">
+          <div className="hidden w-full md:block md:w-auto mr-4" id="mobile-menu">
             <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
               <li>
                 <p
@@ -85,7 +85,7 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
                 <p
                   className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-ws-orange md:p-0"
                 >
-                  <Link to='/rent'>
+                  <Link to='/project'>
                     Project
                   </Link>
                 </p>
@@ -103,13 +103,6 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
                 <p className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-ws-orange md:p-0">
                   <Link to="/article">
                     Article
-                  </Link>
-                </p>
-              </li>
-              <li>
-                <p className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-ws-orange md:p-0">
-                  <Link to="/contactus">
-                    Contact Us
                   </Link>
                 </p>
               </li>
@@ -151,7 +144,7 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
                   }}
                   className="hover:text-ws-orange my-1"
                 >
-                  <Link to='/rent'>
+                  <Link to='/project'>
                     Project
                   </Link>
                 </p>
@@ -177,18 +170,6 @@ const NavBar = ({ }: NavBarProps): JSX.Element => {
                 >
                   <Link to='/article'>
                     Article
-                  </Link>
-                </p>
-              </li>
-              <li className="border-b border-gray-400 hover:border-ws-orange my-2 uppercase">
-                <p
-                  onClick={() => {
-                    toggleDropdown();
-                  }}
-                  className="hover:text-ws-orange my-1"
-                >
-                  <Link to='/contactus'>
-                    Contact Us
                   </Link>
                 </p>
               </li>
