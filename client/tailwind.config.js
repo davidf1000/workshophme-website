@@ -3,13 +3,7 @@ module.exports = {
   experimental: {
     optimizeUniversalDefaults: true,
   },
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    './layouts/**/*.js',
-    './lib/**/*.js',
-    './data/**/*.mdx',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     fontFamily: {
@@ -17,10 +11,18 @@ module.exports = {
       serif: ['"Roboto Slab"', 'serif'],
       body: ['Roboto', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      colors: {
+        'ws-orange': '#f4c800',
+      },
+    },
   },
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    require('tailwindcss-animate'),
+  ],
 };
