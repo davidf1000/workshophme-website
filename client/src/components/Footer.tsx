@@ -85,8 +85,8 @@ const Footer = (): JSX.Element => (
             <div className="flex flex-col justify-end">
               <h2 className="text-md font-semibold">Address</h2>
               <p className="text-sm">Labtek VIII Achmad Bakrie, ITB,</p>
-              <p className="text-sm">Lb.Siliwangi, Kec. Coblong, Kota Bandung,</p>
-              <p className="text-sm">Jawa Barat, 40132 </p>
+              <p className="text-sm">Lb.Siliwangi, Kec. Coblong,</p>
+              <p className="text-sm">Kota Bandung, Jawa Barat, 40132 </p>
             </div>
             <a rel="noopener noreferrer" href="https://www.google.com/maps/dir//Labtek+VIII+Achmad+Bakrie+Bandung+Institute+of+Technology+Lebak+Siliwangi+Coblong,+Bandung+City,+West+Java+40132/@-6.8905954,107.610576,11z/data=!4m8!4m7!1m0!1m5!1m1!1s0x2e68e6576b8e4a93:0x7f724c692aa6bfeb!2m2!1d107.610576!2d-6.8905954" target={'_blank'} className="text-gray-600 my-auto">
               <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin-in"
