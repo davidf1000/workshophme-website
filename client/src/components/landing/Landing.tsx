@@ -6,7 +6,7 @@ import HomeContent from "./HomeContent";
 const Landing = (): JSX.Element => {
   return (
     <>
-      <div className="flex flex-col h-full justify-between">
+      <div className="flex flex-col min-h-screen justify-start">
         <NavBar selected="home"/>
         <HomeContent />
         <Footer />

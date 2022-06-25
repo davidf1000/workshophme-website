@@ -20,7 +20,7 @@ const NavBar = ({ selected }: NavBarProps): JSX.Element => {
   }
   return (
     <>
-      <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 mx-0 w-screen rounded dark:bg-gray-800">
+      <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 mx-0 w-full rounded dark:bg-gray-800">
         <div className="container font-sans flex flex-wrap justify-between items-center mx-auto max-w-none">
           <Link to="/">
             <p className="flex items-center ml-2">
