@@ -5,7 +5,7 @@ const Rent = (): JSX.Element => {
   return (
     <>
       <div className="flex flex-col min-h-screen justify-start bg-ws-orange">
-        <NavBar selected="project" />
+        <NavBar selected="rent" />
         <div className="flex  h-full w-full mb-auto">
           <div className="flex flex-col max-w-7xl justify-start mx-auto px-6">
             <h1 className="font-sans text-4xl font-semibold text-gray-800 mx-auto mt-4 mb-4">

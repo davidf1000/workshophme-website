@@ -1,5 +1,7 @@
+import ArticleCard from "../article/ArticleCard";
 import Footer from "../Footer";
 import NavBar from "../Navbar";
+import ShopCard from "./ShopCard";
 
 const Shop = (): JSX.Element => {
   return (
@@ -13,13 +15,10 @@ const Shop = (): JSX.Element => {
           <p className="font-sans text-lg text-gray-800 text-justify max-w-3xl mx-auto">
             Workshop HME menyediakan aneka komponen serta kit elektronik dengan harga yang terjangkau dan kualitas barang yang terjamin.
           </p>
-          <div className="container max-w-4xl bg-slate-50 rounded-lg my-4">
-            <div className="flex flex-col justify-start items-center my-4">
-              <div className="flex flex-wrap justify-start items-center gap-2 ml-10 mr-8 mb-8 mt-10">
-
-
-              </div>
-            </div>
+          <div className="flex flex-wrap justify-center w-full items-center mb-8 mt-10">
+            <ShopCard />
+            <ShopCard />
+            <ShopCard />
           </div>
         </div>
       </div>
