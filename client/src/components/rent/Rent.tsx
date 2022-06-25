@@ -4,7 +4,7 @@ import NavBar from "../Navbar";
 const Rent = (): JSX.Element => {
   return (
     <>
-<div className="flex flex-col min-h-screen justify-start bg-ws-orange">
+      <div className="flex flex-col min-h-screen justify-start bg-ws-orange">
         <NavBar selected="project" />
         <div className="flex  h-full w-full mb-auto">
           <div className="flex flex-col max-w-7xl justify-start mx-auto px-6">
@@ -12,11 +12,11 @@ const Rent = (): JSX.Element => {
               Rent
             </h1>
             <p className="font-sans text-lg text-gray-800 text-justify max-w-3xl mx-auto">
-              Wujudkan projectmu bersama kami yang telah berpengalaman dalam mengerjakan berbagai macam proyek elektronika meliputi proyek IoT, smart device, PCB design, jasa coding, dan masih banyak lagi.
+              Workshop HME menyediakan berbagai macam peralatan untuk melengkapi kebutuhan kegiatan maupun acara anda.
             </p>
             <div className="container max-w-4xl bg-slate-50 rounded-lg my-4">
               <div className="flex flex-col justify-start items-center my-4">
-                <h2 className="font-sans font-semibold text-gray-800 text-xl">Tahapan Pengerjaan Proyek</h2>
+                <h2 className="font-sans font-semibold text-gray-800 text-xl">Form Peminjaman Alat</h2>
                 <div className="flex flex-wrap justify-start items-center gap-2 ml-10 mr-8 mb-8 mt-10">
 
 
