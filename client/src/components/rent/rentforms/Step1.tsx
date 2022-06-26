@@ -22,7 +22,7 @@ const Step1 = ({
             Nama
           </label>
           <input
-            className="w-80 shadow appearance-none border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="w-56 shadow appearance-none border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="nama"
             type="text"
             placeholder="John Doe"
@@ -43,7 +43,7 @@ const Step1 = ({
             NIM
           </label>
           <input
-            className="w-80 shadow appearance-none border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="w-56 shadow appearance-none border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="nim"
             type="text"
             placeholder="13218000"
@@ -64,7 +64,7 @@ const Step1 = ({
             Organisation
           </label>
           <input
-            className="w-80 shadow appearance-none border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="w-56 shadow appearance-none border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="organisation"
             type="text"
             placeholder="HME"
@@ -87,7 +87,7 @@ const Step1 = ({
             Phone / WA
           </label>
           <input
-            className="w-80 shadow appearance-none border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="w-56 shadow appearance-none border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="phone"
             type="text"
             placeholder="087734788203"
@@ -108,7 +108,7 @@ const Step1 = ({
             Line ID
           </label>
           <input
-            className="w-80 shadow appearance-none border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="w-56 shadow appearance-none border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="line"
             type="text"
             placeholder="exampleLineId123"

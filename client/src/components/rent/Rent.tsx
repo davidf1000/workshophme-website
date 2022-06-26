@@ -7,7 +7,7 @@ import Step1 from './rentforms/Step1';
 import Step2 from './rentforms/Step2';
 import Step3 from './rentforms/Step3';
 import Step4 from './rentforms/Step4';
-import StepFinished from './StepFinished';
+import StepFinished from './rentforms/StepFinished';
 import StepRent from './StepRent';
 import moment from 'moment';
 
@@ -67,7 +67,7 @@ const Rent = (): JSX.Element => {
               kebutuhan kegiatan maupun acara anda.
             </p>
             <div className="container max-w-7xl bg-slate-50 rounded-lg my-4">
-              <div className="flex flex-col justify-start items-center my-4 relative">
+              <div className="flex flex-col justify-start items-center my-4 relative w-full bg-slate-100">
                 <h2 className="font-sans font-semibold text-gray-800 text-xl">
                   Form Peminjaman Alat
                 </h2>
@@ -79,7 +79,7 @@ const Rent = (): JSX.Element => {
                       <StepRent step={step} />
                     </div>
                     <hr />
-                    <div className="flex flex-col justify-between items-center mb-2">
+                    <div className="flex flex-col justify-between items-center mb-2 w-full bg-slate-200">
                       {step === 0 && (
                         <Step1
                           formData={formData}

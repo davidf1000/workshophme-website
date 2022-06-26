@@ -31,13 +31,13 @@ const Step2 = ({
               onChange(e);
             }}
             className="bg-gray-50 border border-gray-300 placeholder:font-sans
-                text-gray-800 sm:text-sm rounded-lg  focus:border-ws-orange focus:ring-ws-orange block w-80 p-2"
+                text-gray-800 sm:text-sm rounded-lg  focus:border-ws-orange focus:ring-ws-orange block w-56 p-2"
             placeholder="Select date start"
           />
         </div>
         {/* Pickup Time */}
         <div className="flex flex-row mt-2">
-          <div className="w-36 mr-4">
+          <div className="w-24 mr-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="pickupHour"
@@ -75,7 +75,7 @@ const Step2 = ({
               ))}
             </select>
           </div>
-          <div className="w-36 ml-4">
+          <div className="w-24 ml-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="pickupMinute"
@@ -134,13 +134,13 @@ const Step2 = ({
               onChange(e);
             }}
             className="bg-gray-50 border border-gray-300 placeholder:font-sans
-                text-gray-800 sm:text-sm rounded-lg  focus:border-ws-orange focus:ring-ws-orange block w-80 p-2"
+                text-gray-800 sm:text-sm rounded-lg  focus:border-ws-orange focus:ring-ws-orange block w-56 p-2"
             placeholder="Select date start"
           />
         </div>
         {/* Return time  */}
         <div className="flex flex-row mb-1 mt-2">
-          <div className="w-36 mr-4">
+          <div className="w-24 mr-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="returnHour"
@@ -178,7 +178,7 @@ const Step2 = ({
               ))}
             </select>
           </div>
-          <div className="w-36 ml-4">
+          <div className="w-24 ml-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="returnMinute"

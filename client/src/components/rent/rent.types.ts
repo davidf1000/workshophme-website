@@ -57,7 +57,6 @@ export interface Admin {
   createdAt?: Date;
   email: string;
   name: string;
-  password: string;
   rents?: Rent[];
 }
 
