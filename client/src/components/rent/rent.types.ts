@@ -45,10 +45,41 @@ export interface Tool {
   id: number;
   createdAt: Date;
   name: string;
-  desc: string;
   image: string;
   activated: boolean;
   totalStock: number;
   priceHour: number;
   priceDay: number;
 }
+
+export interface Admin {
+  id: number;
+  createdAt?: Date;
+  email: string;
+  name: string;
+  password: string;
+  rents?: Rent[];
+}
+
+export interface Rent {
+  id: number;
+  createdAt?: Date;
+  admin?: Admin;
+  adminId: number;
+  tools: ToolRent[];
+  rentName: string;
+  rentNim: string;
+  rentPhone: string;
+  rentLineId: string;
+  organisation: string;
+  fromDate: Date;
+  expectedReturnDate: Date;
+  totalPrice?: number;
+  status: string;
+  fine?: number;
+  pickupName?: string;
+  pickupNim?: string;
+  returnName?: string;
+  returnNim?: string;
+}
+

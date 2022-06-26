@@ -24,3 +24,6 @@ yarn-error.log*
 
 # Tailwind processed CSS 
 index.css
+
+# Dummy Data for seeding and testing
+dummydata
