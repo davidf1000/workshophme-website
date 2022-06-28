@@ -21,11 +21,12 @@ const NavAdmin = ({ selected }: NavAdminProps): JSX.Element => {
         navigate('/')
     }
     const menu = {
-        summary: (selected === 'summary') ? 'text-gray-50' : 'text-gray-900',
         pickup: (selected === 'pickup') ? 'text-gray-50' : 'text-gray-900',
         return: (selected === 'return') ? 'text-gray-50' : 'text-gray-900',
         log: (selected === 'log') ? 'text-gray-50' : 'text-gray-900',
-        tool: (selected === 'tool') ? 'text-gray-50' : 'text-gray-900'
+        tool: (selected === 'tool') ? 'text-gray-50' : 'text-gray-900',
+        shop: (selected === 'shop') ? 'text-gray-50' : 'text-gray-900',
+        article: (selected === 'article') ? 'text-gray-50' : 'text-gray-900',
     }
     return (
         <>
@@ -72,16 +73,6 @@ const NavAdmin = ({ selected }: NavAdminProps): JSX.Element => {
                         <ul className="flex flex-col font-sans mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
                             <li>
                                 <p
-                                    className={`block ${menu.summary} text-md border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-gray-50 mx-1 md:p-0`}
-                                    aria-current="page"
-                                >
-                                    <Link to='/admin/summary'>
-                                        Summary
-                                    </Link>
-                                </p>
-                            </li>
-                            <li>
-                                <p
                                     className={`block ${menu.pickup} text-md border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-gray-50 mx-1 md:p-0`}
                                 >
                                     <Link to='/admin/pickup'>
@@ -114,6 +105,23 @@ const NavAdmin = ({ selected }: NavAdminProps): JSX.Element => {
                                     </Link>
                                 </p>
                             </li>
+                            <li>
+                                <p className={`block ${menu.shop} text-md border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-gray-50 mx-1 md:p-0`}
+                                >
+                                    <Link to="/admin/shop">
+                                        Shop
+                                    </Link>
+                                </p>
+                            </li>
+                            <li>
+                                <p className={`block ${menu.article} text-md border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-gray-50 mx-1 md:p-0`}
+                                >
+                                    <Link to="/admin/article">
+                                        Article
+                                    </Link>
+                                </p>
+                            </li>
+
                         </ul>
                     </div>
                     <div className="hidden w-full md:block md:w-auto mr-4">
@@ -138,18 +146,6 @@ const NavAdmin = ({ selected }: NavAdminProps): JSX.Element => {
                     <div className="flex-grow border-t border-gray-900 w-full my-4"></div>
                     <div className={`flex justify-start duration-100 ml-4`}>
                         <ul className="flex flex-col items-start justify-between min-h-[250px] text-left ml-2">
-                            <li className="border-b border-gray-900 hover:border-ws-orange my-2 uppercase">
-                                <p
-                                    onClick={() => {
-                                        toggleDropdown();
-                                    }}
-                                    className="hover:text-gray-50"
-                                >
-                                    <Link to='/admin/summary'>
-                                        Summary
-                                    </Link>
-                                </p>
-                            </li>
                             <li className="border-b border-gray-900 hover:border-gray-50 my-2 uppercase">
                                 <p
                                     onClick={() => {
@@ -193,8 +189,32 @@ const NavAdmin = ({ selected }: NavAdminProps): JSX.Element => {
                                     }}
                                     className="hover:text-gray-50 my-1"
                                 >
-                                    <Link to='/Tool'>
+                                    <Link to='/admin/tool'>
                                         Tool
+                                    </Link>
+                                </p>
+                            </li>
+                            <li className="border-b border-gray-900 hover:border-gray-50 my-2 uppercase">
+                                <p
+                                    onClick={() => {
+                                        toggleDropdown();
+                                    }}
+                                    className="hover:text-gray-50 my-1"
+                                >
+                                    <Link to='/admin/shop'>
+                                        Shop
+                                    </Link>
+                                </p>
+                            </li>
+                            <li className="border-b border-gray-900 hover:border-gray-50 my-2 uppercase">
+                                <p
+                                    onClick={() => {
+                                        toggleDropdown();
+                                    }}
+                                    className="hover:text-gray-50 my-1"
+                                >
+                                    <Link to='/admin/article'>
+                                        Article
                                     </Link>
                                 </p>
                             </li>

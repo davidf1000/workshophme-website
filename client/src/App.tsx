@@ -4,10 +4,11 @@ import Article from './components/article/Article';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Register from './components/auth/Register';
+import ArticleTable from './components/dashboard/article/Article';
 import Pickup from './components/dashboard/pickup/Pickup';
 import RentLog from './components/dashboard/rentlog/RentLog';
 import Return from './components/dashboard/return/Return';
-import Summary from './components/dashboard/summary/Summary';
+import ShopTable from './components/dashboard/shop/Shop';
 import Tool from './components/dashboard/tool/Tool';
 import Landing from './components/landing/Landing';
 import NotFound from './components/NotFound';
@@ -28,11 +29,12 @@ const App = (): JSX.Element => {
           <Route path="/admin/" element={<Login />} />
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin/register" element={<Register />} />
-          <Route path="/admin/summary" element={<Summary />} />
           <Route path="/admin/pickup" element={<Pickup />} />
           <Route path="/admin/return" element={<Return />} />
           <Route path="/admin/log" element={<RentLog />} />
           <Route path="/admin/tool" element={<Tool />} />
+          <Route path="/admin/shop" element={<ShopTable />} />
+          <Route path="/admin/article" element={<ArticleTable />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
