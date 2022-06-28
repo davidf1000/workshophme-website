@@ -1,3 +1,4 @@
+import { articleDataDummy } from "../../dummydata/article.data";
 import Footer from "../Footer";
 import NavBar from "../Navbar";
 import ArticleCard from "./ArticleCard";
@@ -16,8 +17,9 @@ const Article = (): JSX.Element => {
               Daftar technical article seputar dunia IT dan elektronik yang telah di-publish oleh Workshop HME pada platform medium.
             </p>
             <div className="flex flex-col justify-start items-center mx-10 mb-8 mt-10">
-              <ArticleCard />
-              <ArticleCard />
+              {articleDataDummy.map(article => (
+                <ArticleCard article={article} />
+              ))}
             </div>
           </div>
         </div>
