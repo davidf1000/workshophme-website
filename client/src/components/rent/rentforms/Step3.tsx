@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { toolsData } from '../../../dummydata/toolsdata';
+import { toolsData } from '../../../dummydata/tools.data';
 import { StepProps, Tool } from '..//rent.types';
 import ToolCard from './ToolCard';
 

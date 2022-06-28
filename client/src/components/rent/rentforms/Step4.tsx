@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { calculateBetweenTwoDate, calculatePrices } from '../../../actions/utils';
-import { toolsData } from '../../../dummydata/toolsdata';
+import { toolsData } from '../../../dummydata/tools.data';
 import { StepProps, Tool } from '..//rent.types';
 
 
@@ -27,7 +27,7 @@ const Step4 = ({
   const returnDate = new Date(formData.returnDate);
   returnDate.setHours(formData.returnHour);
   returnDate.setMinutes(formData.returnMinute);
-  const [days, hours, minutes, seconds] = calculateBetweenTwoDate(pickupDate, returnDate);
+  const [days, hours] = calculateBetweenTwoDate(pickupDate, returnDate);
   const totalPrice = calculatePrices(formData.tools, toolsFetch, days, hours);
   return <>
     <div className="overflow-x-auto px-4">
