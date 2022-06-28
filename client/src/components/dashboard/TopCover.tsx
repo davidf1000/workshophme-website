@@ -1,6 +1,6 @@
 import wslogo from '../../assets/img/wslogo.png'
 
-const TopCover = ({title, desc}: TopCoverProps): JSX.Element => {
+const TopCover = ({ title, desc }: TopCoverProps): JSX.Element => {
     // Full Width, with BG, and dark overlay 
     const backStyle = {
         backgroundImage: "url('/images/bgadmin.jpg')",
@@ -11,8 +11,8 @@ const TopCover = ({title, desc}: TopCoverProps): JSX.Element => {
     };
     return (
         <>
-            <div className="h-96" style={backStyle}>
-                <div className="flex flex-col bg-black/60 px-14 py-14 font-sans justify-start">
+            <div className="h-[350px]" style={backStyle}>
+                <div className="flex flex-col bg-black/60 px-14 py-14 font-sans justify-start h-full">
                     <img className='h-36 shadow-xl mr-auto mb-5' src={wslogo} alt='WorkshopHME' />
                     <h1 className="ml-4 mb-2 pt-2 shadow-xl text-4xl text-left font-bold tracking-tight text-white dark:text-white">
                         {title}
@@ -26,7 +26,7 @@ const TopCover = ({title, desc}: TopCoverProps): JSX.Element => {
     )
 }
 
-interface TopCoverProps{
+interface TopCoverProps {
     title: string;
     desc: string;
 }

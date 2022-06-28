@@ -35,7 +35,7 @@ const NavAdmin = ({ selected }: NavAdminProps): JSX.Element => {
                     <button
                         data-collapse-toggle="mobile-menu"
                         type="button"
-                        className="inline-flex items-center w-10 p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                        className="inline-flex items-center w-10 p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none"
                         aria-controls="mobile-menu"
                         aria-expanded="false"
                         onClick={() => {
@@ -124,9 +124,9 @@ const NavAdmin = ({ selected }: NavAdminProps): JSX.Element => {
 
                         </ul>
                     </div>
-                    <div className="hidden w-full md:block md:w-auto mr-4">
-                        <div className='flex flex-row font-sans text-md'>
-                            <p className="mx-1">
+                    <div className="hidden w-full md:block md:w-auto mr-4 text-sans">
+                        <div className='flex flex-row font-sans text-sm font-medium'>
+                            <p className="mx-1 font-sans">
                                 Welcome, David
                             </p>
                             <p className="mx-1">|</p>
