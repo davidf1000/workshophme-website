@@ -1,6 +1,6 @@
-import AdminFooter from "../AdminFooter";
-import NavAdmin from "../NavAdmin";
-import TopCover from "../TopCover";
+import AdminFooter from "../basiccomponent/AdminFooter";
+import NavAdmin from "../basiccomponent/NavAdmin";
+import TopCover from "../basiccomponent/TopCover";
 
 // Deprecated, currently not in use
 

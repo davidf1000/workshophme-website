@@ -45,20 +45,6 @@ const Step4 = ({
           </tr>
         </thead>
         <tbody>
-          {/* 
-  name: string;
-  nim: string;
-  organisation: string;
-  phone: string;
-  line: string;
-  pickupDate: string;
-  pickupHour: number;
-  pickupMinute: number;
-  returnDate: string;
-  returnHour: number;
-  returnMinute: number;
-  tools: ToolRent[];
-  totalPrice: number; */}
           <tr key="name">
             <th key="nameInfo" className="border-b border-ws-orange align-middle font-normal text-sm whitespace-nowrap px-2 py-2 text-left">
               Name

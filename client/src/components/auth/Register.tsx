@@ -1,4 +1,4 @@
-import TopCover from "../dashboard/TopCover";
+import TopCover from "../dashboard/basiccomponent/TopCover";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ErrorLoginForm, ErrorRegisterForm, LoginForm, RegisterForm } from "./auth.types";

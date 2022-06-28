@@ -1,6 +1,6 @@
-import AdminFooter from "../AdminFooter";
-import NavAdmin from "../NavAdmin";
-import TopCover from "../TopCover";
+import AdminFooter from "../basiccomponent/AdminFooter";
+import NavAdmin from "../basiccomponent/NavAdmin";
+import TopCover from "../basiccomponent/TopCover";
 
 const ShopTable = (): JSX.Element => {
   return (<div className="flex flex-col h-screen justify-between">

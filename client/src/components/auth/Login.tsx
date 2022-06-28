@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import TopCover from "../dashboard/TopCover";
+import TopCover from "../dashboard/basiccomponent/TopCover";
 import { ErrorLoginForm, LoginForm } from "./auth.types";
 
 const Login = (): JSX.Element => {

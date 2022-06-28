@@ -1,4 +1,4 @@
-import wslogo from '../../assets/img/wslogo.png'
+import wslogo from '../../../assets/img/wslogo.png'
 
 const TopCover = ({ title, desc }: TopCoverProps): JSX.Element => {
     // Full Width, with BG, and dark overlay 
