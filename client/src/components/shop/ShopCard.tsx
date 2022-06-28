@@ -1,14 +1,7 @@
 import { numberToIDR } from "../../actions/utils";
 import { Product } from "./shop.types";
 
-const product: Product = {
-    title: "Kit Arduino Uno",
-    imageUrl: "https://images.tokopedia.net/img/cache/900/VqbcmM/2021/9/20/8ba73fb6-f92e-4cba-9f14-6ca0a19ab921.jpg",
-    link: "https://www.tokopedia.com/workshophme/kit-arduino-uno",
-    price: 200000
-}
-
-const ShopCard = (): JSX.Element => {
+const ShopCard = ({ product }: ShopCardProps): JSX.Element => {
     return (<>
         <div className="flex px-16 py-3 sm:p-3 basis-full sm:basis-1/2 md:basis-1/3">
             <div className="flex flex-col bg-slate-50 w-full h-full rounded-xl shadow-lg">
@@ -30,6 +23,10 @@ const ShopCard = (): JSX.Element => {
         </div>
     </>);
 
+}
+
+interface ShopCardProps {
+    product: Product
 }
 
 export default ShopCard;

@@ -1,3 +1,4 @@
+import { shopDataDummy } from "../../dummydata/shop.data";
 import ArticleCard from "../article/ArticleCard";
 import Footer from "../Footer";
 import NavBar from "../Navbar";
@@ -16,9 +17,9 @@ const Shop = (): JSX.Element => {
             Workshop HME menyediakan aneka komponen serta kit elektronik dengan harga yang terjangkau dan kualitas barang yang terjamin.
           </p>
           <div className="flex flex-wrap justify-center w-full items-center mb-8 mt-10">
-            <ShopCard />
-            <ShopCard />
-            <ShopCard />
+            {shopDataDummy.map(product => (
+              <ShopCard product={product} />
+            ))}
           </div>
         </div>
       </div>
