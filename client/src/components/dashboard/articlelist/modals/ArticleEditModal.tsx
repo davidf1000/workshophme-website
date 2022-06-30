@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useState } from "react";
-import { Article } from "../../article/article.types";
+import { Article } from "../../../article/article.types";
 
 const ArticleEditModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ArticleEditModalProps): JSX.Element => {
     const [loading, setLoading] = useState<boolean>(false);

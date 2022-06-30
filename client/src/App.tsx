@@ -8,7 +8,7 @@ import ArticleList from './components/dashboard/articlelist/ArticleList';
 import Pickup from './components/dashboard/pickup/Pickup';
 import RentLog from './components/dashboard/rentlog/RentLog';
 import Return from './components/dashboard/return/Return';
-import ShopTable from './components/dashboard/shoplist/Shop';
+import ShopList from './components/dashboard/shoplist/ShopList';
 import Tool from './components/dashboard/toollist/Tool';
 import Landing from './components/landing/Landing';
 import NotFound from './components/NotFound';
@@ -33,7 +33,7 @@ const App = (): JSX.Element => {
           <Route path="/admin/return" element={<Return />} />
           <Route path="/admin/log" element={<RentLog />} />
           <Route path="/admin/tool" element={<Tool />} />
-          <Route path="/admin/shop" element={<ShopTable />} />
+          <Route path="/admin/shop" element={<ShopList />} />
           <Route path="/admin/article" element={<ArticleList />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,9 +1,10 @@
-import { Article } from "../../article/article.types";
+import { Article } from "../../../article/article.types";
 
 const ArticleDeleteModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ArticleDeleteModalProps): JSX.Element => {
 
     const onDelete = async (): Promise<any> => {
         // Delete gql
+        await new Promise(r => setTimeout(r, 1000));
         // set Action Result
         setActionResult({
             title: "Success!",

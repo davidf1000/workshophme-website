@@ -1,8 +1,8 @@
 import moment from "moment";
 import { useState } from "react";
-import { Article } from "../../article/article.types";
+import { Product } from "../../../shop/shop.types";
 
-const ArticleAddModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ArticleAddModalProps): JSX.Element => {
+const ProductAddModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ProductAddModalProps): JSX.Element => {
     const [loading, setLoading] = useState<boolean>(false);
     const onAdd = async (): Promise<any> => {
         setLoading(true);
@@ -12,7 +12,7 @@ const ArticleAddModal = ({ formData, setFormData, setShowModal, setActionResult,
         // set Action Result
         setActionResult({
             title: "Success!",
-            desc: "Article added successfully.",
+            desc: "Product added successfully.",
             type: "success",
         })
         setLoading(false);
@@ -23,12 +23,8 @@ const ArticleAddModal = ({ formData, setFormData, setShowModal, setActionResult,
         await refreshData();
     }
     const onChange = (e: any): void => {
-        if (e.target.name === 'publishedDate') {
-            setFormData(item => ({ ...formData, [e.target.name]: (new Date(e.target.value)) }));
-        }
-        else {
-            setFormData({ ...formData, [e.target.name]: e.target.value });
-        }
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+
     };
     return (
         <>
@@ -36,7 +32,7 @@ const ArticleAddModal = ({ formData, setFormData, setShowModal, setActionResult,
                 <div className="relative w-auto my-6 mx-auto max-w-md bg-red-200">
                     <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                         <div className="flex items-start justify-between p-3 border-b border-solid border-slate-200">
-                            <h2 className="text-2xl font-semibold">Add Article</h2>
+                            <h2 className="text-2xl font-semibold">Add Product</h2>
                             <button
                                 className="ml-auto border-0 text-black float-right text-2xl font-bold focus:outline-none"
                                 onClick={() => setShowModal(false)}
@@ -66,65 +62,24 @@ const ArticleAddModal = ({ formData, setFormData, setShowModal, setActionResult,
                                     onChange={(e) => onChange(e)}
                                 />
                             </div>
-                            {/* Desc */}
+                            {/* Price */}
                             <div className="flex flex-col mb-2">
                                 <label
                                     className="block text-gray-700 text-md font-bold mb-2 ml-2"
-                                    htmlFor="desc"
+                                    htmlFor="price"
                                 >
-                                    Description
-                                </label>
-                                <textarea
-                                    className="w-80 shadow appearance-none border rounded-lg py-2 px-3 ml-2 text-gray-700 leading-tight focus:border-ws-orange focus:ring-ws-orange focus:outline-none focus:shadow-outline"
-                                    id="desc"
-                                    placeholder="Example Description (Max 200 words)"
-                                    name="desc"
-                                    value={formData.desc}
-                                    onChange={(e) => onChange(e)}
-                                />
-                            </div>
-                            {/* Publish Date */}
-                            <div className="flex flex-col mb-2">
-                                <label
-                                    className="block text-gray-700 text-sm font-bold mb-2 ml-2"
-                                    htmlFor="publishedDate"
-                                >
-                                    Publish Date
-                                </label>
-                                <input
-                                    name="publishedDate"
-                                    id="publishedDate"
-                                    type="date"
-                                    value={moment(formData.publishedDate).format('YYYY-MM-DD')}
-                                    onChange={(e) => {
-                                        onChange(e);
-                                    }}
-                                    className="bg-gray-50 border border-gray-300 placeholder:font-sans ml-2
-                text-gray-800 sm:text-sm rounded-lg  focus:border-ws-orange focus:ring-ws-orange block w-56 p-2"
-                                    placeholder="Select date start"
-                                />
-                            </div>
-                            {/* Duration */}
-                            <div className="flex flex-col mb-2">
-                                <label
-                                    className="block text-gray-700 text-md font-bold mb-2 ml-2"
-                                    htmlFor="duration"
-                                >
-                                    Read Duration
+                                    Price
                                 </label>
                                 <div className="flex flex-row">
                                     <input
                                         className="w-40 shadow appearance-none border rounded-lg py-2 px-3 ml-2 text-gray-700 leading-tight focus:border-ws-orange focus:ring-ws-orange focus:outline-none focus:shadow-outline"
-                                        id="duration"
+                                        id="price"
                                         type="number"
-                                        placeholder="1"
-                                        name="duration"
-                                        value={formData.duration}
+                                        placeholder="159999"
+                                        name="price"
+                                        value={formData.price}
                                         onChange={(e) => onChange(e)}
                                     />
-                                    <p className="text-gray-700 text-md font-bold my-auto ml-2">
-                                        minutes
-                                    </p>
                                 </div>
                             </div>
                             {/* Image */}
@@ -133,13 +88,13 @@ const ArticleAddModal = ({ formData, setFormData, setShowModal, setActionResult,
                                     className="block text-gray-700 text-md font-bold mb-2 ml-2"
                                     htmlFor="imageUrl"
                                 >
-                                    Image URL {'(copy image address from medium article)'}
+                                    Image URL {'(copy image address from Tokopedia)'}
                                 </label>
                                 <input
                                     className="w-80 shadow appearance-none border rounded-lg py-2 px-3 ml-2 text-gray-700 leading-tight focus:border-ws-orange focus:ring-ws-orange focus:outline-none focus:shadow-outline"
                                     id="imageUrl"
                                     type="text"
-                                    placeholder="https://miro.medium.com/max/560/0*kNCy6orWU8oWzKbp"
+                                    placeholder="https://images.tokopedia.net/img/cache/900/VqbcmM/2021/9/20/8ba73fb6-f92e-4cba-9f14-6ca0a19ab921.jpg"
                                     name="imageUrl"
                                     value={formData.imageUrl}
                                     onChange={(e) => onChange(e)}
@@ -151,13 +106,13 @@ const ArticleAddModal = ({ formData, setFormData, setShowModal, setActionResult,
                                     className="block text-gray-700 text-md font-bold mb-2 ml-2"
                                     htmlFor="link"
                                 >
-                                    Article Link {'(copy from medium article)'}
+                                    Article Link {'(copy product link from Tokopedia)'}
                                 </label>
                                 <input
                                     className="w-80 shadow appearance-none border rounded-lg py-2 px-3 ml-2 text-gray-700 leading-tight focus:border-ws-orange focus:ring-ws-orange focus:outline-none focus:shadow-outline"
                                     id="link"
                                     type="text"
-                                    placeholder="https://medium.com/@workshopitb/digital-pid-controller-with-arduino-9f5d7a06acc7"
+                                    placeholder="https://www.tokopedia.com/workshophme/kit-arduino-uno"
                                     name="link"
                                     value={formData.link}
                                     onChange={(e) => onChange(e)}
@@ -182,12 +137,12 @@ const ArticleAddModal = ({ formData, setFormData, setShowModal, setActionResult,
     );
 }
 
-interface ArticleAddModalProps {
-    formData: Article;
+interface ProductAddModalProps {
+    formData: Product;
     setFormData: Function;
     setShowModal: Function;
     setActionResult: Function;
     refreshData: Function;
 }
 
-export default ArticleAddModal;
+export default ProductAddModal;
