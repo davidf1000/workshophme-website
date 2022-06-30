@@ -1,13 +1,24 @@
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
+import { Admin } from "../rent/rent.types";
 
 const PrivateRoute = ({
-  path,
-  element,
-}: {
-  path: string;
-  element: JSX.Element;
-}) => {
-  return <Route path={path} element={element} />;
+  element: Element,
+  admin
+}: PrivateRouteProps): JSX.Element => {
+
+  return (
+    <>
+      {!admin ?
+        <Element /> :
+        <Navigate to="/admin/login" />
+      }
+    </>
+  );
 };
+
+interface PrivateRouteProps {
+  element: () => JSX.Element;
+  admin: Admin | null;
+}
 
 export default PrivateRoute;

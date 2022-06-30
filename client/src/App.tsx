@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Article from './components/article/Article';
 import Login from './components/auth/Login';
@@ -14,9 +14,20 @@ import Landing from './components/landing/Landing';
 import NotFound from './components/NotFound';
 import Project from './components/project/Project';
 import Rent from './components/rent/Rent';
+import { Admin } from './components/rent/rent.types';
 import Shop from './components/shop/Shop';
 
 const App = (): JSX.Element => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [admin, setAdmin] = useState<Admin | null>(null);
+  const authAdmin = async () => {
+    await new Promise(r => setTimeout(r, 100));
+    setLoading(false);
+    console.log("Load Check Auth");
+  }
+  useEffect(() => {
+    authAdmin();
+  }, []);
   return (
     <Fragment>
       <Router>
@@ -29,7 +40,10 @@ const App = (): JSX.Element => {
           <Route path="/admin/" element={<Login />} />
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin/register" element={<Register />} />
-          <Route path="/admin/pickup" element={<Pickup />} />
+          <Route path="/admin/pickup" element={
+            <PrivateRoute element={Pickup} admin={admin} />
+          } />
+          {/* <PrivateRoute path='/admin/pickup' element={<Pickup />} /> */}
           <Route path="/admin/return" element={<Return />} />
           <Route path="/admin/log" element={<RentLog />} />
           <Route path="/admin/tool" element={<ToolDashboard />} />

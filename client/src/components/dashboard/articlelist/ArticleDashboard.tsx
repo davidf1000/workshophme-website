@@ -32,7 +32,7 @@ const ArticleDashboard = (): JSX.Element => {
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
 
   const onWordSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setWordSearch(wordSearch => e.target.value);
+    setWordSearch(e.target.value);
     setfilteredArticles(articles.filter(art => wordSearch === '' ? true : art.title.toLowerCase().includes(e.target.value.toLowerCase())))
   };
 
