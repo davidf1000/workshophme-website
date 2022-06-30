@@ -4,7 +4,7 @@ import Article from './components/article/Article';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Register from './components/auth/Register';
-import ArticleTable from './components/dashboard/articlelist/Article';
+import ArticleList from './components/dashboard/articlelist/ArticleList';
 import Pickup from './components/dashboard/pickup/Pickup';
 import RentLog from './components/dashboard/rentlog/RentLog';
 import Return from './components/dashboard/return/Return';
@@ -34,7 +34,7 @@ const App = (): JSX.Element => {
           <Route path="/admin/log" element={<RentLog />} />
           <Route path="/admin/tool" element={<Tool />} />
           <Route path="/admin/shop" element={<ShopTable />} />
-          <Route path="/admin/article" element={<ArticleTable />} />
+          <Route path="/admin/article" element={<ArticleList />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
