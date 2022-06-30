@@ -61,7 +61,6 @@ export interface Admin {
 
 export interface Rent {
   id: number;
-  createdAt?: Date;
   tools: ToolRent[];
   rentName: string;
   rentNim: string;
@@ -77,5 +76,6 @@ export interface Rent {
   pickupNim?: string;
   returnName?: string;
   returnNim?: string;
+  returnDate?: null | Date;
 }
 
