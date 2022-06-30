@@ -1,17 +1,13 @@
-import AdminFooter from "../basiccomponent/AdminFooter";
-import NavAdmin from "../basiccomponent/NavAdmin";
-import TopCover from "../basiccomponent/TopCover";
 import { CSVLink } from "react-csv";
 import { useEffect, useState } from "react";
 import { Rent, Tool } from "../../rent/rent.types";
 import { AlertData } from "../basiccomponent/basic.types";
-import { rentsDataLog, rentsDataReturn } from "../../../dummydata/rents.data";
+import { rentsDataLog } from "../../../dummydata/rents.data";
 import AlertCard from "../basiccomponent/AlertCard";
-import ReturnEditModal from "../return/modals/ReturnEditModal";
 import SearchBar from "../basiccomponent/SearchBar";
 import { toolsData } from "../../../dummydata/tools.data";
 import LogTable from "./LogTable";
-import LogDeleteModal from "./modals/LogDeleteModal";
+import LogDeleteModal from "./modals/PickupDropModals";
 import moment from "moment";
 
 const RentLog = (): JSX.Element => {
@@ -26,8 +22,6 @@ const RentLog = (): JSX.Element => {
   const [alert, setAlert] = useState<null | AlertData>(null);
   const [formData, setFormData] = useState<Rent>(formReset)
 
-  const [addModal, setAddModal] = useState<boolean>(false);
-  const [editModal, setEditModal] = useState<boolean>(false);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
 
   const onWordSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -35,14 +29,6 @@ const RentLog = (): JSX.Element => {
     setFilteredRents(rents.filter(x => wordSearch === '' ? true : x.rentName.toLowerCase().includes(e.target.value.toLowerCase())))
   };
 
-  const setAdd = () => {
-    setFormData(formReset);
-    setAddModal(true);
-  }
-  const setEdit = (data: Rent) => {
-    setFormData(data);
-    setEditModal(true);
-  }
   const setDelete = (data: Rent) => {
     setFormData(data);
     setDeleteModal(true);
@@ -61,11 +47,9 @@ const RentLog = (): JSX.Element => {
     setWordSearch('');
     setLoadRender(false);
   }
-  return (<div className="flex flex-col h-screen justify-between">
-    {alert && <AlertCard data={alert} onClose={setAlert} />}
-    <div className="flex flex-col">
-      <NavAdmin selected='log' />
-      <TopCover title='Rent Logs' desc='List of all rent logs' />
+  return (
+    <>
+      {alert && <AlertCard data={alert} onClose={setAlert} />}
       <div className="h-full flex flex-col mx-auto">
         {deleteModal && <LogDeleteModal formData={formData} setFormData={setFormData} setShowModal={setDeleteModal} setActionResult={setAlert} refreshData={refreshData} />}
         {
@@ -90,16 +74,14 @@ const RentLog = (): JSX.Element => {
               </div>
               <div className="w-screen px-6">
                 <div className="overflow-x-auto w-auto">
-                <LogTable data={filteredRents} header={headers.map(x => x.label)} onReturn={setDelete} tools={tools} />
+                  <LogTable data={filteredRents} header={headers.map(x => x.label)} onReturn={setDelete} tools={tools} />
                 </div>
               </div>
             </>
         }
       </div>
-    </div>
-
-    <AdminFooter />
-  </div>);
+    </>
+  );
 }
 
 export default RentLog;

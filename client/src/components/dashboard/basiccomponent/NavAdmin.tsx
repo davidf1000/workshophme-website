@@ -1,8 +1,9 @@
 import e from "express";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Admin } from "../../rent/rent.types";
 
-const NavAdmin = ({ selected }: NavAdminProps): JSX.Element => {
+const NavAdmin = ({ selected, admin }: NavAdminProps): JSX.Element => {
     // Summary Pickup Return Log Tools
     // Full Width, Bg box dark orange when selected, sticky nav
     const navigate = useNavigate();
@@ -127,7 +128,7 @@ const NavAdmin = ({ selected }: NavAdminProps): JSX.Element => {
                     <div className="hidden w-full md:block md:w-auto mr-4 text-sans">
                         <div className='flex flex-row font-sans text-sm font-medium'>
                             <p className="mx-1 font-sans">
-                                Welcome, David
+                                {admin ? "Welcome, " + admin.name : ""}
                             </p>
                             <p className="mx-1">|</p>
                             <p className="mx-1 hover:cursor-pointer hover:text-gray-50">
@@ -231,6 +232,7 @@ const NavAdmin = ({ selected }: NavAdminProps): JSX.Element => {
 
 interface NavAdminProps {
     selected: string;
+    admin: Admin | null;
 }
 
 export default NavAdmin;

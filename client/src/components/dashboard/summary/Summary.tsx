@@ -1,12 +1,8 @@
-import AdminFooter from "../basiccomponent/AdminFooter";
-import NavAdmin from "../basiccomponent/NavAdmin";
-import TopCover from "../basiccomponent/TopCover";
-
 // Deprecated, currently not in use
 
 const Summary = (): JSX.Element => {
   return (<div className="flex flex-col h-screen justify-between">
-    <div className="flex flex-col">
+    {/* <div className="flex flex-col">
       <NavAdmin selected='summary' />
       <TopCover title='Summary' desc='Summary and Visualization of rent data' />
     </div>
@@ -15,7 +11,7 @@ const Summary = (): JSX.Element => {
         Summary Page
       </h1>
     </div>
-    <AdminFooter />
+    <AdminFooter /> */}
   </div>);
 };
 

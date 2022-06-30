@@ -1,13 +1,9 @@
-import AdminFooter from "../basiccomponent/AdminFooter";
-import NavAdmin from "../basiccomponent/NavAdmin";
-import TopCover from "../basiccomponent/TopCover";
-import { CSVLink } from "react-csv";
 import { useEffect, useState } from "react";
 import SearchBar from "../basiccomponent/SearchBar";
 import AlertCard from "../basiccomponent/AlertCard";
 import { Rent, Tool } from "../../rent/rent.types";
 import { toolsData } from "../../../dummydata/tools.data";
-import { rentsDataPickup, rentsDataReturn } from "../../../dummydata/rents.data";
+import { rentsDataReturn } from "../../../dummydata/rents.data";
 import { AlertData } from "../basiccomponent/basic.types";
 import { calculateBetweenTwoDate } from "../../../actions/utils";
 import ReturnTable from "./ReturnTable";
@@ -26,26 +22,16 @@ const Return = (): JSX.Element => {
   const [alert, setAlert] = useState<null | AlertData>(null);
   const [formData, setFormData] = useState<Rent>(formReset)
 
-  const [addModal, setAddModal] = useState<boolean>(false);
   const [editModal, setEditModal] = useState<boolean>(false);
-  const [deleteModal, setDeleteModal] = useState<boolean>(false);
 
   const onWordSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setWordSearch(wordSearch => e.target.value);
     setFilteredRents(rents.filter(x => wordSearch === '' ? true : x.rentName.toLowerCase().includes(e.target.value.toLowerCase())))
   };
 
-  const setAdd = () => {
-    setFormData(formReset);
-    setAddModal(true);
-  }
   const setEdit = (data: Rent) => {
     setFormData(data);
     setEditModal(true);
-  }
-  const setDelete = (data: Rent) => {
-    setFormData(data);
-    setDeleteModal(true);
   }
 
   const refreshData = async (): Promise<any> => {
@@ -87,12 +73,9 @@ const Return = (): JSX.Element => {
     setWordSearch('');
     setLoadRender(false);
   }
-  return (<div className="flex flex-col min-h-screen justify-between overflow-hidden absolute">
-    {alert && <AlertCard data={alert} onClose={setAlert} />}
-
-    <div className="flex flex-col">
-      <NavAdmin selected='return' />
-      <TopCover title='Return' desc='List of rents that have been picked up and are ready to be returned' />
+  return (
+    <>
+      {alert && <AlertCard data={alert} onClose={setAlert} />}
       <div className="h-full flex flex-col mx-auto justify-start">
         {editModal && <ReturnEditModal formData={formData} setFormData={setFormData} setShowModal={setEditModal} setActionResult={setAlert} refreshData={refreshData} />}
         {
@@ -111,10 +94,8 @@ const Return = (): JSX.Element => {
             </>
         }
       </div>
-    </div>
-
-    <AdminFooter />
-  </div>);
+    </>
+  );
 }
 
 export default Return;

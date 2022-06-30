@@ -20,12 +20,23 @@ import Shop from './components/shop/Shop';
 const App = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(true);
   const [admin, setAdmin] = useState<Admin | null>(null);
+  const [isAuth, setIsAuth] = useState<boolean>(false);
   const authAdmin = async () => {
-    await new Promise(r => setTimeout(r, 100));
+    // Check auth 
+    const token = localStorage.getItem('token');
+    setIsAuth(token !== null);
     setLoading(false);
+    await new Promise(r => setTimeout(r, 500));
     console.log("Load Check Auth");
+    // Fetch Admin Info 
+    setAdmin({
+      id: 1,
+      email: 'Workshop@gmail.com',
+      name: 'David fauzi'
+    });
   }
   useEffect(() => {
+    localStorage.setItem('token', '12345')
     authAdmin();
   }, []);
   return (
@@ -40,15 +51,12 @@ const App = (): JSX.Element => {
           <Route path="/admin/" element={<Login />} />
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin/register" element={<Register />} />
-          <Route path="/admin/pickup" element={
-            <PrivateRoute element={Pickup} admin={admin} />
-          } />
-          {/* <PrivateRoute path='/admin/pickup' element={<Pickup />} /> */}
-          <Route path="/admin/return" element={<Return />} />
-          <Route path="/admin/log" element={<RentLog />} />
-          <Route path="/admin/tool" element={<ToolDashboard />} />
-          <Route path="/admin/shop" element={<ShopDashboard />} />
-          <Route path="/admin/article" element={<ArticleDashboard />} />
+          <Route path="/admin/pickup" element={<PrivateRoute element={Pickup} admin={admin} selected='pickup' isAuth={isAuth} loading={loading} />} />
+          <Route path="/admin/return" element={<PrivateRoute element={Return} admin={admin} selected='return' isAuth={isAuth} loading={loading} />} />
+          <Route path="/admin/log" element={<PrivateRoute element={RentLog} admin={admin} selected='log' isAuth={isAuth} loading={loading} />} />
+          <Route path="/admin/tool" element={<PrivateRoute element={ToolDashboard} admin={admin} selected='tool' isAuth={isAuth} loading={loading} />} />
+          <Route path="/admin/shop" element={<PrivateRoute element={ShopDashboard} admin={admin} selected='shop' isAuth={isAuth} loading={loading} />} />
+          <Route path="/admin/article" element={<PrivateRoute element={ArticleDashboard} admin={admin} selected='article' isAuth={isAuth} loading={loading} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

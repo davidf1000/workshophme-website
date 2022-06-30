@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import { Rent, Tool } from "../../rent/rent.types";
-import AdminFooter from "../basiccomponent/AdminFooter";
 import { AlertData } from "../basiccomponent/basic.types";
-import NavAdmin from "../basiccomponent/NavAdmin";
-import TopCover from "../basiccomponent/TopCover";
-import { CSVLink } from "react-csv";
 import { rentsDataPickup } from "../../../dummydata/rents.data";
 import SearchBar from "../basiccomponent/SearchBar";
 import AlertCard from "../basiccomponent/AlertCard";
@@ -25,7 +21,6 @@ const Pickup = (): JSX.Element => {
   const [alert, setAlert] = useState<null | AlertData>(null);
   const [formData, setFormData] = useState<Rent>(formReset)
 
-  const [addModal, setAddModal] = useState<boolean>(false);
   const [editModal, setEditModal] = useState<boolean>(false);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
 
@@ -34,10 +29,6 @@ const Pickup = (): JSX.Element => {
     setFilteredRents(rents.filter(x => wordSearch === '' ? true : x.rentName.toLowerCase().includes(e.target.value.toLowerCase())))
   };
 
-  const setAdd = () => {
-    setFormData(formReset);
-    setAddModal(true);
-  }
   const setEdit = (data: Rent) => {
     setFormData(data);
     setEditModal(true);
@@ -59,11 +50,9 @@ const Pickup = (): JSX.Element => {
     setWordSearch('');
     setLoadRender(false);
   }
-  return (<div className="flex flex-col min-h-screen justify-between overflow-hidden absolute">
-    {alert && <AlertCard data={alert} onClose={setAlert} />}
-    <div className="flex flex-col">
-      <NavAdmin selected='pickup' />
-      <TopCover title='Pickup' desc='List of rents that are ready to be picked up' />
+  return (
+    <>
+      {alert && <AlertCard data={alert} onClose={setAlert} />}
       <div className="h-full flex flex-col mx-auto">
         {editModal && <PickupEditModal formData={formData} setFormData={setFormData} setShowModal={setEditModal} setActionResult={setAlert} refreshData={refreshData} />}
         {deleteModal && <PickupDropModals formData={formData} setFormData={setFormData} setShowModal={setDeleteModal} setActionResult={setAlert} refreshData={refreshData} />}
@@ -83,12 +72,8 @@ const Pickup = (): JSX.Element => {
             </>
         }
       </div>
-    </div>
-
-
-
-    <AdminFooter />
-  </div>);
+    </>
+  );
 };
 
 export default Pickup;
