@@ -88,8 +88,10 @@ const ArticleDashboard = (): JSX.Element => {
                 Add Article
               </button>
             </div>
-            <div className="overflow-x-auto w-full">
-              <ArticleTable data={filteredArticles} header={headers.map(x => x.label)} onEdit={setEdit} onDelete={setDelete} />
+            <div className="w-screen px-6">
+              <div className="overflow-x-auto w-auto">
+                <ArticleTable data={filteredArticles} header={headers.map(x => x.label)} onEdit={setEdit} onDelete={setDelete} />
+              </div>
             </div>
           </>
       }

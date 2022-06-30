@@ -6,7 +6,7 @@ const ReturnTable = ({ header, data, onReturn, tools }: ReturnTableProps): JSX.E
     // Get dist between 2 date 
     // if > 1 hour, get Z day X hour y minutes difference, minute > 0 then hour++  
     return (
-        <table className="overflow-auto border-separate border-spacing-x-6 table-auto bg-transparent mb-4 mt-6 inline-block w-full max-w-sm md:max-w-2xl lg:max-w-5xl xl:max-w-7xl 2xl:max-w-[1800px] md:mr-0">
+        <table className="border-separate border-spacing-x-3 table-auto bg-transparent mb-4 mt-6 w-full mx-auto">
             <thead className="container bg-ws-orange rounded-t w-auto">
                 <tr className="row flex flex-row justify-between px-2">
                     <th key="no" className="w-10 col text-gray-800 align-middle py-1 text-md font-bold text-left">

@@ -87,8 +87,10 @@ const ShopDashboard = (): JSX.Element => {
                 Add Product
               </button>
             </div>
-            <div className="overflow-x-auto w-full">
-              <ProductTable data={filteredProducts} header={headers.map(x => x.label)} onEdit={setEdit} onDelete={setDelete} />
+            <div className="w-screen px-6">
+              <div className="overflow-x-auto w-auto">
+                <ProductTable data={filteredProducts} header={headers.map(x => x.label)} onEdit={setEdit} onDelete={setDelete} />
+              </div>
             </div>
           </>
       }

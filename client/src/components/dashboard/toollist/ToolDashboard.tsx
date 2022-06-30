@@ -87,8 +87,10 @@ const ToolDashboard = (): JSX.Element => {
                 Add Article
               </button>
             </div>
-            <div className="overflow-x-auto w-full">
-              <ToolTable data={filteredTools} header={headers.map(x => x.label)} onEdit={setEdit} onDelete={setDelete} />
+            <div className="w-screen px-6">
+              <div className="overflow-x-auto w-auto">
+                <ToolTable data={filteredTools} header={headers.map(x => x.label)} onEdit={setEdit} onDelete={setDelete} />
+              </div>
             </div>
           </>
       }

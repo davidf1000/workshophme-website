@@ -6,7 +6,7 @@ const LogTable = ({ header, data, onReturn, tools }: LogTableProps): JSX.Element
     // Get dist between 2 date 
     // if > 1 hour, get Z day X hour y minutes difference, minute > 0 then hour++  
     return (
-        <table className="overflow-auto border-separate border-spacing-x-6 table-auto bg-transparent mb-4 mt-6 inline-block w-full max-w-sm md:max-w-2xl lg:max-w-5xl xl:max-w-7xl 2xl:max-w-[1800px] md:mr-0">
+        <table className="border-separate border-spacing-x-3 table-auto bg-transparent mb-4 mt-6 w-full mx-auto">
             <thead className="container bg-ws-orange rounded-t w-auto">
                 <tr className="row flex flex-row justify-between px-2">
                     <th key="no" className="w-10 col text-gray-800 align-middle py-1 text-md font-bold text-left">
@@ -64,10 +64,10 @@ const LogTable = ({ header, data, onReturn, tools }: LogTableProps): JSX.Element
                                 </ul>
                             </th>
                             <th key={rent.fromDate.toISOString()} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
-                                {moment(rent.fromDate).format('DD MMM YYYY HH MM A')}
+                                {moment(rent.fromDate).format('DD MMM YYYY HH:MM')}
                             </th>
                             <th key={rent.expectedReturnDate.toISOString()} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
-                                {moment(rent.expectedReturnDate).format('DD MMM YYYY HH MM A')}
+                                {moment(rent.expectedReturnDate).format('DD MMM YYYY HH:MM')}
                             </th>
                             <th key={rent.totalPrice} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                                 {numberToIDR(rent.totalPrice)}
@@ -86,11 +86,11 @@ const LogTable = ({ header, data, onReturn, tools }: LogTableProps): JSX.Element
                             </th>
                             <th key={rent.status} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                                 {rent.status === 'finished' ?
-                                    <div className="container w-20 rounded-md bg-green-400 text-md font-sans font-semibold mx-auto">
+                                    <div className="container w-20 py-1.5 rounded-md bg-green-400 text-md font-sans font-semibold mx-auto">
                                         Finished
                                     </div>
                                     :
-                                    <div className="container w-20 rounded-md bg-red-500 text-md font-sans font-semibold mx-auto">
+                                    <div className="container w-20 py-1.5 rounded-md bg-red-500 text-md font-sans font-semibold mx-auto">
                                         Dropped
                                     </div>
                                 }

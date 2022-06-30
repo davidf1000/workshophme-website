@@ -4,7 +4,7 @@ import { Article } from "../../article/article.types";
 const ArticleTable = ({ header, data, onEdit, onDelete }: ArticleTableProps): JSX.Element => {
 
     return (
-        <table className="overflow-auto border-separate border-spacing-x-6 table-auto bg-transparent mb-4 mt-6 inline-block w-full max-w-sm md:max-w-2xl lg:max-w-5xl xl:max-w-none md:mr-0">
+        <table className="border-separate border-spacing-x-3 table-auto bg-transparent mb-4 mt-6 w-full mx-auto">
             <thead className="container bg-ws-orange rounded-t w-auto">
                 <tr className="row flex flex-row justify-between px-2">
                     <th key="no" className="w-10 col text-gray-800 align-middle py-1 text-md font-bold text-left">
