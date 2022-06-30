@@ -16,7 +16,7 @@ import moment from "moment";
 
 
 
-const ArticleList = (): JSX.Element => {
+const ArticleDashboard = (): JSX.Element => {
   useEffect(() => {
     refreshData()
   }, [])
@@ -24,11 +24,7 @@ const ArticleList = (): JSX.Element => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [filteredArticles, setfilteredArticles] = useState<Article[]>([]);
   const [wordSearch, setWordSearch] = useState<string>('');
-  const [alert, setAlert] = useState<null | AlertData>({
-    title: "Success !",
-    desc: "Article Added succesfully",
-    type: "success"
-  });
+  const [alert, setAlert] = useState<null | AlertData>(null);
   const [formData, setFormData] = useState<Article>(formReset)
 
   const [addModal, setAddModal] = useState<boolean>(false);
@@ -103,7 +99,7 @@ const ArticleList = (): JSX.Element => {
   );
 };
 
-export default ArticleList;
+export default ArticleDashboard;
 
 const headers = [
   { label: "Gambar", key: "imageUrl" },

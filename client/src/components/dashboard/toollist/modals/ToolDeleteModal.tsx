@@ -1,14 +1,14 @@
-import { Product } from "../../../shop/shop.types";
+import { Tool } from "../../../rent/rent.types";
 
-const ProductDeleteModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ProductDeleteModalProps): JSX.Element => {
+const ToolDeleteModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ToolDeleteModalProps): JSX.Element => {
 
     const onDelete = async (): Promise<any> => {
-        // Delete gql
+        // Delete gql (change activated to false)
         await new Promise(r => setTimeout(r, 1000));
         // set Action Result
         setActionResult({
             title: "Success!",
-            desc: "Product Deleted successfully.",
+            desc: "Tool Deleted successfully.",
             type: "success",
         })
         // leave the modal
@@ -21,7 +21,7 @@ const ProductDeleteModal = ({ formData, setFormData, setShowModal, setActionResu
                 <div className="relative w-auto my-6 mx-auto max-w-xl bg-red-200">
                     <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                         <div className="flex items-start justify-between p-3 border-b border-solid border-slate-200">
-                            <h2 className="text-2xl font-semibold">Delete Product</h2>
+                            <h2 className="text-2xl font-semibold">Delete Tool</h2>
                             <button
                                 className="ml-auto border-0 text-black float-right text-2xl font-bold focus:outline-none"
                                 onClick={() => setShowModal(false)}
@@ -34,7 +34,7 @@ const ProductDeleteModal = ({ formData, setFormData, setShowModal, setActionResu
                         {/*body*/}
                         <div className="relative px-3 mb-10 flex-auto my-2 w-full">
                             <h2 className="font-sans text-xl text-semibold text-gray-900 text-center mt-3 mb-4">
-                                Are you sure to delete product ?
+                                Are you sure to delete tool ?
                             </h2>
                             <div className="flex flex-row gap-x-6 mx-auto justify-center">
                                 <button onClick={() => { setShowModal(false) }} className=" bg-red-500 text-slate-700 hover:bg-red-200 text-xl font-bold py-2 px-4 rounded-lg w-auto">
@@ -52,12 +52,12 @@ const ProductDeleteModal = ({ formData, setFormData, setShowModal, setActionResu
         </>
     );
 }
-interface ProductDeleteModalProps {
-    formData: Product;
+interface ToolDeleteModalProps {
+    formData: Tool;
     setFormData: Function;
     setShowModal: Function;
     setActionResult: Function;
     refreshData: Function;
 }
 
-export default ProductDeleteModal;
+export default ToolDeleteModal;

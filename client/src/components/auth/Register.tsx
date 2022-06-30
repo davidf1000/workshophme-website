@@ -152,7 +152,7 @@ const Register = (): JSX.Element => {
               <span className='ml-2 text-md'>
                 Processing...
               </span>
-            </div> : <>Login</>
+            </div> : <>Register</>
             }
 
           </button>

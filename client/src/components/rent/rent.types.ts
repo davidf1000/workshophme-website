@@ -43,7 +43,6 @@ export interface RentFormError {
 
 export interface Tool {
   id: number;
-  createdAt: Date;
   name: string;
   image: string;
   activated: boolean;
