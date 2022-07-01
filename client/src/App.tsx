@@ -24,6 +24,9 @@ const App = (): JSX.Element => {
   const authAdmin = async () => {
     // Check auth 
     const token = localStorage.getItem('token');
+    // is there
+    // not expired
+    // have valid id
     setIsAuth(token !== null);
     setLoading(false);
     await new Promise(r => setTimeout(r, 500));
