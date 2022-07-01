@@ -1,15 +1,31 @@
 type Article {
-  # Example field (placeholder)
-  exampleField: Int
+  id: Int!
+  createdAt: DateTime
+  title: String!
+  desc: String!
+  imageUrl: String!
+  publishedDate: DateTime!
+  duration: Int!
+  link: String!
 }
 
 input CreateArticleInput {
-  # Example field (placeholder)
-  exampleField: Int
+  title: String!
+  desc: String!
+  imageUrl: String!
+  publishedDate: DateTime!
+  duration: Int!
+  link: String!
 }
 
 input UpdateArticleInput {
   id: Int!
+  title: String!
+  desc: String!
+  imageUrl: String!
+  publishedDate: DateTime!
+  duration: Int!
+  link: String!
 }
 
 type Query {

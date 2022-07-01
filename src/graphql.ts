@@ -20,6 +20,25 @@ export class UpdateAdminInput {
     password: string;
 }
 
+export class CreateArticleInput {
+    title: string;
+    desc: string;
+    imageUrl: string;
+    publishedDate: DateTime;
+    duration: number;
+    link: string;
+}
+
+export class UpdateArticleInput {
+    id: number;
+    title: string;
+    desc: string;
+    imageUrl: string;
+    publishedDate: DateTime;
+    duration: number;
+    link: string;
+}
+
 export class LoginAdminInput {
     email: string;
     password: string;
@@ -54,6 +73,14 @@ export class UpdateRentInput {
     returnName?: Nullable<string>;
     returnNim?: Nullable<string>;
     returnDate?: Nullable<DateTime>;
+}
+
+export class CreateShopInput {
+    exampleField?: Nullable<number>;
+}
+
+export class UpdateShopInput {
+    id: number;
 }
 
 export class CreateToolInput {
@@ -95,9 +122,17 @@ export abstract class IQuery {
 
     abstract admin(id: number): Nullable<AdminResponse> | Promise<Nullable<AdminResponse>>;
 
+    abstract articles(): Nullable<Article>[] | Promise<Nullable<Article>[]>;
+
+    abstract article(id: number): Nullable<Article> | Promise<Nullable<Article>>;
+
     abstract rents(): Nullable<Rent>[] | Promise<Nullable<Rent>[]>;
 
     abstract rent(id: number): Nullable<Rent> | Promise<Nullable<Rent>>;
+
+    abstract shops(): Nullable<Shop>[] | Promise<Nullable<Shop>[]>;
+
+    abstract shop(id: number): Nullable<Shop> | Promise<Nullable<Shop>>;
 
     abstract tools(): Nullable<Tool>[] | Promise<Nullable<Tool>[]>;
 
@@ -111,6 +146,12 @@ export abstract class IMutation {
 
     abstract removeAdmin(id: number): Nullable<AdminResponse> | Promise<Nullable<AdminResponse>>;
 
+    abstract createArticle(createArticleInput: CreateArticleInput): Article | Promise<Article>;
+
+    abstract updateArticle(updateArticleInput: UpdateArticleInput): Article | Promise<Article>;
+
+    abstract removeArticle(id: number): Nullable<Article> | Promise<Nullable<Article>>;
+
     abstract login(createLoginInput: LoginAdminInput): LoginAdminResponse | Promise<LoginAdminResponse>;
 
     abstract createRent(createRentInput: CreateRentInput): Rent | Promise<Rent>;
@@ -119,11 +160,28 @@ export abstract class IMutation {
 
     abstract removeRent(id: number): Nullable<Rent> | Promise<Nullable<Rent>>;
 
+    abstract createShop(createShopInput: CreateShopInput): Shop | Promise<Shop>;
+
+    abstract updateShop(updateShopInput: UpdateShopInput): Shop | Promise<Shop>;
+
+    abstract removeShop(id: number): Nullable<Shop> | Promise<Nullable<Shop>>;
+
     abstract createTool(createToolInput: CreateToolInput): Tool | Promise<Tool>;
 
     abstract updateTool(updateToolInput: UpdateToolInput): Tool | Promise<Tool>;
 
     abstract removeTool(id: number): Nullable<Tool> | Promise<Nullable<Tool>>;
+}
+
+export class Article {
+    id: number;
+    createdAt?: Nullable<DateTime>;
+    title: string;
+    desc: string;
+    imageUrl: string;
+    publishedDate: DateTime;
+    duration: number;
+    link: string;
 }
 
 export class AdminWithoutPassword {
@@ -157,6 +215,10 @@ export class Rent {
     returnName?: Nullable<string>;
     returnNim?: Nullable<string>;
     returnDate?: Nullable<DateTime>;
+}
+
+export class Shop {
+    exampleField?: Nullable<number>;
 }
 
 export class Tool {
