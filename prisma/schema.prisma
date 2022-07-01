@@ -60,3 +60,23 @@ model Tool {
   priceHour  Int
   priceDay   Int
 }
+
+model Article {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  title         String
+  desc          String
+  imageUrl      String
+  publishedDate DateTime @default(now())
+  duration      Int
+  link          String
+}
+
+model Shop {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  title     String
+  imageUrl  String
+  link      String
+  price     Int
+}
