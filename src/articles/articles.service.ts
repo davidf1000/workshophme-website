@@ -1,26 +1,55 @@
 import { Injectable } from '@nestjs/common';
-import { CreateArticleInput } from './dto/create-article.input';
-import { UpdateArticleInput } from './dto/update-article.input';
+import { CreateArticleInput, UpdateArticleInput } from 'src/graphql';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class ArticlesService {
-  create(createArticleInput: CreateArticleInput) {
-    return 'This action adds a new article';
+  constructor(private prisma: PrismaService) {}
+
+  async create(createArticleInput: CreateArticleInput) {
+    const created = await this.prisma.article.create({
+      data: createArticleInput,
+    });
+    return created;
   }
 
-  findAll() {
-    return `This action returns all articles`;
+  async findAll() {
+    const articles = await this.prisma.article.findMany({
+      orderBy: {
+        createdAt: 'asc',
+      },
+    });
+    return articles;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} article`;
+  async findOne(id: number) {
+    const article = await this.prisma.article.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    return article;
   }
 
-  update(id: number, updateArticleInput: UpdateArticleInput) {
-    return `This action updates a #${id} article`;
+  async update(id: number, updateArticleInput: UpdateArticleInput) {
+    const updateTool = await this.prisma.tool.update({
+      where: {
+        id: id,
+      },
+      data: {
+        ...updateArticleInput,
+      },
+    });
+
+    return updateTool;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} article`;
+  async remove(id: number) {
+    const deleteArticle = await this.prisma.article.delete({
+      where: {
+        id: id,
+      },
+    });
+    return deleteArticle;
   }
 }
