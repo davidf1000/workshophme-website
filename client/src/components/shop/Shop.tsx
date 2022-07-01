@@ -1,10 +1,17 @@
+import { useQuery } from "@apollo/client";
+import { useState } from "react";
 import { shopDataDummy } from "../../dummydata/shop.data";
-import ArticleCard from "../article/ArticleCard";
+import { GET_SHOP, GET_SHOPS } from "../../graphql/shopQuery";
+import { GetShopsResponse } from "../../graphql/shopQuery.types";
+import AlertCard from "../dashboard/basiccomponent/AlertCard";
 import Footer from "../Footer";
 import NavBar from "../Navbar";
+import Spinner from "../Spinner";
 import ShopCard from "./ShopCard";
 
 const Shop = (): JSX.Element => {
+  const { loading, error, data } = useQuery<GetShopsResponse>(GET_SHOPS);
+  const [showAlert, setShowAlert] = useState<boolean>(true);
   return (
     <div className="flex flex-col min-h-screen justify-start bg-ws-orange">
       <NavBar selected="shop" />
@@ -17,9 +24,16 @@ const Shop = (): JSX.Element => {
             Workshop HME menyediakan aneka komponen serta kit elektronik dengan harga yang terjangkau dan kualitas barang yang terjamin.
           </p>
           <div className="flex flex-wrap justify-center w-full items-center mb-8 mt-10">
-            {shopDataDummy.map(product => (
-              <ShopCard product={product} />
-            ))}
+            {showAlert && error && <AlertCard data={{
+              title: 'ERROR',
+              desc: error.message,
+              type: 'error'
+            }} onClose={setShowAlert} />}
+            {loading ? <Spinner /> : <>
+              {data?.shops.map(product => (
+                <ShopCard product={product} />
+              ))}
+            </>}
           </div>
         </div>
       </div>

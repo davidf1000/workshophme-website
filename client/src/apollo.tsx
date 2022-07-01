@@ -19,7 +19,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: process.env.REACT_APP_API_BASE_URL + '/graphql',
 });
 
 
