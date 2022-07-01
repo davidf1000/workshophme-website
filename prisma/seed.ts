@@ -1,6 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import adminSeed from './adminSeed';
+import articleSeed from './articleSeed';
+import shopSeed from './shopSeed';
 import toolSeed from './toolSeed';
 
 const prisma = new PrismaClient();
@@ -21,7 +23,23 @@ async function main() {
     data: await toolSeed(),
     skipDuplicates: true,
   });
-  console.log('Admin Seed Successfull with Count : ', tool.count);
+  console.log('Tool Seed Successfull with Count : ', tool.count);
+  // SEED Articles
+  console.log('Start Seeding Articles....');
+  await prisma.article.deleteMany();
+  const article = await prisma.article.createMany({
+    data: await articleSeed(),
+    skipDuplicates: true,
+  });
+  console.log('Article Seed Successfull with Count : ', article.count);
+  // SEED Shops
+  console.log('Start Seeding Shops....');
+  await prisma.shop.deleteMany();
+  const shop = await prisma.shop.createMany({
+    data: await shopSeed(),
+    skipDuplicates: true,
+  });
+  console.log('Shop Seed Successfull with Count : ', shop.count);
 }
 
 main()
