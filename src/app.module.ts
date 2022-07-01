@@ -12,6 +12,8 @@ import { ToolsModule } from './tools/tools.module';
 import { AuthModule } from './auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { GraphQLScalarType } from 'graphql';
+import { ArticlesModule } from './articles/articles.module';
+import { ShopsModule } from './shops/shops.module';
 
 const dateScalar = new GraphQLScalarType({
   name: 'Date',
@@ -45,6 +47,8 @@ const dateScalar = new GraphQLScalarType({
     RentsModule,
     ToolsModule,
     AuthModule,
+    ArticlesModule,
+    ShopsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
