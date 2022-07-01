@@ -32,7 +32,7 @@ export class ArticlesService {
   }
 
   async update(id: number, updateArticleInput: UpdateArticleInput) {
-    const updateTool = await this.prisma.tool.update({
+    const updateTool = await this.prisma.article.update({
       where: {
         id: id,
       },

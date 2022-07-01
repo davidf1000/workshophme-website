@@ -1,15 +1,25 @@
 type Shop {
-  # Example field (placeholder)
-  exampleField: Int
+  id: Int!
+  createdAt: DateTime
+  title: String!
+  imageUrl: String!
+  link: String!
+  price: Int!
 }
 
 input CreateShopInput {
-  # Example field (placeholder)
-  exampleField: Int
+  title: String!
+  imageUrl: String!
+  link: String!
+  price: Int!
 }
 
 input UpdateShopInput {
   id: Int!
+  title: String!
+  imageUrl: String!
+  link: String!
+  price: Int!
 }
 
 type Query {

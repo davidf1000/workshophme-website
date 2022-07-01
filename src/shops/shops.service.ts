@@ -1,26 +1,55 @@
 import { Injectable } from '@nestjs/common';
-import { CreateShopInput } from './dto/create-shop.input';
-import { UpdateShopInput } from './dto/update-shop.input';
+import { CreateShopInput, UpdateShopInput } from 'src/graphql';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class ShopsService {
-  create(createShopInput: CreateShopInput) {
-    return 'This action adds a new shop';
+  constructor(private prisma: PrismaService) {}
+
+  async create(createShopInput: CreateShopInput) {
+    const created = await this.prisma.shop.create({
+      data: createShopInput,
+    });
+    return created;
   }
 
-  findAll() {
-    return `This action returns all shops`;
+  async findAll() {
+    const shops = await this.prisma.shop.findMany({
+      orderBy: {
+        createdAt: 'asc',
+      },
+    });
+    return shops;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} shop`;
+  async findOne(id: number) {
+    const shop = await this.prisma.shop.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    return shop;
   }
 
-  update(id: number, updateShopInput: UpdateShopInput) {
-    return `This action updates a #${id} shop`;
+  async update(id: number, updateShopInput: UpdateShopInput) {
+    const updateShop = await this.prisma.shop.update({
+      where: {
+        id: id,
+      },
+      data: {
+        ...updateShopInput,
+      },
+    });
+
+    return updateShop;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} shop`;
+  async remove(id: number) {
+    const deleteShop = await this.prisma.shop.delete({
+      where: {
+        id: id,
+      },
+    });
+    return deleteShop;
   }
 }
