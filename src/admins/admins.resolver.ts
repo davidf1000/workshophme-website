@@ -1,8 +1,12 @@
 import { ParseIntPipe, UseGuards } from '@nestjs/common';
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateAdminInput, UpdateAdminInput } from 'src/graphql';
 import { AdminsService } from './admins.service';
+import {
+  validateAdminUpdateInput,
+  validateRegisterInput,
+} from '../utils/input.validator';
 
 @Resolver('Admin')
 export class AdminsResolver {
@@ -11,6 +15,7 @@ export class AdminsResolver {
   @Mutation('createAdmin')
   @UseGuards(JwtAuthGuard)
   create(@Args('createAdminInput') createAdminInput: CreateAdminInput) {
+    validateRegisterInput(createAdminInput);
     return this.adminsService.create(createAdminInput);
   }
 
@@ -29,6 +34,7 @@ export class AdminsResolver {
   @Mutation('updateAdmin')
   @UseGuards(JwtAuthGuard)
   update(@Args('updateAdminInput') updateAdminInput: UpdateAdminInput) {
+    validateAdminUpdateInput(updateAdminInput);
     return this.adminsService.update(updateAdminInput);
   }
 

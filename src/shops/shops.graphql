@@ -1,3 +1,5 @@
+scalar DateTime
+
 type Shop {
   id: Int!
   createdAt: DateTime

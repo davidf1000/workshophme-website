@@ -1,3 +1,5 @@
+scalar DateTime
+
 type Article {
   id: Int!
   createdAt: DateTime

@@ -8,6 +8,7 @@ export interface CreateRentInput {
   fromDate: Date;
   expectedReturnDate: Date;
   status: string;
+  totalPrice: number;
 }
 
 export interface UpdateRentInput {

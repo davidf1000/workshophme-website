@@ -13,7 +13,7 @@ export class ToolCreateManyInput {
     createdAt?: Date | string;
 
     @Field(() => String, {nullable:false})
-    @Validator.MinLength(3)
+    @Validator.MinLength(3, {message: 'Name too Short !'})
     name!: string;
 
     @Field(() => String, {nullable:false})

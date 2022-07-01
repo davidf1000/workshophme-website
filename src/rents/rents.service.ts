@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
 import { CreateRentInput, UpdateRentInput } from 'src/graphql';
 import { PrismaService } from 'src/prisma.service';
 

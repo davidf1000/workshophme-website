@@ -10,7 +10,6 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { AppService } from './app.service';
 import { editFileName, imageFileFilter } from './utils/multer.fileupload';
 import { diskStorage } from 'multer';
-import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { JwtAuthGuardHTTP } from './auth/http-jwt-auth.guard';
 
 @Controller()

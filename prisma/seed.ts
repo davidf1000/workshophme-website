@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import * as bcrypt from 'bcrypt';
 import adminSeed from './adminSeed';
 import articleSeed from './articleSeed';
 import shopSeed from './shopSeed';

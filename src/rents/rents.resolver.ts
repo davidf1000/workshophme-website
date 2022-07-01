@@ -2,6 +2,10 @@ import { UseGuards } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateRentInput, UpdateRentInput } from 'src/graphql';
+import {
+  validateCreateRentInput,
+  validateUpdateRentInput,
+} from 'src/utils/input.validator';
 import { RentsService } from './rents.service';
 
 @Resolver('Rent')
@@ -10,6 +14,7 @@ export class RentsResolver {
 
   @Mutation('createRent')
   create(@Args('createRentInput') createRentInput: CreateRentInput) {
+    validateCreateRentInput(createRentInput);
     return this.rentsService.create(createRentInput);
   }
 
@@ -28,6 +33,7 @@ export class RentsResolver {
   @Mutation('updateRent')
   @UseGuards(JwtAuthGuard)
   update(@Args('updateRentInput') updateRentInput: UpdateRentInput) {
+    validateUpdateRentInput(updateRentInput);
     return this.rentsService.update(updateRentInput);
   }
 

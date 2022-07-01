@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
 import { CreateAdminInput, UpdateAdminInput } from 'src/graphql';
 import { PrismaService } from '../prisma.service';
 import * as bcrypt from 'bcrypt';

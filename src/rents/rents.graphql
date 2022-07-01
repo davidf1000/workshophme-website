@@ -1,7 +1,4 @@
-# type ToolsToRent {
-#   toolId: Int!
-#   quantity: Int!
-# }
+scalar DateTime
 
 type Rent {
   id: Int!
@@ -34,6 +31,7 @@ input CreateRentInput {
   fromDate: DateTime!
   expectedReturnDate: DateTime!
   status: String!
+  totalPrice: Int!
 }
 
 input UpdateRentInput {
