@@ -1,6 +1,6 @@
 import Moment from 'react-moment';
 
-import { Article } from "./article.types";
+import { ArticleRaw } from "./article.types";
 
 
 const ArticleCard = ({ article }: ArticleCardProps): JSX.Element => {
@@ -15,7 +15,7 @@ const ArticleCard = ({ article }: ArticleCardProps): JSX.Element => {
                         <div className="flex flex-row justify-start">
                             <p className='font-sans font-semibold text-md mr-4'>
                                 <Moment format="YYYY/MM/DD">
-                                    {article.publishedDate.toISOString()}
+                                    {article.publishedDate}
                                 </Moment>
                             </p>
                             <p className='font-sans font-semibold text-md mx-4'>{article.duration} min read</p>
@@ -28,7 +28,7 @@ const ArticleCard = ({ article }: ArticleCardProps): JSX.Element => {
 }
 
 interface ArticleCardProps {
-    article: Article,
+    article: ArticleRaw,
 }
 
 export default ArticleCard;

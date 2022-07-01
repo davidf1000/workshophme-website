@@ -1,7 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
-import { shopDataDummy } from "../../dummydata/shop.data";
-import { GET_SHOP, GET_SHOPS } from "../../graphql/shopQuery";
+import { GET_SHOPS } from "../../graphql/shopQuery";
 import { GetShopsResponse } from "../../graphql/shopQuery.types";
 import AlertCard from "../dashboard/basiccomponent/AlertCard";
 import Footer from "../Footer";

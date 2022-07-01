@@ -1,8 +1,10 @@
+import { Article, ArticleRaw } from '../components/article/article.types';
+
 export interface CreateArticleInput {
   title: string;
   desc: string;
   imageUrl: string;
-  publishedDate: Date;
+  publishedDate: string;
   duration: number;
   link: string;
 }
@@ -12,7 +14,11 @@ export interface UpdateArticleInput {
   title: string;
   desc: string;
   imageUrl: string;
-  publishedDate: Date;
+  publishedDate: string;
   duration: number;
   link: string;
+}
+
+export interface GetArticlesResponse {
+  articles: ArticleRaw[];
 }

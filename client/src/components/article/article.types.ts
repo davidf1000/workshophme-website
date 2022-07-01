@@ -9,3 +9,12 @@ export interface Article {
   duration: number;
   link: string;
 }
+export interface ArticleRaw {
+  id: number;
+  title: string;
+  desc: string;
+  imageUrl: string;
+  publishedDate: string;
+  duration: number;
+  link: string;
+}

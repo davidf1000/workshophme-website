@@ -1,9 +1,16 @@
-import { articleDataDummy } from "../../dummydata/article.data";
+import { useQuery } from "@apollo/client";
+import { useState } from "react";
+import { GET_ARTICLES } from "../../graphql/articleQuery";
+import { GetArticlesResponse } from "../../graphql/articleQuery.types";
+import AlertCard from "../dashboard/basiccomponent/AlertCard";
 import Footer from "../Footer";
 import NavBar from "../Navbar";
+import Spinner from "../Spinner";
 import ArticleCard from "./ArticleCard";
 
 const Article = (): JSX.Element => {
+  const { loading, error, data } = useQuery<GetArticlesResponse>(GET_ARTICLES);
+  const [showAlert, setShowAlert] = useState<boolean>(true);
   return (
     <>
       <div className="flex flex-col min-h-screen justify-start bg-ws-orange">
@@ -17,9 +24,21 @@ const Article = (): JSX.Element => {
               Daftar technical article seputar dunia IT dan elektronik yang telah di-publish oleh Workshop HME pada platform medium.
             </p>
             <div className="flex flex-col justify-start items-center mx-10 mb-8 mt-10">
-              {articleDataDummy.map(article => (
-                <ArticleCard article={article} />
-              ))}
+              {showAlert && error && <AlertCard data={{
+                title: 'ERROR',
+                desc: error.message,
+                type: 'error'
+              }} onClose={setShowAlert} />}
+
+              {loading ? <Spinner /> :
+                <>
+                  {
+                    data?.articles.map(article => (
+                      <ArticleCard article={article} />
+                    ))
+                  }
+                </>
+              }
             </div>
           </div>
         </div>
