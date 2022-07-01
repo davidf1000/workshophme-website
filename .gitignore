@@ -40,3 +40,5 @@ lerna-debug.log*
 prisma/*seed*
 prisma/seed.ts
 prisma/seed.ts
+
+/uploads

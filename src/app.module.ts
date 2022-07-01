@@ -14,6 +14,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { GraphQLScalarType } from 'graphql';
 import { ArticlesModule } from './articles/articles.module';
 import { ShopsModule } from './shops/shops.module';
+import { MulterModule } from '@nestjs/platform-express';
 
 const dateScalar = new GraphQLScalarType({
   name: 'Date',
@@ -27,6 +28,13 @@ const dateScalar = new GraphQLScalarType({
 
 @Module({
   imports: [
+    MulterModule.register({
+      dest: './uploads',
+      limits: {
+        files: 1,
+        fileSize: 2000000, //2MB
+      },
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -53,4 +61,4 @@ const dateScalar = new GraphQLScalarType({
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
