@@ -14,9 +14,6 @@ export class ToolCountAggregateInput {
     name?: true;
 
     @Field(() => Boolean, {nullable:true})
-    desc?: true;
-
-    @Field(() => Boolean, {nullable:true})
     image?: true;
 
     @Field(() => Boolean, {nullable:true})

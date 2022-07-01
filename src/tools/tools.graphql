@@ -2,7 +2,6 @@ type Tool {
   id: Int!
   createdAt: DateTime
   name: String!
-  desc: String!
   image: String!
   activated: Boolean!
   totalStock: Int!
@@ -12,7 +11,6 @@ type Tool {
 
 input CreateToolInput {
   name: String!
-  desc: String!
   image: String!
   activated: Boolean!
   totalStock: Int!
@@ -23,7 +21,6 @@ input CreateToolInput {
 input UpdateToolInput {
   id: Int!
   name: String!
-  desc: String!
   image: String!
   activated: Boolean!
   totalStock: Int!

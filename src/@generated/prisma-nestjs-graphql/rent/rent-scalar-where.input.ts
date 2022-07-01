@@ -6,6 +6,7 @@ import { IntNullableListFilter } from '../prisma/int-nullable-list-filter.input'
 import { StringFilter } from '../prisma/string-filter.input';
 import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
+import { DateTimeNullableFilter } from '../prisma/date-time-nullable-filter.input';
 
 @InputType()
 export class RentScalarWhereInput {
@@ -73,6 +74,6 @@ export class RentScalarWhereInput {
     @Field(() => StringNullableFilter, {nullable:true})
     returnNim?: StringNullableFilter;
 
-    @Field(() => StringNullableFilter, {nullable:true})
-    returnDate?: StringNullableFilter;
+    @Field(() => DateTimeNullableFilter, {nullable:true})
+    returnDate?: DateTimeNullableFilter;
 }

@@ -6,7 +6,6 @@ type Admin {
   email: String!
   name: String!
   password: String!
-  rents: [Rent!]
 }
 
 type AdminResponse {
@@ -14,41 +13,6 @@ type AdminResponse {
   createdAt: DateTime
   email: String!
   name: String!
-  rents: [Rent!]
-}
-
-type Rent {
-  id: Int!
-  createdAt: DateTime
-  admin: Admin
-  adminId: Int!
-  tools: [Int!]!
-  rentName: String!
-  rentNim: String!
-  rentPhone: String!
-  rentLineId: String!
-  organisation: String!
-  fromDate: DateTime!
-  expectedReturnDate: DateTime!
-  totalPrice: Int
-  status: String!
-  fine: Int
-  pickupName: String
-  pickupNim: String
-  returnName: String
-  returnNim: String
-}
-
-type Tool {
-  id: Int!
-  createdAt: DateTime
-  name: String!
-  desc: String!
-  image: String!
-  activated: Boolean!
-  totalStock: Int!
-  priceHour: Int!
-  priceDay: Int!
 }
 
 input CreateAdminInput {

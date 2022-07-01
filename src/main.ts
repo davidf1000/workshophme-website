@@ -10,6 +10,7 @@ async function bootstrap() {
     prefix: '/uploads',
   });
   app.setGlobalPrefix('api');
+  app.enableCors();
   await app.listen(process.env.PORT);
   console.log(`Application is running on: ${await app.getUrl()}`);
 }

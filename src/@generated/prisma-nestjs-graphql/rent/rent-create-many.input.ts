@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
-import { RentCreatetoolsInput } from './rent-createtools.input';
 
 @InputType()
 export class RentCreateManyInput {
@@ -12,11 +11,8 @@ export class RentCreateManyInput {
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
 
-    @Field(() => Int, {nullable:false})
-    adminId!: number;
-
-    @Field(() => RentCreatetoolsInput, {nullable:true})
-    tools?: RentCreatetoolsInput;
+    @Field(() => String, {nullable:false})
+    tools!: string;
 
     @Field(() => String, {nullable:false})
     rentName!: string;
@@ -60,6 +56,6 @@ export class RentCreateManyInput {
     @Field(() => String, {nullable:true})
     returnNim?: string;
 
-    @Field(() => String, {nullable:true})
-    returnDate?: string;
+    @Field(() => Date, {nullable:true})
+    returnDate?: Date | string;
 }

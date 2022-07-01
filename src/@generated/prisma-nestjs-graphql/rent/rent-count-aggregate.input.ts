@@ -11,9 +11,6 @@ export class RentCountAggregateInput {
     createdAt?: true;
 
     @Field(() => Boolean, {nullable:true})
-    adminId?: true;
-
-    @Field(() => Boolean, {nullable:true})
     tools?: true;
 
     @Field(() => Boolean, {nullable:true})

@@ -11,7 +11,7 @@ export class RentMaxAggregateInput {
     createdAt?: true;
 
     @Field(() => Boolean, {nullable:true})
-    adminId?: true;
+    tools?: true;
 
     @Field(() => Boolean, {nullable:true})
     rentName?: true;

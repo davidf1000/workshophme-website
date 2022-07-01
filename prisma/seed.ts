@@ -1,34 +1,27 @@
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
+import adminSeed from './adminSeed';
+import toolSeed from './toolSeed';
 
 const prisma = new PrismaClient();
 
 async function main() {
+  // SEED Tools
+  console.log('Start Seeding Admins....');
   await prisma.admin.deleteMany();
-  const admin1 = await prisma.admin.create({
-    data: {
-      email: 'davidfauzi29@gmail.com',
-      name: 'DavidFauzi',
-      password: await bcrypt.hash('123', Number(process.env.SALT_ROUND)),
-    },
+  const admin = await prisma.admin.createMany({
+    data: await adminSeed(),
+    skipDuplicates: true,
   });
-  console.log('admin1', { admin1 });
-  const admin2 = await prisma.admin.create({
-    data: {
-      email: 'budi@gmail.com',
-      name: 'budi',
-      password: await bcrypt.hash('456', Number(process.env.SALT_ROUND)),
-    },
+  console.log('Admin Seed Successfull with Count : ', admin.count);
+  // SEED Tools
+  console.log('Start Seeding Tools....');
+  await prisma.tool.deleteMany();
+  const tool = await prisma.tool.createMany({
+    data: await toolSeed(),
+    skipDuplicates: true,
   });
-  console.log('admin2', { admin2 });
-  const admin3 = await prisma.admin.create({
-    data: {
-      email: 'joko@gmail.com',
-      name: 'joko',
-      password: await bcrypt.hash('789', Number(process.env.SALT_ROUND)),
-    },
-  });
-  console.log('admin3', { admin3 });
+  console.log('Admin Seed Successfull with Count : ', tool.count);
 }
 
 main()

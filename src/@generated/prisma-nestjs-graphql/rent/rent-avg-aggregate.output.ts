@@ -9,12 +9,6 @@ export class RentAvgAggregate {
     id?: number;
 
     @Field(() => Float, {nullable:true})
-    adminId?: number;
-
-    @Field(() => Float, {nullable:true})
-    tools?: number;
-
-    @Field(() => Float, {nullable:true})
     totalPrice?: number;
 
     @Field(() => Float, {nullable:true})

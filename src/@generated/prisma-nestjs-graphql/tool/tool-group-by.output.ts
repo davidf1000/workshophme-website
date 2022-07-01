@@ -20,9 +20,6 @@ export class ToolGroupBy {
     name!: string;
 
     @Field(() => String, {nullable:false})
-    desc!: string;
-
-    @Field(() => String, {nullable:false})
     image!: string;
 
     @Field(() => Boolean, {nullable:false})

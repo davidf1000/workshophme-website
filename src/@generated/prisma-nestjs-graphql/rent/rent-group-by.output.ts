@@ -16,11 +16,8 @@ export class RentGroupBy {
     @Field(() => Date, {nullable:false})
     createdAt!: Date | string;
 
-    @Field(() => Int, {nullable:false})
-    adminId!: number;
-
-    @Field(() => [Int], {nullable:true})
-    tools?: Array<number>;
+    @Field(() => String, {nullable:false})
+    tools!: string;
 
     @Field(() => String, {nullable:false})
     rentName!: string;
@@ -46,8 +43,8 @@ export class RentGroupBy {
     @Field(() => String, {nullable:false})
     status!: string;
 
-    @Field(() => Int, {nullable:true})
-    totalPrice?: number;
+    @Field(() => Int, {nullable:false})
+    totalPrice!: number;
 
     @Field(() => Int, {nullable:true})
     fine?: number;
@@ -64,8 +61,8 @@ export class RentGroupBy {
     @Field(() => String, {nullable:true})
     returnNim?: string;
 
-    @Field(() => String, {nullable:true})
-    returnDate?: string;
+    @Field(() => Date, {nullable:true})
+    returnDate?: Date | string;
 
     @Field(() => RentCountAggregate, {nullable:true})
     _count?: RentCountAggregate;

@@ -57,6 +57,6 @@ export class RentUncheckedCreateWithoutAdminInput {
     @Field(() => String, {nullable:true})
     returnNim?: string;
 
-    @Field(() => String, {nullable:true})
-    returnDate?: string;
+    @Field(() => Date, {nullable:true})
+    returnDate?: Date | string;
 }

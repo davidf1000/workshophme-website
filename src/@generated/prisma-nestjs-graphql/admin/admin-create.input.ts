@@ -1,6 +1,5 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { RentCreateNestedManyWithoutAdminInput } from '../rent/rent-create-nested-many-without-admin.input';
 
 @InputType()
 export class AdminCreateInput {
@@ -16,7 +15,4 @@ export class AdminCreateInput {
 
     @Field(() => String, {nullable:false})
     password!: string;
-
-    @Field(() => RentCreateNestedManyWithoutAdminInput, {nullable:true})
-    rents?: RentCreateNestedManyWithoutAdminInput;
 }

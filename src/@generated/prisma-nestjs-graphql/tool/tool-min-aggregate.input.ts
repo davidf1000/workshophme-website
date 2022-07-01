@@ -14,9 +14,6 @@ export class ToolMinAggregateInput {
     name?: true;
 
     @Field(() => Boolean, {nullable:true})
-    desc?: true;
-
-    @Field(() => Boolean, {nullable:true})
     image?: true;
 
     @Field(() => Boolean, {nullable:true})

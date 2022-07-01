@@ -6,6 +6,7 @@ import { RentUpdatetoolsInput } from './rent-updatetools.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableIntFieldUpdateOperationsInput } from '../prisma/nullable-int-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
+import { NullableDateTimeFieldUpdateOperationsInput } from '../prisma/nullable-date-time-field-update-operations.input';
 
 @InputType()
 export class RentUncheckedUpdateManyWithoutRentsInput {
@@ -61,6 +62,6 @@ export class RentUncheckedUpdateManyWithoutRentsInput {
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     returnNim?: NullableStringFieldUpdateOperationsInput;
 
-    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
-    returnDate?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableDateTimeFieldUpdateOperationsInput, {nullable:true})
+    returnDate?: NullableDateTimeFieldUpdateOperationsInput;
 }

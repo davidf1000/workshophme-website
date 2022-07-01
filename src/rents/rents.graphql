@@ -1,9 +1,12 @@
+# type ToolsToRent {
+#   toolId: Int!
+#   quantity: Int!
+# }
+
 type Rent {
   id: Int!
   createdAt: DateTime
-  admin: Admin
-  adminId: Int!
-  tools: [Int!]!
+  tools: String!
   rentName: String!
   rentNim: String!
   rentPhone: String!
@@ -18,11 +21,11 @@ type Rent {
   pickupNim: String
   returnName: String
   returnNim: String
+  returnDate: DateTime
 }
 
 input CreateRentInput {
-  adminId: Int!
-  tools: [Int!]!
+  tools: String!
   rentName: String!
   rentNim: String!
   rentPhone: String!
@@ -35,8 +38,6 @@ input CreateRentInput {
 
 input UpdateRentInput {
   id: Int!
-  adminId: Int!
-  tools: [Int!]!
   rentName: String!
   rentNim: String!
   rentPhone: String!
@@ -51,6 +52,7 @@ input UpdateRentInput {
   pickupNim: String
   returnName: String
   returnNim: String
+  returnDate: DateTime
 }
 
 type Query {

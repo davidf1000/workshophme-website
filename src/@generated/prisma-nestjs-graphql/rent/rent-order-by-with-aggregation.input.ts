@@ -17,9 +17,6 @@ export class RentOrderByWithAggregationInput {
     createdAt?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    adminId?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
     tools?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

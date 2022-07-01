@@ -7,11 +7,21 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { AdminsModule } from './admins/admins.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
-import { GraphQLDateTime } from 'graphql-iso-date';
 import { RentsModule } from './rents/rents.module';
 import { ToolsModule } from './tools/tools.module';
 import { AuthModule } from './auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { GraphQLScalarType } from 'graphql';
+
+const dateScalar = new GraphQLScalarType({
+  name: 'Date',
+  parseValue(value: any) {
+    return new Date(value);
+  },
+  serialize(value: any) {
+    return value.toISOString();
+  },
+});
 
 @Module({
   imports: [
@@ -28,7 +38,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       resolvers: {
-        DateTime: GraphQLDateTime,
+        DateTime: dateScalar,
       },
     }),
     AdminsModule,
@@ -39,4 +49,4 @@ import { ServeStaticModule } from '@nestjs/serve-static';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

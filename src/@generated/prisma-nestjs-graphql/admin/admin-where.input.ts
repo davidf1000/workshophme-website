@@ -3,7 +3,6 @@ import { InputType } from '@nestjs/graphql';
 import { IntFilter } from '../prisma/int-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
-import { RentListRelationFilter } from '../rent/rent-list-relation-filter.input';
 
 @InputType()
 export class AdminWhereInput {
@@ -31,7 +30,4 @@ export class AdminWhereInput {
 
     @Field(() => StringFilter, {nullable:true})
     password?: StringFilter;
-
-    @Field(() => RentListRelationFilter, {nullable:true})
-    rents?: RentListRelationFilter;
 }

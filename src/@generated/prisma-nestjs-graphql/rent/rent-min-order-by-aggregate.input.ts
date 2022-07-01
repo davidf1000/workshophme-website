@@ -12,7 +12,7 @@ export class RentMinOrderByAggregateInput {
     createdAt?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    adminId?: keyof typeof SortOrder;
+    tools?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     rentName?: keyof typeof SortOrder;

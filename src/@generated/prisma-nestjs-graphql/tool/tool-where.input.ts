@@ -27,9 +27,6 @@ export class ToolWhereInput {
     name?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    desc?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
     image?: StringFilter;
 
     @Field(() => BoolFilter, {nullable:true})

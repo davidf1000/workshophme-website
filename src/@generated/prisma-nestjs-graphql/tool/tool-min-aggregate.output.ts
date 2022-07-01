@@ -15,9 +15,6 @@ export class ToolMinAggregate {
     name?: string;
 
     @Field(() => String, {nullable:true})
-    desc?: string;
-
-    @Field(() => String, {nullable:true})
     image?: string;
 
     @Field(() => Boolean, {nullable:true})

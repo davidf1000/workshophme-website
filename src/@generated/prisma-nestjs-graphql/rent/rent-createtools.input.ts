@@ -1,10 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { Int } from '@nestjs/graphql';
+import { GraphQLJSON } from 'graphql-type-json';
 
 @InputType()
 export class RentCreatetoolsInput {
 
-    @Field(() => [Int], {nullable:false})
-    set!: Array<number>;
+    @Field(() => [GraphQLJSON], {nullable:false})
+    set!: Array<any>;
 }

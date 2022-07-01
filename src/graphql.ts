@@ -26,8 +26,7 @@ export class LoginAdminInput {
 }
 
 export class CreateRentInput {
-    adminId: number;
-    tools: number[];
+    tools: string;
     rentName: string;
     rentNim: string;
     rentPhone: string;
@@ -40,8 +39,6 @@ export class CreateRentInput {
 
 export class UpdateRentInput {
     id: number;
-    adminId: number;
-    tools: number[];
     rentName: string;
     rentNim: string;
     rentPhone: string;
@@ -56,11 +53,11 @@ export class UpdateRentInput {
     pickupNim?: Nullable<string>;
     returnName?: Nullable<string>;
     returnNim?: Nullable<string>;
+    returnDate?: Nullable<DateTime>;
 }
 
 export class CreateToolInput {
     name: string;
-    desc: string;
     image: string;
     activated: boolean;
     totalStock: number;
@@ -71,7 +68,6 @@ export class CreateToolInput {
 export class UpdateToolInput {
     id: number;
     name: string;
-    desc: string;
     image: string;
     activated: boolean;
     totalStock: number;
@@ -85,7 +81,6 @@ export class Admin {
     email: string;
     name: string;
     password: string;
-    rents?: Nullable<Rent[]>;
 }
 
 export class AdminResponse {
@@ -93,41 +88,6 @@ export class AdminResponse {
     createdAt?: Nullable<DateTime>;
     email: string;
     name: string;
-    rents?: Nullable<Rent[]>;
-}
-
-export class Rent {
-    id: number;
-    createdAt?: Nullable<DateTime>;
-    admin?: Nullable<Admin>;
-    adminId: number;
-    tools: number[];
-    rentName: string;
-    rentNim: string;
-    rentPhone: string;
-    rentLineId: string;
-    organisation: string;
-    fromDate: DateTime;
-    expectedReturnDate: DateTime;
-    totalPrice?: Nullable<number>;
-    status: string;
-    fine?: Nullable<number>;
-    pickupName?: Nullable<string>;
-    pickupNim?: Nullable<string>;
-    returnName?: Nullable<string>;
-    returnNim?: Nullable<string>;
-}
-
-export class Tool {
-    id: number;
-    createdAt?: Nullable<DateTime>;
-    name: string;
-    desc: string;
-    image: string;
-    activated: boolean;
-    totalStock: number;
-    priceHour: number;
-    priceDay: number;
 }
 
 export abstract class IQuery {
@@ -176,6 +136,38 @@ export class AdminWithoutPassword {
 export class LoginAdminResponse {
     accessToken: string;
     admin: AdminWithoutPassword;
+}
+
+export class Rent {
+    id: number;
+    createdAt?: Nullable<DateTime>;
+    tools: string;
+    rentName: string;
+    rentNim: string;
+    rentPhone: string;
+    rentLineId: string;
+    organisation: string;
+    fromDate: DateTime;
+    expectedReturnDate: DateTime;
+    status: string;
+    totalPrice?: Nullable<number>;
+    fine?: Nullable<number>;
+    pickupName?: Nullable<string>;
+    pickupNim?: Nullable<string>;
+    returnName?: Nullable<string>;
+    returnNim?: Nullable<string>;
+    returnDate?: Nullable<DateTime>;
+}
+
+export class Tool {
+    id: number;
+    createdAt?: Nullable<DateTime>;
+    name: string;
+    image: string;
+    activated: boolean;
+    totalStock: number;
+    priceHour: number;
+    priceDay: number;
 }
 
 export type DateTime = any;

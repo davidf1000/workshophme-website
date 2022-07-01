@@ -35,3 +35,8 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 .env
+/unused
+/prisma/seed*
+prisma/*seed*
+prisma/seed.ts
+prisma/seed.ts

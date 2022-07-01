@@ -27,9 +27,6 @@ export class ToolScalarWhereWithAggregatesInput {
     name?: StringWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    desc?: StringWithAggregatesFilter;
-
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
     image?: StringWithAggregatesFilter;
 
     @Field(() => BoolWithAggregatesFilter, {nullable:true})

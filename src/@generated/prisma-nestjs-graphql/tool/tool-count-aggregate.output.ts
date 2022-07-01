@@ -15,9 +15,6 @@ export class ToolCountAggregate {
     name!: number;
 
     @Field(() => Int, {nullable:false})
-    desc!: number;
-
-    @Field(() => Int, {nullable:false})
     image!: number;
 
     @Field(() => Int, {nullable:false})

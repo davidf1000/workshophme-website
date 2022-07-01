@@ -11,8 +11,8 @@ export class RentMaxAggregate {
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
 
-    @Field(() => Int, {nullable:true})
-    adminId?: number;
+    @Field(() => String, {nullable:true})
+    tools?: string;
 
     @Field(() => String, {nullable:true})
     rentName?: string;
@@ -56,6 +56,6 @@ export class RentMaxAggregate {
     @Field(() => String, {nullable:true})
     returnNim?: string;
 
-    @Field(() => String, {nullable:true})
-    returnDate?: string;
+    @Field(() => Date, {nullable:true})
+    returnDate?: Date | string;
 }

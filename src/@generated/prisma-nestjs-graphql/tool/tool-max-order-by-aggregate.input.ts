@@ -15,9 +15,6 @@ export class ToolMaxOrderByAggregateInput {
     name?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    desc?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
     image?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

@@ -24,17 +24,14 @@ model Admin {
   email     String   @unique
   name      String
   password  String
-  rents     Rent[]
 }
 
 // Admin create one to many relationship with model rent
-// status = {waiting, pickup, finished, expired}
+// status = {waiting_pickup, waiting_return, finished, dropped}
 model Rent {
-  id                 Int      @id @default(autoincrement())
-  createdAt          DateTime @default(now())
-  admin              Admin    @relation(fields: [adminId], references: [id])
-  adminId            Int
-  tools              Int[] // Containing Tools id used
+  id                 Int       @id @default(autoincrement())
+  createdAt          DateTime  @default(now())
+  tools              String // Containing Tools id used and quantity
   rentName           String
   rentNim            String
   rentPhone          String
@@ -42,14 +39,14 @@ model Rent {
   organisation       String
   fromDate           DateTime
   expectedReturnDate DateTime
-  status             String   @default("waiting")
-  totalPrice         Int?
+  status             String    @default("waiting_pickup")
+  totalPrice         Int       @default(0)
   fine               Int?
   pickupName         String?
   pickupNim          String?
   returnName         String?
   returnNim          String?
-  returnDate         String?
+  returnDate         DateTime?
 }
 
 model Tool {
@@ -57,7 +54,6 @@ model Tool {
   createdAt  DateTime @default(now())
   /// @Validator.MinLength(3)
   name       String
-  desc       String
   image      String
   activated  Boolean  @default(true) // True if active(used), False if deleted by used 
   totalStock Int

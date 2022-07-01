@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
-import { Admin } from '../admin/admin.model';
 import { Int } from '@nestjs/graphql';
 
 @ObjectType()
@@ -13,14 +12,8 @@ export class Rent {
     @Field(() => Date, {nullable:false})
     createdAt!: Date;
 
-    @Field(() => Admin, {nullable:false})
-    admin?: Admin;
-
-    @Field(() => Int, {nullable:false})
-    adminId!: number;
-
-    @Field(() => [Int], {nullable:true})
-    tools!: Array<number>;
+    @Field(() => String, {nullable:false})
+    tools!: string;
 
     @Field(() => String, {nullable:false})
     rentName!: string;
@@ -43,11 +36,11 @@ export class Rent {
     @Field(() => Date, {nullable:false})
     expectedReturnDate!: Date;
 
-    @Field(() => String, {nullable:false,defaultValue:'waiting'})
+    @Field(() => String, {nullable:false,defaultValue:'waiting_pickup'})
     status!: string;
 
-    @Field(() => Int, {nullable:true})
-    totalPrice!: number | null;
+    @Field(() => Int, {nullable:false,defaultValue:0})
+    totalPrice!: number;
 
     @Field(() => Int, {nullable:true})
     fine!: number | null;
@@ -64,6 +57,6 @@ export class Rent {
     @Field(() => String, {nullable:true})
     returnNim!: string | null;
 
-    @Field(() => String, {nullable:true})
-    returnDate!: string | null;
+    @Field(() => Date, {nullable:true})
+    returnDate!: Date | null;
 }

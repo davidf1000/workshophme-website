@@ -12,9 +12,6 @@ export class RentCountAggregate {
     createdAt!: number;
 
     @Field(() => Int, {nullable:false})
-    adminId!: number;
-
-    @Field(() => Int, {nullable:false})
     tools!: number;
 
     @Field(() => Int, {nullable:false})
