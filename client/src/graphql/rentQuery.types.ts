@@ -1,3 +1,5 @@
+import { Rent } from '../components/rent/rent.types';
+
 export interface CreateRentInput {
   tools: string;
   rentName: string;
@@ -28,4 +30,9 @@ export interface UpdateRentInput {
   returnName?: string;
   returnNim?: string;
   returnDate?: Date;
+}
+
+export interface GetRentsResponse {
+  rents: Rent[];
+  errors?: any[];
 }

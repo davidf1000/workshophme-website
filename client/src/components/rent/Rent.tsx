@@ -12,8 +12,15 @@ import StepRent from './StepRent';
 import moment from 'moment';
 import ModalPanduan from './ModalPanduan';
 import { validateError } from './validate';
+import { useMutation } from '@apollo/client';
+import { CREATE_RENT } from '../../graphql/rentQuery';
+import AlertCard from '../dashboard/basiccomponent/AlertCard';
+import { GetRentsResponse } from '../../graphql/rentQuery.types';
 
 const Rent = (): JSX.Element => {
+  const [createRent, { data: gqlData, loading: gqlLoading, error: gqlError }] = useMutation<GetRentsResponse>(CREATE_RENT);
+  const [showAlert, setShowAlert] = useState<boolean>(true);
+
   const [showModal, setShowModal] = useState<boolean>(false);
   const [step, setStep] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
@@ -35,12 +42,37 @@ const Rent = (): JSX.Element => {
   });
   const submitForm = async (): Promise<any> => {
     console.log('Submit Form');
-    console.log(formData);
+    const pickupDate = new Date(formData.pickupDate);
+    pickupDate.setHours(formData.pickupHour);
+    pickupDate.setMinutes(formData.pickupMinute);
+    const returnDate = new Date(formData.returnDate);
+    returnDate.setHours(formData.returnHour);
+    returnDate.setMinutes(formData.returnMinute);
+    createRent({
+      variables: {
+        createRentInput: {
+          tools: JSON.stringify(formData.tools),
+          rentName: formData.name,
+          rentNim: formData.nim,
+          rentPhone: formData.phone,
+          rentLineId: formData.line,
+          organisation: formData.organisation,
+          fromDate: pickupDate.toISOString(),
+          expectedReturnDate: returnDate.toISOString(),
+          status: 'waiting_pickup',
+          totalPrice: formData.totalPrice.toString()
+        }
+      }
+    })
     // if success
     setLoading(true);
-    await new Promise(r => setTimeout(r, 2000));
+    await new Promise(r => setTimeout(r, 1000));
+    // Check if error
+    if (!gqlError && gqlData?.errors?.length === 0) {
+      setStep(4);
+    }
     setLoading(false);
-    setStep(4);
+
   };
   const interceptValidation = () => {
     const { error, result } = validateError(step, formData);
@@ -68,6 +100,11 @@ const Rent = (): JSX.Element => {
         <NavBar selected="rent" />
         <div className="flex  h-full w-full mb-auto">
           <ModalPanduan showModal={showModal} setShowModal={setShowModal} />
+          {showAlert && gqlError && <AlertCard data={{
+            title: 'ERROR',
+            desc: gqlError.message,
+            type: 'error'
+          }} onClose={setShowAlert} />}
           <div className="flex flex-col max-w-7xl justify-start mx-auto px-6">
             <h1 className="font-sans text-4xl font-semibold text-gray-800 mx-auto mt-4 mb-4">
               Rent
