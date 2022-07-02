@@ -44,7 +44,7 @@ export const validateShopForm = (formData: Product) => {
     res.result.link = 'Link cannot be empty';
   }
   // price is int
-  if (!validator.isInt(price.toString()) || price < 0) {
+  if (!validator.isInt(price.toString()) || price <= 0) {
     res.error = true;
     res.result.price = 'price must be a positive integer';
   }

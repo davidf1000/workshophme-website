@@ -52,6 +52,14 @@ export interface Tool {
   priceDay: number;
 }
 
+export interface ToolError {
+  name: string;
+  image: string;
+  totalStock: string;
+  priceHour: string;
+  priceDay: string;
+}
+
 export interface Admin {
   id: number;
   createdAt?: Date;

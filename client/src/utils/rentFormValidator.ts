@@ -1,4 +1,4 @@
-import { RentFormData } from '../components/rent/rent.types'; 
+import { RentFormData } from '../components/rent/rent.types';
 import validator from 'validator';
 import moment from 'moment';
 
@@ -48,7 +48,7 @@ export const validateError = (step: number, formData: RentFormData) => {
       res.result.name = 'Name must not be empty !';
     }
     // nim - not empty, positives integer
-    if (!Number.isInteger(Number(nim)) || Number(nim) < 0) {
+    if (!Number.isInteger(Number(nim)) || Number(nim) <= 0) {
       res.error = true;
       res.result.nim = 'NIM field must be valid !';
     }
@@ -132,7 +132,7 @@ export const validateError = (step: number, formData: RentFormData) => {
     }
   } else if (step === 3) {
     // totalprice not empty, positive integer
-    if (!totalPrice || totalPrice < 0) {
+    if (!totalPrice || totalPrice <= 0) {
       res.error = true;
       res.result.totalPrice = 'Total Price is not valid !';
     }

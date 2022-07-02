@@ -55,12 +55,12 @@ export const validateArticleForm = (formData: Article) => {
     res.result.publishedDate = 'Date cannot be empty';
   }
   // duration is int
-  if (!validator.isInt(duration.toString()) || duration < 0) {
+  if (!validator.isInt(duration.toString()) || duration <= 0) {
     res.error = true;
     res.result.duration = 'Duration must be a positive integer';
   }
   //   duration not empty
-  if (!duration || duration === 0) {
+  if (!duration) {
     res.error = true;
     res.result.duration = 'Duration cannot be empty';
   }
