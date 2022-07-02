@@ -24,6 +24,17 @@ export const GET_RENTS = gql`
   }
 `;
 
+export const GET_RENT_DATES = gql`
+  query Rentdates {
+    rentdates {
+      tools
+      fromDate
+      expectedReturnDate
+      status
+    }
+  }
+`;
+
 export const GET_RENT = gql`
   query Rent($rentId: Int!) {
     rent(id: $rentId) {

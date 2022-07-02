@@ -48,6 +48,9 @@ const Rent = (): JSX.Element => {
     const returnDate = new Date(formData.returnDate);
     returnDate.setHours(formData.returnHour);
     returnDate.setMinutes(formData.returnMinute);
+    console.log(pickupDate.toISOString());
+    console.log(returnDate.toISOString());
+
     createRent({
       variables: {
         createRentInput: {

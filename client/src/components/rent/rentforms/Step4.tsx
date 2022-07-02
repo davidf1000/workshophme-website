@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
-import { calculateBetweenTwoDate, calculatePrices } from '../../../utils/utils';
+import { calculateBetweenTwoDate, calculatePrices, numberToIDR } from '../../../utils/utils';
 import { GetToolsResponse } from '../../../graphql/toolQuery.types';
 import { GET_TOOLS } from '../../../graphql/toolsQuery';
 import AlertCard from '../../dashboard/basiccomponent/AlertCard';
@@ -125,7 +125,7 @@ const Step4 = ({
                 :
               </th>
               <th key="pickupValue" className="border-b border-ws-orange align-middle font-normal text-sm whitespace-nowrap px-2 py-2 text-right">
-                {moment(pickupDate).format("DD-MM-YYYY hh:mm A")}
+                {moment(formData.pickupDate).format("DD-MM-YYYY") + ' ' + String(formData.pickupHour).padStart(2, '0') + ':' + String(formData.pickupMinute).padStart(2, '0') + ' WIB'}
               </th>
             </tr>
             <tr key="returnDate">
@@ -136,7 +136,7 @@ const Step4 = ({
                 :
               </th>
               <th key="returnValue" className="border-b border-ws-orange align-middle font-normal text-sm whitespace-nowrap px-2 py-2 text-right">
-                {moment(returnDate).format("DD-MM-YYYY hh:mm A")}
+                {moment(formData.returnDate).format("DD-MM-YYYY") + ' ' + String(formData.returnHour).padStart(2, '0') + ':' + String(formData.returnMinute).padStart(2, '0') + ' WIB'}
               </th>
             </tr>
             <tr key="duration">
@@ -181,7 +181,7 @@ const Step4 = ({
                 :
               </th>
               <th key="priceValue" className="border-b border-ws-orange align-middle font-normal text-sm whitespace-nowrap px-2 py-2 text-right">
-                {gqlToolsData && calculatePrices(formData.tools, gqlToolsData.tools, days, hours)}
+                {gqlToolsData && numberToIDR(calculatePrices(formData.tools, gqlToolsData.tools, days, hours))}
               </th>
             </tr>
           </tbody>

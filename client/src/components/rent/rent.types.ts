@@ -108,6 +108,13 @@ export interface RentRaw {
   returnDate?: null | Date;
 }
 
+export interface RentDateRaw {
+  tools: string;
+  fromDate: Date;
+  expectedReturnDate: Date;
+  status: string;
+}
+
 export interface RentPickupError {
   pickupName: string;
   pickupNim: string;

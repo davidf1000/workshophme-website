@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client';
 import moment from 'moment';
 import { useState } from 'react';
-import { GET_RENTS } from '../../../graphql/rentQuery';
-import { GetRentsResponse } from '../../../graphql/rentQuery.types';
+import { GET_RENT_DATES } from '../../../graphql/rentQuery';
+import { GetRentDatesResponse } from '../../../graphql/rentQuery.types';
 import { GetToolsResponse } from '../../../graphql/toolQuery.types';
 import { GET_TOOLS } from '../../../graphql/toolsQuery';
 import AlertCard from '../../dashboard/basiccomponent/AlertCard';
@@ -24,7 +24,7 @@ const Step3 = ({
   setError,
 }: StepProps): JSX.Element => {
   const { loading: gqlToolsLoading, error: gqlToolsError, data: gqlToolsData } = useQuery<GetToolsResponse>(GET_TOOLS);
-  const { loading: gqlRentsLoading, error: gqlRentsError, data: gqlRentsData } = useQuery<GetRentsResponse>(GET_RENTS);
+  const { loading: gqlRentsLoading, error: gqlRentsError, data: gqlRentsData } = useQuery<GetRentDatesResponse>(GET_RENT_DATES);
   const [showAlert, setShowAlert] = useState<boolean>(true);
 
   return (
@@ -59,7 +59,7 @@ const Step3 = ({
               // filter rents data, only in waiting_pickup and waiting_return
               // for each rent checked, check overlap if there's tools inside rent, cond above met (overlapping dates),
               // overlap equals number of quantity of that tool rented by the rent
-              const rentDataFiltered = gqlRentsData?.rents.filter(x => (x.status === 'waiting_pickup' || x.status === 'waiting_return'));
+              const rentDataFiltered = gqlRentsData?.rentdates.filter(x => (x.status === 'waiting_pickup' || x.status === 'waiting_return'));
               rentDataFiltered?.forEach(rent => {
                 const rentToolsParsed: ToolRent[] = JSON.parse(rent.tools);
 
