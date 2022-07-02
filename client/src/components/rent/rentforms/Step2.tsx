@@ -1,5 +1,6 @@
 import { StepProps } from '../rent.types';
 import { range } from '../../../utils/utils';
+import moment from 'moment';
 
 const Step2 = ({
   formData,
@@ -8,7 +9,13 @@ const Step2 = ({
   setError,
 }: StepProps): JSX.Element => {
   const onChange = (e: any): void => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.name === 'pickupDate') {
+      if (moment(e.target.value).isAfter(formData.returnDate)) {
+        setFormData((formData) => ({ ...formData, returnDate: e.target.value }))
+      }
+    }
+    setFormData((formData) => ({ ...formData, [e.target.name]: e.target.value }));
+
   };
   return (
     <>

@@ -7,7 +7,7 @@ import { GetToolsResponse } from '../../../graphql/toolQuery.types';
 import { GET_TOOLS } from '../../../graphql/toolsQuery';
 import AlertCard from '../../dashboard/basiccomponent/AlertCard';
 import Spinner from '../../Spinner';
-import { StepProps, Tool } from '..//rent.types';
+import { StepProps, Tool, ToolRent } from '..//rent.types';
 import ToolCard from './ToolCard';
 
 // TODO
@@ -26,10 +26,7 @@ const Step3 = ({
   const { loading: gqlToolsLoading, error: gqlToolsError, data: gqlToolsData } = useQuery<GetToolsResponse>(GET_TOOLS);
   const { loading: gqlRentsLoading, error: gqlRentsError, data: gqlRentsData } = useQuery<GetRentsResponse>(GET_RENTS);
   const [showAlert, setShowAlert] = useState<boolean>(true);
-  useEffect(() => {
-    console.log("Refreshed !");
-  }, [
-  ]);
+
   return (
     <>
       {showAlert && gqlToolsError && <AlertCard data={{
@@ -43,14 +40,15 @@ const Step3 = ({
         type: 'error'
       }} onClose={setShowAlert} />}
 
-      <div className="flex flex-wrap justify-center items-start w-full px-4">
-        {gqlToolsLoading && gqlRentsLoading ? <Spinner /> : <>
+      <div className="flex flex-wrap justify-center items-start w-full px-4 py-2">
+        {!(gqlRentsData && gqlToolsData) ? <Spinner color='text-ws-orange' /> : <>
           {
             gqlToolsData?.tools.filter((item) => item.totalStock > 0 && item.activated).map((item) => {
               let updatedStock = item.totalStock;
               // count overlap from rents rentPickupDate<pickupDate<rentReturnDate or rentPickupDate<returnDate<rentReturnDate 
               let overlap = 0
               const { pickupDate, pickupHour, pickupMinute, returnDate, returnHour, returnMinute } = formData;
+
               const pickupDateFull = new Date(pickupDate);
               pickupDateFull.setHours(pickupHour);
               pickupDateFull.setMinutes(pickupMinute);
@@ -58,10 +56,20 @@ const Step3 = ({
               returnDateFull.setHours(returnHour);
               returnDateFull.setMinutes(returnMinute);
 
-              gqlRentsData?.rents.forEach(rent => {
-                if (moment(pickupDateFull).isBetween(rent.fromDate, rent.expectedReturnDate) ||
-                  moment(returnDateFull).isBetween(rent.fromDate, rent.expectedReturnDate)) {
-                  overlap += 1;
+              // filter rents data, only in waiting_pickup and waiting_return
+              // for each rent checked, check overlap if there's tools inside rent, cond above met (overlapping dates),
+              // overlap equals number of quantity of that tool rented by the rent
+              const rentDataFiltered = gqlRentsData?.rents.filter(x => (x.status === 'waiting_pickup' || x.status === 'waiting_return'));
+              rentDataFiltered?.forEach(rent => {
+                const rentToolsParsed: ToolRent[] = JSON.parse(rent.tools);
+
+                const toolFound = rentToolsParsed.find(x => x.toolId === item.id);
+                // console.log("tools: ", item.name, "found", toolFound?.toolId);
+
+                if (toolFound && (moment(pickupDateFull, undefined, '[]').isBetween(rent.fromDate, rent.expectedReturnDate, undefined, '[]') ||
+                  moment(returnDateFull).isBetween(rent.fromDate, rent.expectedReturnDate))) {
+                  overlap += toolFound.quantity;
+                  console.log("tool: ", item.name, item.id, rentToolsParsed, 'stock', updatedStock - overlap);
                 }
               });
               // item.totalStock = totalStock - overlap
@@ -82,12 +90,13 @@ const Step3 = ({
                 }
               }
               return (
-                {
+                <ToolCard tool={{
                   ...item,
                   totalStock: updatedStock
-                }
+                }} formData={formData} setFormData={setFormData} />
+
               )
-            }).map(item => <ToolCard tool={item} formData={formData} setFormData={setFormData} />)
+            })
           }
         </>}
 

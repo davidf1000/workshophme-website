@@ -1,4 +1,4 @@
-import { Rent } from '../components/rent/rent.types';
+import { Rent, RentRaw } from '../components/rent/rent.types';
 
 export interface CreateRentInput {
   tools: string;
@@ -33,6 +33,6 @@ export interface UpdateRentInput {
 }
 
 export interface GetRentsResponse {
-  rents: Rent[];
+  rents: RentRaw[];
   errors?: any[];
 }

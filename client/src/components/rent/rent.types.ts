@@ -79,3 +79,23 @@ export interface Rent {
   returnNim?: string;
   returnDate?: null | Date;
 }
+
+export interface RentRaw {
+  id: number;
+  tools: string;
+  rentName: string;
+  rentNim: string;
+  rentPhone: string;
+  rentLineId: string;
+  organisation: string;
+  fromDate: Date;
+  expectedReturnDate: Date;
+  totalPrice: number;
+  status: string;
+  fine?: number;
+  pickupName?: string;
+  pickupNim?: string;
+  returnName?: string;
+  returnNim?: string;
+  returnDate?: null | Date;
+}
