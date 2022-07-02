@@ -1,13 +1,13 @@
 import { useQuery } from '@apollo/client';
 import moment from 'moment';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { GET_RENTS } from '../../../graphql/rentQuery';
 import { GetRentsResponse } from '../../../graphql/rentQuery.types';
 import { GetToolsResponse } from '../../../graphql/toolQuery.types';
 import { GET_TOOLS } from '../../../graphql/toolsQuery';
 import AlertCard from '../../dashboard/basiccomponent/AlertCard';
 import Spinner from '../../Spinner';
-import { StepProps, Tool, ToolRent } from '..//rent.types';
+import { StepProps, ToolRent } from '..//rent.types';
 import ToolCard from './ToolCard';
 
 // TODO
