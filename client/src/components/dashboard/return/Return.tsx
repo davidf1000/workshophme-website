@@ -5,7 +5,7 @@ import { Rent, Tool } from "../../rent/rent.types";
 import { toolsData } from "../../../dummydata/tools.data";
 import { rentsDataReturn } from "../../../dummydata/rents.data";
 import { AlertData } from "../basiccomponent/basic.types";
-import { calculateBetweenTwoDate } from "../../../actions/utils";
+import { calculateBetweenTwoDate } from "../../../utils/utils";
 import ReturnTable from "./ReturnTable";
 import ReturnEditModal from "./modals/ReturnEditModal";
 

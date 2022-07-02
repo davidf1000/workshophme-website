@@ -1,5 +1,5 @@
 import moment from "moment";
-import { numberToIDR } from "../../../actions/utils";
+import { numberToIDR } from "../../../utils/utils";
 import { Rent, Tool } from "../../rent/rent.types";
 
 const PickupTable = ({ header, data, onEdit, onDelete, tools }: PickupTableProps): JSX.Element => {

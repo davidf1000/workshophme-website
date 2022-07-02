@@ -1,5 +1,5 @@
 import { StepProps } from '../rent.types';
-import { range } from '../../../actions/utils';
+import { range } from '../../../utils/utils';
 
 const Step2 = ({
   formData,

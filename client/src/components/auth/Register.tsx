@@ -2,6 +2,7 @@ import TopCover from "../dashboard/basiccomponent/TopCover";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ErrorLoginForm, ErrorRegisterForm, LoginForm, RegisterForm } from "./auth.types";
+import { validateRegisterForm } from "../../utils/authFormValidator";
 
 const Register = (): JSX.Element => {
   const navigate = useNavigate();
@@ -33,13 +34,21 @@ const Register = (): JSX.Element => {
 
   const onSubmit = async (e: any): Promise<any> => {
     e.preventDefault();
-    console.log("Submit Login Data", formData);
-    setLoading(true);
-    await new Promise(r => setTimeout(r, 2000));
-    setLoading(false);
-    setSuccess(true);
-    await new Promise(r => setTimeout(r, 2000));
-    navigate('/admin/login');
+    // error validator
+    const { error: err, result: res } = validateRegisterForm(formData);
+    setError(res);
+    if (!err) {
+      console.log("Submit Login Data", formData);
+      setLoading(true);
+      // change with mutation gql
+      await new Promise(r => setTimeout(r, 2000));
+      setLoading(false);
+
+      // Add wait for redirecting to login
+      setSuccess(true);
+      await new Promise(r => setTimeout(r, 2000));
+      navigate('/admin/login');
+    }
   }
   return (<div className="flex flex-col h-screen justify-between">
     <TopCover title='Admin Register' desc='Register page for admin account' />

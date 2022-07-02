@@ -7,6 +7,14 @@ export interface Article {
   duration: number;
   link: string;
 }
+export interface ArticleError {
+  title: string;
+  desc: string;
+  imageUrl: string;
+  publishedDate: string;
+  duration: string;
+  link: string;
+}
 export interface ArticleRaw {
   id: number;
   title: string;

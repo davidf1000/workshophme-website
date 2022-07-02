@@ -1,5 +1,5 @@
 import moment from "moment";
-import { calculateBetweenTwoDate, numberToIDR } from "../../../actions/utils";
+import { calculateBetweenTwoDate, numberToIDR } from "../../../utils/utils";
 import { Rent, Tool } from "../../rent/rent.types";
 
 const LogTable = ({ header, data, onReturn, tools }: LogTableProps): JSX.Element => {

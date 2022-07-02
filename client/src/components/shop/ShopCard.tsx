@@ -1,4 +1,4 @@
-import { numberToIDR } from "../../actions/utils";
+import { numberToIDR } from "../../utils/utils";
 import { Product } from "./shop.types";
 
 const ShopCard = ({ product }: ShopCardProps): JSX.Element => {

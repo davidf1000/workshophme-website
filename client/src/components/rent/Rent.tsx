@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getCurrentDateFormatted } from '../../actions/utils';
+import { getCurrentDateFormatted } from '../../utils/utils';
 import Footer from '../Footer';
 import NavBar from '../Navbar';
 import { RentFormData, RentFormError } from './rent.types';
@@ -11,7 +11,7 @@ import StepFinished from './rentforms/StepFinished';
 import StepRent from './StepRent';
 import moment from 'moment';
 import ModalPanduan from './ModalPanduan';
-import { validateError } from './validate';
+import { validateError } from '../../utils/rentFormValidator';
 import { useMutation } from '@apollo/client';
 import { CREATE_RENT } from '../../graphql/rentQuery';
 import AlertCard from '../dashboard/basiccomponent/AlertCard';

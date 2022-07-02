@@ -1,4 +1,4 @@
-import { numberToIDR } from "../../../actions/utils";
+import { numberToIDR } from "../../../utils/utils";
 import { Tool } from "../../rent/rent.types";
 
 const ToolTable = ({ header, data, onEdit, onDelete }: ToolTableProps): JSX.Element => {

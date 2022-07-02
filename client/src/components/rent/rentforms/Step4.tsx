@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
-import { calculateBetweenTwoDate, calculatePrices } from '../../../actions/utils';
+import { calculateBetweenTwoDate, calculatePrices } from '../../../utils/utils';
 import { GetToolsResponse } from '../../../graphql/toolQuery.types';
 import { GET_TOOLS } from '../../../graphql/toolsQuery';
 import AlertCard from '../../dashboard/basiccomponent/AlertCard';

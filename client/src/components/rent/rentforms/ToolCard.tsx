@@ -1,4 +1,4 @@
-import { numberToIDR } from '../../../actions/utils';
+import { numberToIDR } from '../../../utils/utils';
 import { RentFormData, Tool, ToolRent } from '../rent.types';
 
 const ToolCard = ({

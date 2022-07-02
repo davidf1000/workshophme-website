@@ -1,4 +1,4 @@
-import { numberToIDR } from "../../../actions/utils";
+import { numberToIDR } from "../../../utils/utils";
 import { Product } from "../../shop/shop.types";
 
 const ProductTable = ({ header, data, onEdit, onDelete }: ProductTableProps): JSX.Element => {

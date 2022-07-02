@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { validateLoginForm } from "../../utils/authFormValidator";
 import TopCover from "../dashboard/basiccomponent/TopCover";
 import { ErrorLoginForm, LoginForm } from "./auth.types";
 
@@ -21,7 +22,7 @@ const Login = (): JSX.Element => {
     email: '',
     password: ''
   });
-  const [alert, setAlert] = useState<null | string>("500 Server Error");
+  const [alert, setAlert] = useState<null | string>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,11 +30,17 @@ const Login = (): JSX.Element => {
 
   const onSubmit = async (e: any): Promise<any> => {
     e.preventDefault();
-    console.log("Submit Login Data", formData);
-    setLoading(true);
-    await new Promise(r => setTimeout(r, 2000));
-    setLoading(false);
-    navigate('/admin/pickup');
+    const { error: err, result: res } = validateLoginForm(formData);
+    setError(res);
+    if (!err) {
+      console.log("Submit Login Data", formData);
+      setLoading(true);
+      // change with mutation gql
+      await new Promise(r => setTimeout(r, 2000));
+      setLoading(false);
+
+      navigate('/admin/pickup');
+    }
   }
   return (<div className="flex flex-col h-screen justify-between">
     <TopCover title='Admin Login' desc='Login page for admin dashboard' />

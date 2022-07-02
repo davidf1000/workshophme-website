@@ -1,9 +1,17 @@
 import moment from "moment";
 import { useState } from "react";
-import { Article } from "../../../article/article.types";
+import { Article, ArticleError } from "../../../article/article.types";
 
 const ArticleEditModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ArticleEditModalProps): JSX.Element => {
     const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<ArticleError>({
+        title: "",
+        desc: "",
+        imageUrl: "",
+        publishedDate: "",
+        duration: "",
+        link: "",
+    });
     const onEdit = async (): Promise<any> => {
         setLoading(true);
         // Delete gql
@@ -65,6 +73,9 @@ const ArticleEditModal = ({ formData, setFormData, setShowModal, setActionResult
                                     value={formData.title}
                                     onChange={(e) => onChange(e)}
                                 />
+                                {error.title && (
+                                    <span className="text-sm text-red-600 mt-1 ml-2">{error.title}</span>
+                                )}
                             </div>
                             {/* Desc */}
                             <div className="flex flex-col mb-2">
@@ -82,6 +93,9 @@ const ArticleEditModal = ({ formData, setFormData, setShowModal, setActionResult
                                     value={formData.desc}
                                     onChange={(e) => onChange(e)}
                                 />
+                                {error.desc && (
+                                    <span className="text-sm text-red-600 mt-1 ml-2">{error.desc}</span>
+                                )}
                             </div>
                             {/* Publish Date */}
                             <div className="flex flex-col mb-2">
@@ -103,6 +117,9 @@ const ArticleEditModal = ({ formData, setFormData, setShowModal, setActionResult
                 text-gray-800 sm:text-sm rounded-lg  focus:border-ws-orange focus:ring-ws-orange block w-56 p-2"
                                     placeholder="Select date start"
                                 />
+                                {error.publishedDate && (
+                                    <span className="text-sm text-red-600 mt-1 ml-2">{error.publishedDate}</span>
+                                )}
                             </div>
                             {/* Duration */}
                             <div className="flex flex-col mb-2">
@@ -126,6 +143,9 @@ const ArticleEditModal = ({ formData, setFormData, setShowModal, setActionResult
                                         minutes
                                     </p>
                                 </div>
+                                {error.duration && (
+                                    <span className="text-sm text-red-600 mt-1 ml-2">{error.duration}</span>
+                                )}
                             </div>
                             {/* Image */}
                             <div className="flex flex-col mb-2">
@@ -144,6 +164,9 @@ const ArticleEditModal = ({ formData, setFormData, setShowModal, setActionResult
                                     value={formData.imageUrl}
                                     onChange={(e) => onChange(e)}
                                 />
+                                {error.imageUrl && (
+                                    <span className="text-sm text-red-600 mt-1 ml-2">{error.imageUrl}</span>
+                                )}
                             </div>
                             {/* Link */}
                             <div className="flex flex-col mb-2">
@@ -162,6 +185,9 @@ const ArticleEditModal = ({ formData, setFormData, setShowModal, setActionResult
                                     value={formData.link}
                                     onChange={(e) => onChange(e)}
                                 />
+                                {error.link && (
+                                    <span className="text-sm text-red-600 mt-1 ml-2">{error.link}</span>
+                                )}
                             </div>
 
                             <button onClick={() => { onEdit() }} className=" bg-ws-orange text-slate-700 hover:bg-orange-300 text-xl font-bold py-2 px-4 rounded-lg w-auto mx-auto mt-4">
