@@ -11,21 +11,13 @@ import StepFinished from './rentforms/StepFinished';
 import StepRent from './StepRent';
 import moment from 'moment';
 import ModalPanduan from './ModalPanduan';
+import { validateError } from './validate';
 
 const Rent = (): JSX.Element => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [step, setStep] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
-  const [formError, setFormError] = useState<RentFormError>({
-    name: '',
-    nim: '',
-    organisation: '',
-    phone: '',
-    line: '',
-    pickupDate: '',
-    returnDate: '',
-    tools: '',
-  });
+  const [formError, setFormError] = useState<RentFormError>(defaultError);
   const [formData, setFormData] = useState<RentFormData>({
     name: '',
     nim: '',
@@ -50,13 +42,24 @@ const Rent = (): JSX.Element => {
     setLoading(false);
     setStep(4);
   };
+  const interceptValidation = () => {
+    const { error, result } = validateError(step, formData);
+    if (error) {
+      setFormError(result)
+    }
+    return error;
+  }
   const nextStep = () => {
+    if (interceptValidation()) {
+      return
+    }
     if (step === 3) {
       submitForm();
     }
     setStep((step) => (step < 3 ? step + 1 : step));
   };
   const prevStep = () => {
+    setFormError(defaultError);
     setStep((step) => (step > 0 ? step - 1 : step));
   };
   return (
@@ -171,3 +174,15 @@ const Rent = (): JSX.Element => {
 };
 
 export default Rent;
+
+const defaultError = {
+  name: '',
+  nim: '',
+  organisation: '',
+  phone: '',
+  line: '',
+  pickupDate: '',
+  returnDate: '',
+  tools: '',
+  totalPrice: ''
+};

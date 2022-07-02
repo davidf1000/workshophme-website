@@ -30,6 +30,14 @@ const Step4 = ({
   const [days, hours] = calculateBetweenTwoDate(pickupDate, returnDate);
   const totalPrice = calculatePrices(formData.tools, toolsFetch, days, hours);
   return <>
+    {error.totalPrice && (
+      <div
+        className="bg-red-100 border mb-3 mx-2 border-red-400 text-red-700 px-4 py-3 rounded relative w-80"
+        role="alert"
+      >
+        <span className="block text-center">{error.totalPrice}</span>
+      </div>
+    )}
     <div className="overflow-x-auto px-4">
       <table className="items-center w-full bg-transparent border-collapse mb-4">
         <thead>

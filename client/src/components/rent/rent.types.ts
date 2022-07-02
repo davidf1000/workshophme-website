@@ -39,6 +39,7 @@ export interface RentFormError {
   pickupDate: string;
   returnDate: string;
   tools: string;
+  totalPrice: string;
 }
 
 export interface Tool {
@@ -78,4 +79,3 @@ export interface Rent {
   returnNim?: string;
   returnDate?: null | Date;
 }
-
