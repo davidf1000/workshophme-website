@@ -20,7 +20,7 @@ export class ToolsResolver {
   }
 
   @Query('tools')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   findAll() {
     return this.toolsService.findAll();
   }

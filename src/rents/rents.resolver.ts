@@ -18,6 +18,12 @@ export class RentsResolver {
     return this.rentsService.create(createRentInput);
   }
 
+  // unguarded api, but only exposes rents date, not user information
+  @Query('rentdates')
+  findAllDates() {
+    return this.rentsService.findAll();
+  }
+
   @Query('rents')
   @UseGuards(JwtAuthGuard)
   findAll() {

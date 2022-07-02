@@ -21,6 +21,15 @@ type Rent {
   returnDate: DateTime
 }
 
+type RentDate {
+  id: Int!
+  createdAt: DateTime
+  tools: String!
+  fromDate: DateTime!
+  expectedReturnDate: DateTime!
+  status: String!
+}
+
 input CreateRentInput {
   tools: String!
   rentName: String!
@@ -55,6 +64,7 @@ input UpdateRentInput {
 
 type Query {
   rents: [Rent]!
+  rentdates: [RentDate]!
   rent(id: Int!): Rent
 }
 

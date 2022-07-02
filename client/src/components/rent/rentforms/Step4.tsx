@@ -8,7 +8,6 @@ import AlertCard from '../../dashboard/basiccomponent/AlertCard';
 import Spinner from '../../Spinner';
 import { StepProps } from '..//rent.types';
 
-
 const Step4 = ({
   formData,
   setFormData,

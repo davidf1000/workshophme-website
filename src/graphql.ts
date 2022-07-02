@@ -136,6 +136,8 @@ export abstract class IQuery {
 
     abstract rents(): Nullable<Rent>[] | Promise<Nullable<Rent>[]>;
 
+    abstract rentdates(): Nullable<RentDate>[] | Promise<Nullable<RentDate>[]>;
+
     abstract rent(id: number): Nullable<Rent> | Promise<Nullable<Rent>>;
 
     abstract shops(): Nullable<Shop>[] | Promise<Nullable<Shop>[]>;
@@ -223,6 +225,15 @@ export class Rent {
     returnName?: Nullable<string>;
     returnNim?: Nullable<string>;
     returnDate?: Nullable<DateTime>;
+}
+
+export class RentDate {
+    id: number;
+    createdAt?: Nullable<DateTime>;
+    tools: string;
+    fromDate: DateTime;
+    expectedReturnDate: DateTime;
+    status: string;
 }
 
 export class Shop {
