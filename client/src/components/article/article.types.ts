@@ -1,5 +1,3 @@
-// title, desc, imageUrl, publishedDate, duration(min), link
-
 export interface Article {
   id: number;
   title: string;

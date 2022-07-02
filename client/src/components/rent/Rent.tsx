@@ -60,7 +60,7 @@ const Rent = (): JSX.Element => {
           fromDate: pickupDate.toISOString(),
           expectedReturnDate: returnDate.toISOString(),
           status: 'waiting_pickup',
-          totalPrice: formData.totalPrice.toString()
+          totalPrice: formData.totalPrice
         }
       }
     })
@@ -68,7 +68,7 @@ const Rent = (): JSX.Element => {
     setLoading(true);
     await new Promise(r => setTimeout(r, 1000));
     // Check if error
-    if (!gqlError && gqlData?.errors?.length === 0) {
+    if (!gqlError) {
       setStep(4);
     }
     setLoading(false);

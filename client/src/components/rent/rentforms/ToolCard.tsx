@@ -1,14 +1,6 @@
 import { numberToIDR } from '../../../actions/utils';
 import { RentFormData, Tool, ToolRent } from '../rent.types';
 
-// TODO
-// 1. Format Current value -> if not found in array, then put 0
-// 2. if 0, disable the - icon
-// 3. if == stock, disable +
-// 4. if +, find key, if exist, increment, if not, append with val 1
-// 5. if -, decrement the value
-// 6. Cannot add if > stock, cannot del if < stock
-
 const ToolCard = ({
   tool,
   formData,
@@ -96,7 +88,6 @@ const ToolCard = ({
                 readOnly
               />
               {/* logo + */}
-              {/* TODO - tool.totalStock need to be - by number of occupants in that timeframe */}
               <div
                 className={`${!data || (data && data.quantity < tool.totalStock)
                   ? 'visible'
@@ -119,7 +110,7 @@ const ToolCard = ({
               </div>
             </div>
             <p className="font-sans font-semibold text-sm mx-auto my-1">
-              Stock: {tool.totalStock - 0}
+              Stock: {tool.totalStock < 0 ? 0 : tool.totalStock}
             </p>
           </div>
         </div>

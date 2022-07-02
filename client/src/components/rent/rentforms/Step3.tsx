@@ -1,10 +1,8 @@
 import { useQuery } from '@apollo/client';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
-import { toolsData } from '../../../dummydata/tools.data';
 import { GET_RENTS } from '../../../graphql/rentQuery';
 import { GetRentsResponse } from '../../../graphql/rentQuery.types';
-import { GetShopsResponse } from '../../../graphql/shopQuery.types';
 import { GetToolsResponse } from '../../../graphql/toolQuery.types';
 import { GET_TOOLS } from '../../../graphql/toolsQuery';
 import AlertCard from '../../dashboard/basiccomponent/AlertCard';
@@ -28,8 +26,6 @@ const Step3 = ({
   const { loading: gqlToolsLoading, error: gqlToolsError, data: gqlToolsData } = useQuery<GetToolsResponse>(GET_TOOLS);
   const { loading: gqlRentsLoading, error: gqlRentsError, data: gqlRentsData } = useQuery<GetRentsResponse>(GET_RENTS);
   const [showAlert, setShowAlert] = useState<boolean>(true);
-
-  const [toolsFetch, setToolsFetch] = useState<Tool[]>([]);
   useEffect(() => {
     console.log("Refreshed !");
   }, [

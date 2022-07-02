@@ -22,7 +22,6 @@ const ShopCard = ({ product }: ShopCardProps): JSX.Element => {
             </div>
         </div>
     </>);
-
 }
 
 interface ShopCardProps {

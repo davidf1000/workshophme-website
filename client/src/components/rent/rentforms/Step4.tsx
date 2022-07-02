@@ -2,12 +2,11 @@ import { useQuery } from '@apollo/client';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { calculateBetweenTwoDate, calculatePrices } from '../../../actions/utils';
-import { toolsData } from '../../../dummydata/tools.data';
 import { GetToolsResponse } from '../../../graphql/toolQuery.types';
 import { GET_TOOLS } from '../../../graphql/toolsQuery';
 import AlertCard from '../../dashboard/basiccomponent/AlertCard';
 import Spinner from '../../Spinner';
-import { StepProps, Tool } from '..//rent.types';
+import { StepProps } from '..//rent.types';
 
 
 const Step4 = ({
@@ -16,7 +15,6 @@ const Step4 = ({
   error,
   setError,
 }: StepProps): JSX.Element => {
-  const [toolsFetch, setToolsFetch] = useState<Tool[]>([]);
   const { loading: gqlToolsLoading, error: gqlToolsError, data: gqlToolsData } = useQuery<GetToolsResponse>(GET_TOOLS);
   const [showAlert, setShowAlert] = useState<boolean>(true);
   const pickupDate = new Date(formData.pickupDate);
@@ -28,10 +26,10 @@ const Step4 = ({
   const [days, hours] = calculateBetweenTwoDate(pickupDate, returnDate);
 
   useEffect(() => {
-    if (gqlToolsData) {
+    if (!gqlToolsLoading && gqlToolsData) {
       setFormData({ ...formData, totalPrice: calculatePrices(formData.tools, gqlToolsData.tools, days, hours) })
     }
-  }, [gqlToolsData])
+  }, [gqlToolsData, gqlToolsLoading])
 
   return <>
     {error.totalPrice && (

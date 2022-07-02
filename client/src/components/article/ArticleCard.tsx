@@ -2,7 +2,6 @@ import Moment from 'react-moment';
 
 import { ArticleRaw } from "./article.types";
 
-
 const ArticleCard = ({ article }: ArticleCardProps): JSX.Element => {
     return (<>
         <div className="flex py-3">

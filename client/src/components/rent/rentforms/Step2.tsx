@@ -1,5 +1,4 @@
 import { StepProps } from '../rent.types';
-import { useState } from 'react';
 import { range } from '../../../actions/utils';
 
 const Step2 = ({
