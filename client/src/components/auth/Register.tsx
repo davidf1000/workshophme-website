@@ -3,12 +3,16 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ErrorLoginForm, ErrorRegisterForm, LoginForm, RegisterForm } from "./auth.types";
 import { validateRegisterForm } from "../../utils/authFormValidator";
+import { CreateAdminInput, CreateAdminResponse } from "../../graphql/adminQuery.types";
+import { useMutation } from "@apollo/client";
+import { REGISTER_ADMIN } from "../../graphql/adminQuery";
 
 const Register = (): JSX.Element => {
+  const [registerAdmin, { data: registerData, error: gqlError }] = useMutation<CreateAdminResponse>(REGISTER_ADMIN);
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("Login Page");
+    console.log("Register Page");
     // TODO
     // 1. Check for token in localstorage
     // 2. parse JWT token, check if expired
@@ -34,20 +38,39 @@ const Register = (): JSX.Element => {
 
   const onSubmit = async (e: any): Promise<any> => {
     e.preventDefault();
+    setAlert(null);
     // error validator
     const { error: err, result: res } = validateRegisterForm(formData);
     setError(res);
     if (!err) {
-      console.log("Submit Login Data", formData);
       setLoading(true);
       // change with mutation gql
-      await new Promise(r => setTimeout(r, 2000));
+      const variables: CreateAdminInput = {
+        createAdminInput: {
+          email: formData.email,
+          name: formData.name,
+          password: formData.password
+        }
+      }
+      try {
+        await registerAdmin({
+          variables: variables
+        })
+      }
+      catch (e: any) {
+        console.error(e.message);
+        setAlert(e.message)
+      }
+      await new Promise(r => setTimeout(r, 500));
       setLoading(false);
-
-      // Add wait for redirecting to login
-      setSuccess(true);
-      await new Promise(r => setTimeout(r, 2000));
-      navigate('/admin/login');
+      // if success
+      if (!gqlError && registerData) {
+        // Add wait for redirecting to login
+        setSuccess(true);
+        localStorage.removeItem('token');
+        await new Promise(r => setTimeout(r, 1500));
+        navigate('/admin/login');
+      }
     }
   }
   return (<div className="flex flex-col h-screen justify-between">

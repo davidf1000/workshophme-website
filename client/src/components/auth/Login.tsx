@@ -1,12 +1,15 @@
+import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { LOGIN_ADMIN } from "../../graphql/adminQuery";
+import { LoginAdminInput, LoginAdminResponse } from "../../graphql/adminQuery.types";
 import { validateLoginForm } from "../../utils/authFormValidator";
 import TopCover from "../dashboard/basiccomponent/TopCover";
 import { ErrorLoginForm, LoginForm } from "./auth.types";
 
 const Login = (): JSX.Element => {
+  const [loginAdmin] = useMutation<LoginAdminResponse>(LOGIN_ADMIN);
   const navigate = useNavigate();
-
   useEffect(() => {
     console.log("Login Page");
     // TODO
@@ -30,16 +33,38 @@ const Login = (): JSX.Element => {
 
   const onSubmit = async (e: any): Promise<any> => {
     e.preventDefault();
+    setAlert(null);
     const { error: err, result: res } = validateLoginForm(formData);
     setError(res);
     if (!err) {
       console.log("Submit Login Data", formData);
       setLoading(true);
       // change with mutation gql
-      await new Promise(r => setTimeout(r, 2000));
+      const variables: LoginAdminInput = {
+        createLoginInput: {
+          email: formData.email,
+          password: formData.password
+        }
+      }
+      try {
+        const loginData = await loginAdmin({
+          variables: variables
+        })
+        // if success
+        if (loginData.data) {
+          // Set token
+          localStorage.setItem('token', loginData.data.login.accessToken)
+          // Add wait for redirecting to login
+          await new Promise(r => setTimeout(r, 1500));
+          navigate('/admin/pickup');
+        }
+      }
+      catch (e: any) {
+        setAlert(e.message)
+        console.error(e.message);
+      }
+      await new Promise(r => setTimeout(r, 500));
       setLoading(false);
-
-      navigate('/admin/pickup');
     }
   }
   return (<div className="flex flex-col h-screen justify-between">

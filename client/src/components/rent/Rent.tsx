@@ -51,7 +51,9 @@ const Rent = (): JSX.Element => {
     console.log(pickupDate.toISOString());
     console.log(returnDate.toISOString());
 
-    createRent({
+    setLoading(true);
+
+    await createRent({
       variables: {
         createRentInput: {
           tools: JSON.stringify(formData.tools),
@@ -67,10 +69,8 @@ const Rent = (): JSX.Element => {
         }
       }
     })
-    // if success
-    setLoading(true);
     await new Promise(r => setTimeout(r, 1000));
-    // Check if error
+    // if success
     if (!gqlError) {
       setStep(4);
     }
