@@ -11,7 +11,7 @@ import StepFinished from './rentforms/StepFinished';
 import StepRent from './StepRent';
 import moment from 'moment';
 import ModalPanduan from './ModalPanduan';
-import { validateError } from '../../utils/rentFormValidator';
+import { validateRentFormError } from '../../utils/rentFormValidator';
 import { useMutation } from '@apollo/client';
 import { CREATE_RENT } from '../../graphql/rentQuery';
 import AlertCard from '../dashboard/basiccomponent/AlertCard';
@@ -75,7 +75,7 @@ const Rent = (): JSX.Element => {
 
   };
   const interceptValidation = () => {
-    const { error, result } = validateError(step, formData);
+    const { error, result } = validateRentFormError(step, formData);
     if (error) {
       setFormError(result)
     }

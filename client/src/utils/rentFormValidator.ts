@@ -2,7 +2,7 @@ import { RentFormData } from '../components/rent/rent.types';
 import validator from 'validator';
 import moment from 'moment';
 
-export const validateError = (step: number, formData: RentFormData) => {
+export const validateRentFormError = (step: number, formData: RentFormData) => {
   const {
     name,
     nim,
@@ -49,6 +49,11 @@ export const validateError = (step: number, formData: RentFormData) => {
     }
     // nim - not empty, positives integer
     if (!Number.isInteger(Number(nim)) || Number(nim) <= 0) {
+      res.error = true;
+      res.result.nim = 'NIM field must be valid !';
+    }
+    // nim length is not 8
+    if (nim.length !== 8) {
       res.error = true;
       res.result.nim = 'NIM field must be valid !';
     }

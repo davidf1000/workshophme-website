@@ -107,3 +107,13 @@ export interface RentRaw {
   returnNim?: string;
   returnDate?: null | Date;
 }
+
+export interface RentPickupError {
+  pickupName: string;
+  pickupNim: string;
+}
+
+export interface RentReturnError {
+  returnName: string;
+  returnNim: string;
+}

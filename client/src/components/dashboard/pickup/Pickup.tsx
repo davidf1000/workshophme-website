@@ -7,7 +7,7 @@ import AlertCard from "../basiccomponent/AlertCard";
 import PickupTable from "./PickupTable";
 import { toolsData } from "../../../dummydata/tools.data";
 import PickupDropModals from "./modals/PickupDropModals";
-import PickupEditModal from "../return/modals/ReturnEditModal";
+import PickupEditModal from "./modals/PickupEditModals";
 
 const Pickup = (): JSX.Element => {
   useEffect(() => {
