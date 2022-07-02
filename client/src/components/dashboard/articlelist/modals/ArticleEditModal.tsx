@@ -1,9 +1,13 @@
+import { useMutation } from "@apollo/client";
 import moment from "moment";
 import { useState } from "react";
+import { UPDATE_ARTICLE } from "../../../../graphql/articleQuery";
+import { UpdateArticleInput, UpdateArticleResponse } from "../../../../graphql/articleQuery.types";
 import { validateArticleForm } from "../../../../utils/articleFormValidator";
 import { Article, ArticleError } from "../../../article/article.types";
 
 const ArticleEditModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ArticleEditModalProps): JSX.Element => {
+    const [updateArticle] = useMutation<UpdateArticleResponse>(UPDATE_ARTICLE);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<ArticleError>({
         title: "",
@@ -19,26 +23,49 @@ const ArticleEditModal = ({ formData, setFormData, setShowModal, setActionResult
         setError(res);
         if (!err) {
             setLoading(true);
-            // mutate gql
-            await new Promise(r => setTimeout(r, 2000));
+            // Mutation gql
+            try {
+                const variables: UpdateArticleInput = {
+                    updateArticleInput: {
+                        id: formData.id,
+                        title: formData.title,
+                        desc: formData.desc,
+                        imageUrl: formData.imageUrl,
+                        publishedDate: formData.publishedDate.toISOString(),
+                        duration: Number(formData.duration),
+                        link: formData.link,
+                    }
+                }
+                const article = await updateArticle({ variables: variables })
 
-            // set Action Result
-            setActionResult({
-                title: "Success!",
-                desc: "Article edited successfully.",
-                type: "success",
-            })
+                if (article.data) {
+                    // set Action Result
+                    setActionResult({
+                        title: "Success!",
+                        desc: "Article added successfully.",
+                        type: "success",
+                    })
+                }
+            } catch (e: any) {
+                console.error(e.message);
+                setActionResult({
+                    title: "Failed!",
+                    desc: e.message,
+                    type: "failed",
+                })
+            }
+            await new Promise(r => setTimeout(r, 500));
             setLoading(false);
-            // Refresh data // TODO 
-
+            // Refresh data
             // leave the modal
             setShowModal(false);
             await refreshData();
+            window.location.reload();
         }
     }
     const onChange = (e: any): void => {
         if (e.target.name === 'publishedDate') {
-            setFormData(item => ({ ...formData, [e.target.name]: (new Date(e.target.value)) }));
+            setFormData(formData => ({ ...formData, [e.target.name]: (new Date(e.target.value)) }));
         }
         else {
             setFormData({ ...formData, [e.target.name]: e.target.value });

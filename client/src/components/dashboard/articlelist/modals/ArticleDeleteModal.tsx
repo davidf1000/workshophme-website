@@ -1,19 +1,37 @@
+import { useMutation } from "@apollo/client";
+import { DELETE_ARTICLE } from "../../../../graphql/articleQuery";
+import { DeleteArticlesResponse } from "../../../../graphql/articleQuery.types";
 import { Article } from "../../../article/article.types";
 
 const ArticleDeleteModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ArticleDeleteModalProps): JSX.Element => {
+    const [deleteArticle] = useMutation<DeleteArticlesResponse>(DELETE_ARTICLE);
 
-    const onDelete = async (): Promise<any> => {
-        // Delete gql
-        await new Promise(r => setTimeout(r, 1000));
-        // set Action Result
-        setActionResult({
-            title: "Success!",
-            desc: "Article Deleted successfully.",
-            type: "success",
-        })
+    const onDelete = async (e): Promise<any> => {
+        e.preventDefault();
+
+        try {
+            // Mutate Delete gql
+            const article = await deleteArticle({ variables: { removeArticleId: formData.id } })
+            if (article.data) {
+                setActionResult({
+                    title: "Success!",
+                    desc: "Article Deleted successfully.",
+                    type: "success",
+                })
+            }
+        }
+        catch (e: any) {
+            console.error(e.message);
+            setActionResult({
+                title: "Failed!",
+                desc: e.message,
+                type: "failed",
+            })
+        }
         // leave the modal
         setShowModal(false);
         await refreshData();
+        window.location.reload();
     }
     return (
         <>
@@ -40,7 +58,7 @@ const ArticleDeleteModal = ({ formData, setFormData, setShowModal, setActionResu
                                 <button onClick={() => { setShowModal(false) }} className=" bg-red-500 text-slate-700 hover:bg-red-200 text-xl font-bold py-2 px-4 rounded-lg w-auto">
                                     No
                                 </button>
-                                <button onClick={() => { onDelete() }} className=" bg-green-400 text-slate-700 hover:bg-green-200 text-xl font-bold py-2 px-4 rounded-lg w-auto">
+                                <button onClick={(e) => { onDelete(e) }} className=" bg-green-400 text-slate-700 hover:bg-green-200 text-xl font-bold py-2 px-4 rounded-lg w-auto">
                                     Yes
                                 </button>
                             </div>

@@ -2,9 +2,16 @@ import {
   ApolloClient,
   InMemoryCache,
   createHttpLink,
+  ApolloLink,
+  from,
 } from '@apollo/client';
-
+import { onError } from 'apollo-link-error'
 import { setContext } from '@apollo/client/link/context';
+
+const errorLink = onError(({ graphQLErrors }) => {
+  if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message))
+})
+
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -24,8 +31,9 @@ const httpLink = createHttpLink({
 
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: from([authLink, errorLink as any, httpLink]),
   cache: new InMemoryCache(),
+
 });
 
 export default client;

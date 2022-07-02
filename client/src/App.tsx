@@ -16,30 +16,27 @@ import Project from './components/project/Project';
 import Rent from './components/rent/Rent';
 import { Admin } from './components/rent/rent.types';
 import Shop from './components/shop/Shop';
+import { jwtValidate } from './utils/jwtvalidator';
 
 const App = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(true);
   const [admin, setAdmin] = useState<Admin | null>(null);
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [isAuth, setIsAuth] = useState<boolean>(true);
   const authAdmin = async () => {
-    // Check auth 
+    // Check auth, if all passed then isAuth true
     const token = localStorage.getItem('token');
-    // is there
-    // not expired
-    // have valid id
-    setIsAuth(token !== null);
+    if (token) {
+      const { isAuth, adminData } = jwtValidate(token);
+      setIsAuth(isAuth);
+      setAdmin(adminData);
+    }
+    else {
+      setIsAuth(false);
+      setAdmin(null);
+    }
     setLoading(false);
-    await new Promise(r => setTimeout(r, 500));
-    console.log("Load Check Auth");
-    // Fetch Admin Info 
-    setAdmin({
-      id: 1,
-      email: 'Workshop@gmail.com',
-      name: 'David fauzi'
-    });
   }
   useEffect(() => {
-    localStorage.setItem('token', '12345')
     authAdmin();
   }, []);
   return (

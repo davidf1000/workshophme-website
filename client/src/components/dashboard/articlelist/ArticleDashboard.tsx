@@ -9,12 +9,12 @@ import ArticleDeleteModal from "./modals/ArticleDeleteModal";
 import AlertCard from "../basiccomponent/AlertCard";
 import { AlertData } from "../basiccomponent/basic.types";
 import moment from "moment";
-import { useQuery } from "@apollo/client";
-import { GetArticlesResponse } from "../../../graphql/articleQuery.types";
 import { GET_ARTICLES } from "../../../graphql/articleQuery";
+import { GetArticlesResponse } from "../../../graphql/articleQuery.types";
+import { useLazyQuery } from "@apollo/client";
 
 const ArticleDashboard = (): JSX.Element => {
-  const { loading, error, data } = useQuery<GetArticlesResponse>(GET_ARTICLES);
+  const [getArticles, { loading, error }] = useLazyQuery<GetArticlesResponse>(GET_ARTICLES);
   const [showAlert, setShowAlert] = useState<boolean>(true);
 
   const [loadFormat, setloadFormat] = useState<boolean>(false);
@@ -48,19 +48,23 @@ const ArticleDashboard = (): JSX.Element => {
 
   const refreshData = async (): Promise<any> => {
     setloadFormat(true);
-    // gql fetch all articles
-    // set articles and filtered articles
-    if (data) {
-      const dataFormatted = data.articles.map(x => ({ ...x, publishedDate: new Date(x.publishedDate) }))
-      setfilteredArticles(dataFormatted);
-      setArticles(dataFormatted)
+    try {
+      const fetchArticleData = await getArticles();
+      if (fetchArticleData.data) {
+        const dataFormatted = fetchArticleData.data.articles.map(x => ({ ...x, publishedDate: new Date(x.publishedDate) }))
+        setfilteredArticles(dataFormatted);
+        setArticles(dataFormatted)
+      }
+    } catch (e: any) {
+      console.error(e.message);
+      setAlert(e.message);
     }
     setWordSearch('');
     setloadFormat(false);
   }
   useEffect(() => {
     refreshData()
-  }, [data, addModal, editModal, deleteModal])
+  }, [])
   return (
     <>
       {alert && <AlertCard data={alert} onClose={setAlert} />}

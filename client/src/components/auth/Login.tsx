@@ -4,18 +4,25 @@ import { useNavigate } from "react-router";
 import { LOGIN_ADMIN } from "../../graphql/adminQuery";
 import { LoginAdminInput, LoginAdminResponse } from "../../graphql/adminQuery.types";
 import { validateLoginForm } from "../../utils/authFormValidator";
+import { jwtValidate } from "../../utils/jwtvalidator";
 import TopCover from "../dashboard/basiccomponent/TopCover";
 import { ErrorLoginForm, LoginForm } from "./auth.types";
 
 const Login = (): JSX.Element => {
   const [loginAdmin] = useMutation<LoginAdminResponse>(LOGIN_ADMIN);
   const navigate = useNavigate();
+  const checkToken = async () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const { isAuth } = jwtValidate(token);
+      if (isAuth) {
+        await new Promise(r => setTimeout(r, 500));
+        navigate('/admin/pickup');
+      }
+    }
+  }
   useEffect(() => {
-    console.log("Login Page");
-    // TODO
-    // 1. Check for token in localstorage
-    // 2. parse JWT token, check if expired
-    // 3. get the username and try to log it here 
+    checkToken();
   }, [])
   const [formData, setFormData] = useState<LoginForm>({
     email: '',
@@ -37,7 +44,6 @@ const Login = (): JSX.Element => {
     const { error: err, result: res } = validateLoginForm(formData);
     setError(res);
     if (!err) {
-      console.log("Submit Login Data", formData);
       setLoading(true);
       // change with mutation gql
       const variables: LoginAdminInput = {
@@ -47,16 +53,15 @@ const Login = (): JSX.Element => {
         }
       }
       try {
-        const loginData = await loginAdmin({
-          variables: variables
-        })
+        const loginData = await loginAdmin({ variables })
         // if success
         if (loginData.data) {
+          await new Promise(r => setTimeout(r, 1500));
           // Set token
           localStorage.setItem('token', loginData.data.login.accessToken)
           // Add wait for redirecting to login
-          await new Promise(r => setTimeout(r, 1500));
           navigate('/admin/pickup');
+          window.location.reload();
         }
       }
       catch (e: any) {

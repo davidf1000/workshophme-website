@@ -31,10 +31,9 @@ export const GET_ARTICLE = gql`
 `;
 
 export const CREATE_ARTICLE = gql`
-  mutation Mutation($createArticleInput: CreateArticleInput!) {
+  mutation CreateArticle($createArticleInput: CreateArticleInput!) {
     createArticle(createArticleInput: $createArticleInput) {
       id
-      createdAt
       title
       desc
       imageUrl
@@ -44,7 +43,6 @@ export const CREATE_ARTICLE = gql`
     }
   }
 `;
-
 export const UPDATE_ARTICLE = gql`
   mutation UpdateArticle($updateArticleInput: UpdateArticleInput!) {
     updateArticle(updateArticleInput: $updateArticleInput) {
