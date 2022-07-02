@@ -50,7 +50,7 @@ const ArticleEditModal = ({ formData, setFormData, setShowModal, setActionResult
                 <div className="relative w-auto my-6 mx-auto max-w-md bg-red-200">
                     <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                         <div className="flex items-start justify-between p-3 border-b border-solid border-slate-200">
-                            <h2 className="text-2xl font-semibold">Add Article</h2>
+                            <h2 className="text-2xl font-semibold">Edit Article</h2>
                             <button
                                 className="ml-auto border-0 text-black float-right text-2xl font-bold focus:outline-none"
                                 onClick={() => setShowModal(false)}
