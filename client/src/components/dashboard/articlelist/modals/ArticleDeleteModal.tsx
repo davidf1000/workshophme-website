@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { DELETE_ARTICLE } from "../../../../graphql/articleQuery";
 import { DeleteArticlesResponse } from "../../../../graphql/articleQuery.types";
+import { checkToken } from "../../../../utils/jwtvalidator";
 import { Article } from "../../../article/article.types";
 
 const ArticleDeleteModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ArticleDeleteModalProps): JSX.Element => {
@@ -26,7 +27,8 @@ const ArticleDeleteModal = ({ formData, setFormData, setShowModal, setActionResu
                 title: "Failed!",
                 desc: e.message,
                 type: "failed",
-            })
+            });
+            checkToken();
         }
         // leave the modal
         setShowModal(false);

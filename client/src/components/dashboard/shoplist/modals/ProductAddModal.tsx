@@ -1,9 +1,14 @@
+import { useMutation } from "@apollo/client";
 import moment from "moment";
 import { useState } from "react";
+import { CREATE_SHOP } from "../../../../graphql/shopQuery";
+import { CreateShopInput, CreateShopResponse } from "../../../../graphql/shopQuery.types";
+import { checkToken } from "../../../../utils/jwtvalidator";
 import { validateShopForm } from "../../../../utils/shopFormValidator";
 import { Product, ProductError } from "../../../shop/shop.types";
 
 const ProductAddModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ProductAddModalProps): JSX.Element => {
+    const [addProduct] = useMutation<CreateShopResponse>(CREATE_SHOP);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<ProductError>({
         title: "",
@@ -17,21 +22,42 @@ const ProductAddModal = ({ formData, setFormData, setShowModal, setActionResult,
         setError(res);
         if (!err) {
             setLoading(true);
-            // Delete gql
-            await new Promise(r => setTimeout(r, 2000));
+            // Mutation gql
+            try {
+                const variables: CreateShopInput = {
+                    createShopInput: {
+                        title: formData.title,
+                        imageUrl: formData.imageUrl,
+                        price: Number(formData.price),
+                        link: formData.link,
+                    }
+                }
+                const shop = await addProduct({ variables })
 
-            // set Action Result
-            setActionResult({
-                title: "Success!",
-                desc: "Product added successfully.",
-                type: "success",
-            })
+                if (shop.data) {
+                    // set Action Result
+                    setActionResult({
+                        title: "Success!",
+                        desc: "Product added successfully.",
+                        type: "success",
+                    })
+                }
+            } catch (e: any) {
+                console.error(e.message);
+                setActionResult({
+                    title: "Failed!",
+                    desc: e.message,
+                    type: "failed",
+                });
+                checkToken();
+            }
+            await new Promise(r => setTimeout(r, 500));
             setLoading(false);
-            // Refresh data // TODO 
-
+            // Refresh data
             // leave the modal
             setShowModal(false);
             await refreshData();
+            window.location.reload();
         }
     }
     const onChange = (e: any): void => {

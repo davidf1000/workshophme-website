@@ -14,6 +14,14 @@ export const jwtValidate = (token: string) => {
   };
 };
 
+export const checkToken = () => {
+  const token = localStorage.getItem('token');
+  if (!token || (token && !jwtValidate(token).isAuth)) {
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
+};
+
 export interface JWTCustomPayload {
   sub: number;
   iat: number;

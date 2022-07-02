@@ -4,6 +4,7 @@ import { useState } from "react";
 import { CREATE_ARTICLE } from "../../../../graphql/articleQuery";
 import { AddArticlesResponse, CreateArticleInput } from "../../../../graphql/articleQuery.types";
 import { validateArticleForm } from "../../../../utils/articleFormValidator";
+import { checkToken } from "../../../../utils/jwtvalidator";
 import { Article, ArticleError } from "../../../article/article.types";
 
 const ArticleAddModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ArticleAddModalProps): JSX.Element => {
@@ -35,7 +36,7 @@ const ArticleAddModal = ({ formData, setFormData, setShowModal, setActionResult,
                         link: formData.link,
                     }
                 }
-                const article = await createArticle({ variables: variables })
+                const article = await createArticle({ variables })
 
                 if (article.data) {
                     // set Action Result
@@ -52,6 +53,7 @@ const ArticleAddModal = ({ formData, setFormData, setShowModal, setActionResult,
                     desc: e.message,
                     type: "failed",
                 })
+                checkToken();
             }
             await new Promise(r => setTimeout(r, 500));
             setLoading(false);

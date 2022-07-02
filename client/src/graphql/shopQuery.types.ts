@@ -1,10 +1,22 @@
 import { Product } from '../components/shop/shop.types';
 
 export interface CreateShopInput {
-  title: string;
-  imageUrl: string;
-  link: string;
-  price: number;
+  createShopInput: {
+    title: string;
+    imageUrl: string;
+    link: string;
+    price: number;
+  };
+}
+
+export interface UpdateShopInput {
+  updateShopInput: {
+    id: number;
+    title: string;
+    imageUrl: string;
+    link: string;
+    price: number;
+  };
 }
 
 export interface GetShopResponse {
@@ -15,6 +27,14 @@ export interface GetShopsResponse {
   shops: Product[];
 }
 
-export interface UpdateShopInput extends CreateShopInput {
-  id: number;
+export interface CreateShopResponse {
+  createShop: Product[];
+}
+
+export interface UpdateShopResponse {
+  updateShop: Product[];
+}
+
+export interface RemoveShopResponse {
+  removeShop: Product[];
 }
