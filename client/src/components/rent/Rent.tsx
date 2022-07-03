@@ -15,10 +15,10 @@ import { validateRentFormError } from '../../utils/rentFormValidator';
 import { useMutation } from '@apollo/client';
 import { CREATE_RENT } from '../../graphql/rentQuery';
 import AlertCard from '../dashboard/basiccomponent/AlertCard';
-import { GetRentsResponse } from '../../graphql/rentQuery.types';
+import { CreateRentInput, CreateRentResponse, GetRentsResponse } from '../../graphql/rentQuery.types';
 
 const Rent = (): JSX.Element => {
-  const [createRent, { data: gqlData, loading: gqlLoading, error: gqlError }] = useMutation<GetRentsResponse>(CREATE_RENT);
+  const [createRent, { data: gqlData, loading: gqlLoading, error: gqlError }] = useMutation<CreateRentResponse>(CREATE_RENT);
   const [showAlert, setShowAlert] = useState<boolean>(true);
 
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -52,9 +52,8 @@ const Rent = (): JSX.Element => {
     console.log(returnDate.toISOString());
 
     setLoading(true);
-
-    await createRent({
-      variables: {
+    try {
+      const variables: CreateRentInput = {
         createRentInput: {
           tools: JSON.stringify(formData.tools),
           rentName: formData.name,
@@ -68,14 +67,17 @@ const Rent = (): JSX.Element => {
           totalPrice: formData.totalPrice
         }
       }
-    })
-    await new Promise(r => setTimeout(r, 1000));
-    // if success
-    if (!gqlError) {
-      setStep(4);
+      const rent = await createRent({ variables })
+      await new Promise(r => setTimeout(r, 500));
+      // if success
+      if (rent.data) {
+        setStep(4);
+      }
+    }
+    catch (e: any) {
+      console.error(e.message);
     }
     setLoading(false);
-
   };
   const interceptValidation = () => {
     const { error, result } = validateRentFormError(step, formData);
