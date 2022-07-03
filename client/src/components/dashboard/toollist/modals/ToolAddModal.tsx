@@ -33,8 +33,6 @@ const ToolAddModal = ({ formData, setFormData, setShowModal, setActionResult, re
                         'Authorization': 'Bearer ' + localStorage.getItem('token')
                     }
                 })
-                console.log(path);
-
                 // gql mutation
                 const variables: CreateToolInput = {
                     createToolInput: {

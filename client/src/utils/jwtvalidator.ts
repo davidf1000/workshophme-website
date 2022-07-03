@@ -2,7 +2,6 @@ import jwt_decode from 'jwt-decode';
 
 export const jwtValidate = (token: string) => {
   const decoded = jwt_decode<JWTCustomPayload>(token);
-  console.log('decoded : ', decoded);
   const isExpired = Date.now() >= decoded.exp * 1000;
   return {
     isAuth: decoded && !isExpired,

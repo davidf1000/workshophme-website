@@ -8,7 +8,7 @@ import { onError } from 'apollo-link-error'
 import { setContext } from '@apollo/client/link/context';
 
 const errorLink = onError(({ graphQLErrors }) => {
-  if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message))
+  if (graphQLErrors) graphQLErrors.map(({ message }) => console.error(message))
 })
 
 const authLink = setContext((_, { headers }) => {

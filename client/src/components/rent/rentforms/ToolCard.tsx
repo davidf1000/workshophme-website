@@ -10,9 +10,6 @@ const ToolCard = ({
   const addQuantity = (): void => {
     const findIndex = formData.tools.findIndex((x) => x.toolId === tool.id);
     const tools: ToolRent[] = structuredClone(formData.tools); // deep clone
-    console.log(findIndex);
-    console.log(tools);
-
     if (findIndex !== -1) {
       // found, increment existing object
       tools[findIndex].quantity += 1;

@@ -57,12 +57,9 @@ const Step3 = ({
                 const rentToolsParsed: ToolRent[] = JSON.parse(rent.tools);
 
                 const toolFound = rentToolsParsed.find(x => x.toolId === item.id);
-                // console.log("tools: ", item.name, "found", toolFound?.toolId);
-
                 if (toolFound && (moment(pickupDateFull, undefined, '[]').isBetween(rent.fromDate, rent.expectedReturnDate, undefined, '[]') ||
                   moment(returnDateFull).isBetween(rent.fromDate, rent.expectedReturnDate))) {
                   overlap += toolFound.quantity;
-                  console.log("tool: ", item.name, item.id, rentToolsParsed, 'stock', updatedStock - overlap);
                 }
               });
               // item.totalStock = totalStock - overlap

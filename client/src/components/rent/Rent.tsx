@@ -41,16 +41,12 @@ const Rent = (): JSX.Element => {
     totalPrice: 0,
   });
   const submitForm = async (): Promise<any> => {
-    console.log('Submit Form');
     const pickupDate = new Date(formData.pickupDate);
     pickupDate.setHours(formData.pickupHour);
     pickupDate.setMinutes(formData.pickupMinute);
     const returnDate = new Date(formData.returnDate);
     returnDate.setHours(formData.returnHour);
     returnDate.setMinutes(formData.returnMinute);
-    console.log(pickupDate.toISOString());
-    console.log(returnDate.toISOString());
-
     setLoading(true);
     try {
       const variables: CreateRentInput = {
