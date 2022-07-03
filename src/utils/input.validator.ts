@@ -231,27 +231,30 @@ export const validateUpdateRentInput = ({
     throw new BadRequestException('fine must be a positive integer');
   }
   // pickupName min 4 max 25
-  if (pickupName.length < 4 || pickupName.length > 25) {
+  if (pickupName && (pickupName.length < 4 || pickupName.length > 25)) {
     throw new BadRequestException(
       'pickupName minimum length is 4 and maximum length is 25',
     );
   }
   // pickupNim is int
-  if (!validator.isInt(pickupNim) || Number(pickupNim) < 0) {
+  if (pickupNim && (!validator.isInt(pickupNim) || Number(pickupNim) < 0)) {
     throw new BadRequestException('pickupNim must be a positive integer');
   }
   // returnName min 4 max 25
-  if (returnName.length < 4 || returnName.length > 25) {
+  if (returnName && (returnName.length < 4 || returnName.length > 25)) {
     throw new BadRequestException(
       'returnName minimum length is 4 and maximum length is 25',
     );
   }
   // returnNim is int
-  if (!validator.isInt(returnNim.toString()) || Number(returnNim) < 0) {
+  if (
+    returnNim &&
+    (!validator.isInt(returnNim.toString()) || Number(returnNim) < 0)
+  ) {
     throw new BadRequestException('returnNim must be a positive integer');
   }
   // returnDate is date
-  if (!(returnDate instanceof Date)) {
+  if (returnDate && !(returnDate instanceof Date)) {
     throw new BadRequestException('returnDate must be a proper date');
   }
 };

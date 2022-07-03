@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AdminsService } from 'src/admins/admins.service';
 import { LoginAdminInput, LoginAdminResponse } from 'src/graphql';
@@ -12,7 +12,7 @@ export class AuthService {
 
   async validateAdmin(email: string, password: string): Promise<any> {
     const admin = await this.adminService.findAdmin(email);
-    if (admin && bcrypt.compare(password, admin.password)) {
+    if (admin && (await bcrypt.compare(password, admin.password))) {
       const { password, ...result } = admin;
       return result;
     }
@@ -27,6 +27,7 @@ export class AuthService {
       accessToken: this.jwtService.sign(
         {
           email: admin.email,
+          name: admin.name,
           sub: admin.id,
         },
         {
