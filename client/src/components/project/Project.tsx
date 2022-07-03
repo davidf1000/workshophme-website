@@ -6,15 +6,15 @@ const Project = (): JSX.Element => {
     <>
       <div className="flex flex-col min-h-screen justify-start bg-ws-orange">
         <NavBar selected="project" />
-        <div className="flex  h-full w-full mb-auto">
+        <main className="flex h-full w-full mb-auto">
           <div className="flex flex-col max-w-7xl justify-start mx-auto px-6">
             <h1 className="font-sans text-4xl font-semibold text-gray-800 mx-auto mt-4 mb-4">
               Project
             </h1>
-            <p className="font-sans text-lg text-gray-800 text-justify max-w-3xl mx-auto">
+            <h2 className="font-sans text-lg text-gray-800 text-justify max-w-3xl mx-auto">
               Wujudkan projectmu bersama kami yang telah berpengalaman dalam mengerjakan berbagai macam proyek elektronika meliputi proyek IoT, smart device, PCB design, jasa coding, dan masih banyak lagi.
-            </p>
-            <div className="container max-w-4xl bg-slate-50 rounded-lg my-4">
+            </h2>
+            <section id='projectStep' className="container max-w-4xl bg-slate-50 rounded-lg my-4">
               <div className="flex flex-col justify-start items-center my-4">
                 <h2 className="font-sans font-semibold text-gray-800 text-xl">Tahapan Pengerjaan Proyek</h2>
                 <div className="flex flex-wrap justify-start items-center gap-2 ml-10 mr-8 mb-8 mt-10">
@@ -23,9 +23,9 @@ const Project = (): JSX.Element => {
                     <svg className="w-16 text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                       <path fill="currentColor" d="M511.2 387l-23.25 100.8c-3.266 14.25-15.79 24.22-30.46 24.22C205.2 512 0 306.8 0 54.5c0-14.66 9.969-27.2 24.22-30.45l100.8-23.25C139.7-2.602 154.7 5.018 160.8 18.92l46.52 108.5c5.438 12.78 1.77 27.67-8.98 36.45L144.5 207.1c33.98 69.22 90.26 125.5 159.5 159.5l44.08-53.8c8.688-10.78 23.69-14.51 36.47-8.975l108.5 46.51C506.1 357.2 514.6 372.4 511.2 387z" />
                     </svg>
-                    <h2 className="font-sans font-semibold text-lg text-center mt-2">
+                    <h3 className="font-sans font-semibold text-lg text-center mt-2">
                       Hubungi Project <br />Manager kami
-                    </h2>
+                    </h3>
                     <div className="flex flex-row justify-center gap-6">
                       <a href="https://api.whatsapp.com/send?phone=085878502837" rel="noopener noreferrer" target={'_blank'}>
                         <svg className="w-12 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -50,9 +50,9 @@ const Project = (): JSX.Element => {
                     <svg className="w-20 text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
                       <path fill="currentColor" d="M416 176C416 78.8 322.9 0 208 0S0 78.8 0 176c0 39.57 15.62 75.96 41.67 105.4c-16.39 32.76-39.23 57.32-39.59 57.68c-2.1 2.205-2.67 5.475-1.441 8.354C1.9 350.3 4.602 352 7.66 352c38.35 0 70.76-11.12 95.74-24.04C134.2 343.1 169.8 352 208 352C322.9 352 416 273.2 416 176zM599.6 443.7C624.8 413.9 640 376.6 640 336C640 238.8 554 160 448 160c-.3145 0-.6191 .041-.9336 .043C447.5 165.3 448 170.6 448 176c0 98.62-79.68 181.2-186.1 202.5C282.7 455.1 357.1 512 448 512c33.69 0 65.32-8.008 92.85-21.98C565.2 502 596.1 512 632.3 512c3.059 0 5.76-1.725 7.02-4.605c1.229-2.879 .6582-6.148-1.441-8.354C637.6 498.7 615.9 475.3 599.6 443.7z" />
                     </svg>
-                    <h2 className="font-sans font-semibold text-lg text-center mt-2">
+                    <h3 className="font-sans font-semibold text-lg text-center mt-2">
                       Diskusikan kebutuhan  <br /> serta speksifikasi proyek <br /> bersama kami
-                    </h2>
+                    </h3>
                   </div>
 
                   <div className="w-full md:w-auto flex">
@@ -65,15 +65,15 @@ const Project = (): JSX.Element => {
                     <svg className="w-20 text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
                       <path fill="currentColor" d="M0 383.9l64 .0404c17.75 0 32-14.29 32-32.03V128.3L0 128.3V383.9zM48 320.1c8.75 0 16 7.118 16 15.99c0 8.742-7.25 15.99-16 15.99S32 344.8 32 336.1C32 327.2 39.25 320.1 48 320.1zM348.8 64c-7.941 0-15.66 2.969-21.52 8.328L228.9 162.3C228.8 162.5 228.8 162.7 228.6 162.7C212 178.3 212.3 203.2 226.5 218.7c12.75 13.1 39.38 17.62 56.13 2.75C282.8 221.3 282.9 221.3 283 221.2l79.88-73.1c6.5-5.871 16.75-5.496 22.62 1c6 6.496 5.5 16.62-1 22.62l-26.12 23.87L504 313.7c2.875 2.496 5.5 4.996 7.875 7.742V127.1c-40.98-40.96-96.48-63.88-154.4-63.88L348.8 64zM334.6 217.4l-30 27.49c-29.75 27.11-75.25 24.49-101.8-4.371C176 211.2 178.1 165.7 207.3 138.9L289.1 64H282.5C224.7 64 169.1 87.08 128.2 127.9L128 351.8l18.25 .0369l90.5 81.82c27.5 22.37 67.75 18.12 90-9.246l18.12 15.24c15.88 12.1 39.38 10.5 52.38-5.371l31.38-38.6l5.374 4.498c13.75 11 33.88 9.002 45-4.748l9.538-11.78c11.12-13.75 9.036-33.78-4.694-44.93L334.6 217.4zM544 128.4v223.6c0 17.62 14.25 32.05 31.1 32.05L640 384V128.1L544 128.4zM592 352c-8.75 0-16-7.246-16-15.99c0-8.875 7.25-15.99 16-15.99S608 327.2 608 336.1C608 344.8 600.8 352 592 352z" />
                     </svg>
-                    <h2 className="font-sans font-semibold text-lg text-center mt-2">
+                    <h3 className="font-sans font-semibold text-lg text-center mt-2">
                       Setelah sepakat, kami <br /> siap mewujudkan <br /> proyek anda!
-                    </h2>
+                    </h3>
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
           </div>
-        </div>
+        </main>
         <Footer />
       </div>
     </>

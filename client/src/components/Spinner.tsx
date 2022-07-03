@@ -4,5 +4,4 @@ const Spinner = ({ color = 'text-slate-50' }): JSX.Element => (
     </svg>
 )
 
-
 export default Spinner;

@@ -103,7 +103,7 @@ const Rent = (): JSX.Element => {
     <>
       <div className="flex flex-col min-h-screen justify-start bg-ws-orange">
         <NavBar selected="rent" />
-        <div className="flex  h-full w-full mb-auto">
+        <main className="flex h-full w-full mb-auto">
           <ModalPanduan showModal={showModal} setShowModal={setShowModal} />
           {showAlert && gqlError && <AlertCard data={{
             title: 'ERROR',
@@ -114,11 +114,11 @@ const Rent = (): JSX.Element => {
             <h1 className="font-sans text-4xl font-semibold text-gray-800 mx-auto mt-4 mb-4">
               Rent
             </h1>
-            <p className="font-sans text-lg text-gray-800 text-justify max-w-3xl mx-auto">
+            <h2 className="font-sans text-lg text-gray-800 text-justify max-w-3xl mx-auto">
               Workshop HME menyediakan berbagai macam peralatan untuk melengkapi
               kebutuhan kegiatan maupun acara anda.
-            </p>
-            <div className="container max-w-7xl bg-slate-50 rounded-lg my-4">
+            </h2>
+            <section className="container max-w-7xl bg-slate-50 rounded-lg my-4">
               <div className="flex flex-col justify-start items-center my-4 relative w-full">
                 <h2 className="font-sans font-semibold text-gray-800 text-xl">
                   Form Peminjaman Alat
@@ -206,9 +206,9 @@ const Rent = (): JSX.Element => {
                   </>
                 )}
               </div>
-            </div>
+            </section>
           </div>
-        </div>
+        </main>
         <Footer />
       </div>
     </>

@@ -10,9 +10,9 @@ const ShopCard = ({ product }: ShopCardProps): JSX.Element => {
                     <h2 className="font-sans text-2xl font-semibold mb-1 mx-auto">
                         {(product.title.length > 50) ? product.title.substring(0, 50) + '...' : product.title}
                     </h2>
-                    <p className='font-sans font-semibold text-lg mx-auto'>
+                    <h3 className='font-sans font-semibold text-lg mx-auto'>
                         {numberToIDR(product.price)}
-                    </p>
+                    </h3>
                     <a className="mt-4 mb-2 mx-auto" href={product.link} rel="noopener noreferrer" target={'_blank'}>
                         <button className="bg-ws-orange text-gray-800 hover:text-gray-50 font-bold py-2 px-4 rounded-full">
                             Buy Now

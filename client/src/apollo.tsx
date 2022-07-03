@@ -2,7 +2,6 @@ import {
   ApolloClient,
   InMemoryCache,
   createHttpLink,
-  ApolloLink,
   from,
 } from '@apollo/client';
 import { onError } from 'apollo-link-error'
@@ -11,7 +10,6 @@ import { setContext } from '@apollo/client/link/context';
 const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message))
 })
-
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -28,7 +26,6 @@ const authLink = setContext((_, { headers }) => {
 const httpLink = createHttpLink({
   uri: process.env.REACT_APP_API_BASE_URL + '/graphql',
 });
-
 
 const client = new ApolloClient({
   link: from([authLink, errorLink as any, httpLink]),
