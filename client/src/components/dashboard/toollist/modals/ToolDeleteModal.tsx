@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
-import { RemoveToolResponse, UpdateToolInput, UpdateToolResponse } from "../../../../graphql/toolQuery.types";
-import { DELETE_TOOL, UPDATE_TOOL } from "../../../../graphql/toolsQuery";
+import { UpdateToolInput, UpdateToolResponse } from "../../../../graphql/toolQuery.types";
+import { UPDATE_TOOL } from "../../../../graphql/toolsQuery";
 import { checkToken } from "../../../../utils/jwtvalidator";
 import { Tool } from "../../../rent/rent.types";
 

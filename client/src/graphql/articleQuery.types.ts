@@ -1,4 +1,4 @@
-import { Article, ArticleRaw } from '../components/article/article.types';
+import { ArticleRaw } from '../components/article/article.types';
 
 export interface CreateArticleInput {
   createArticleInput: {

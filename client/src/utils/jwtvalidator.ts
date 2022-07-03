@@ -1,4 +1,4 @@
-import jwt_decode, { JwtPayload } from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 
 export const jwtValidate = (token: string) => {
   const decoded = jwt_decode<JWTCustomPayload>(token);

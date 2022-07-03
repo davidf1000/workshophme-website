@@ -6,7 +6,7 @@ const NotFound = (): JSX.Element => {
     <>
       <div className="flex flex-col h-screen justify-between">
         <NavBar selected="" />
-        <div className="flex flex-col bg-ws-orange h-full justify-center items-center">
+        <main className="flex flex-col bg-ws-orange h-full justify-center items-center">
           <svg
             className="w-56 text-gray-800 font-semibold my-4"
             xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +20,7 @@ const NotFound = (): JSX.Element => {
           <h1 className="font-sans text-gray-800 text-4xl font-semibold my-8">
             <span className="text-gray-50">404</span> Page Not Found
           </h1>
-        </div>
+        </main>
         <Footer />
       </div>
     </>

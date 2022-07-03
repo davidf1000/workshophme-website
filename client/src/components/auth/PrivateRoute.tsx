@@ -11,7 +11,6 @@ const PrivateRoute = ({
   isAuth,
   loading
 }: PrivateRouteProps): JSX.Element => {
-
   return (
     <>
       {!loading &&

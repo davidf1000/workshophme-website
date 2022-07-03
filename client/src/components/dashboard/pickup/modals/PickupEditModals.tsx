@@ -1,11 +1,9 @@
 import { useMutation } from "@apollo/client";
-import moment from "moment";
 import { useState } from "react";
 import { UPDATE_RENT } from "../../../../graphql/rentQuery";
 import { UpdateRentInput } from "../../../../graphql/rentQuery.types";
 import { checkToken } from "../../../../utils/jwtvalidator";
 import { validatePickupForm } from "../../../../utils/rentDashboardValidator";
-import { Article } from "../../../article/article.types";
 import { Rent, RentPickupError } from "../../../rent/rent.types";
 
 const PickupEditModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: PickupEditModalProps): JSX.Element => {

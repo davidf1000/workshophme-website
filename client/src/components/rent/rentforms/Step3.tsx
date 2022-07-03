@@ -10,13 +10,6 @@ import Spinner from '../../Spinner';
 import { StepProps, ToolRent } from '..//rent.types';
 import ToolCard from './ToolCard';
 
-// TODO
-//  1. Take 1 card, test create card [OK]
-//  2. Test for flexwrap multiple card [OK]
-//  3. Test state of adding and removing item [OK]
-//  4. Test final formData [OK]
-
-
 const Step3 = ({
   formData,
   setFormData,

@@ -2,7 +2,6 @@ import moment from "moment";
 import { Article } from "../../article/article.types";
 
 const ArticleTable = ({ header, data, onEdit, onDelete }: ArticleTableProps): JSX.Element => {
-
     return (
         <table className="border-separate border-spacing-x-3 table-auto bg-transparent mb-4 mt-6 w-full mx-auto">
             <thead className="container bg-ws-orange rounded-t w-auto">

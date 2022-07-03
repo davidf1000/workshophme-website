@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import SearchBar from "../basiccomponent/SearchBar";
 import AlertCard from "../basiccomponent/AlertCard";
 import { Rent, Tool, ToolRent } from "../../rent/rent.types";
-import { toolsData } from "../../../dummydata/tools.data";
-import { rentsDataReturn } from "../../../dummydata/rents.data";
 import { AlertData } from "../basiccomponent/basic.types";
 import { calculateBetweenTwoDate } from "../../../utils/utils";
 import ReturnTable from "./ReturnTable";
@@ -17,7 +15,7 @@ import { checkToken } from "../../../utils/jwtvalidator";
 
 
 const Return = (): JSX.Element => {
-  const [getRents, { loading: gqlRentsLoading, error: gqlRentsError }] = useLazyQuery<GetRentsResponse>(GET_RENTS ,{ fetchPolicy: 'cache-and-network' });
+  const [getRents, { loading: gqlRentsLoading, error: gqlRentsError }] = useLazyQuery<GetRentsResponse>(GET_RENTS, { fetchPolicy: 'cache-and-network' });
   const [getTools, { loading: gqlToolsLoading, error: gqlToolsError }] = useLazyQuery<GetToolsResponse>(GET_TOOLS, { fetchPolicy: 'cache-and-network' });
   const [showAlert, setShowAlert] = useState<boolean>(true);
 

@@ -142,6 +142,5 @@ export const validateRentFormError = (step: number, formData: RentFormData) => {
       res.result.totalPrice = 'Total Price is not valid !';
     }
   }
-
   return res;
 };

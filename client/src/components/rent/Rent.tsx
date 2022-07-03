@@ -15,7 +15,7 @@ import { validateRentFormError } from '../../utils/rentFormValidator';
 import { useMutation } from '@apollo/client';
 import { CREATE_RENT } from '../../graphql/rentQuery';
 import AlertCard from '../dashboard/basiccomponent/AlertCard';
-import { CreateRentInput, CreateRentResponse, GetRentsResponse } from '../../graphql/rentQuery.types';
+import { CreateRentInput, CreateRentResponse } from '../../graphql/rentQuery.types';
 
 const Rent = (): JSX.Element => {
   const [createRent, { data: gqlData, loading: gqlLoading, error: gqlError }] = useMutation<CreateRentResponse>(CREATE_RENT);

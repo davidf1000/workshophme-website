@@ -4,7 +4,6 @@ import { AlertData } from "../basiccomponent/basic.types";
 import SearchBar from "../basiccomponent/SearchBar";
 import { CSVLink } from "react-csv";
 import { Product } from "../../shop/shop.types";
-import { shopDataDummy } from "../../../dummydata/shop.data";
 import ProductTable from "./ProductTable";
 import ProductDeleteModal from "./modals/ProductDeleteModal";
 import moment from "moment";

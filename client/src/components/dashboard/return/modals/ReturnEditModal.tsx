@@ -1,11 +1,9 @@
 import { useMutation } from "@apollo/client";
-import moment from "moment";
 import { useState } from "react";
 import { UPDATE_RENT } from "../../../../graphql/rentQuery";
 import { UpdateRentInput } from "../../../../graphql/rentQuery.types";
 import { checkToken } from "../../../../utils/jwtvalidator";
 import { validateReturnForm } from "../../../../utils/rentDashboardValidator";
-import { Article } from "../../../article/article.types";
 import { Rent, RentReturnError } from "../../../rent/rent.types";
 
 const ReturnEditModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ReturnEditModalProps): JSX.Element => {

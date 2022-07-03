@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { Rent, Tool, ToolRent } from "../../rent/rent.types";
 import { AlertData } from "../basiccomponent/basic.types";
-import { rentsDataPickup } from "../../../dummydata/rents.data";
 import SearchBar from "../basiccomponent/SearchBar";
 import AlertCard from "../basiccomponent/AlertCard";
 import PickupTable from "./PickupTable";
-import { toolsData } from "../../../dummydata/tools.data";
 import PickupDropModals from "./modals/PickupDropModals";
 import PickupEditModal from "./modals/PickupEditModals";
 import { useLazyQuery } from "@apollo/client";
-import { GetRentDatesResponse, GetRentsResponse } from "../../../graphql/rentQuery.types";
+import { GetRentsResponse } from "../../../graphql/rentQuery.types";
 import { GET_RENTS } from "../../../graphql/rentQuery";
 import { checkToken } from "../../../utils/jwtvalidator";
 import { GetToolsResponse } from "../../../graphql/toolQuery.types";

@@ -1,10 +1,8 @@
 import { AlertData } from "./basic.types";
 
 const AlertCard = ({ data, onClose }: AlertCardProps): JSX.Element => {
-
     const divStyle = data.type === 'success' ? "bg-green-100 border border-green-400 text-green-700 pl-4 pr-8 py-3 rounded fixed top-4 left-0 right-0 text-center mx-auto w-fit max-w-screen" :
         "bg-red-100 border border-red-400 text-red-700 pl-4 pr-8 py-3 rounded fixed top-0 left-0 right-0 text-center mx-auto w-fit max-w-screen";
-
     const svgStyle = data.type === 'success' ? "fill-current h-6 w-6 text-green-500" : "fill-current h-6 w-6 text-red-500";
     return (
         <div className={divStyle} role="alert">

@@ -49,7 +49,7 @@ export const calculatePrices = (
   // harga = hargahari + hargajam
   // hargahari = qty * hari*hargaperhari
   // hargajam = qty * jam*hargaperjam
-  // jika hargajam > hargaperhari, then hargajam = hargaperhari
+  // if hargajam > hargaperhari, then hargajam = hargaperhari
 
   let sum = 0;
   buys.map((item) => {

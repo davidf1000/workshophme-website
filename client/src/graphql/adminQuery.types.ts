@@ -1,4 +1,3 @@
-// Admin Login
 export interface LoginAdminInput {
   createLoginInput: {
     email: string;

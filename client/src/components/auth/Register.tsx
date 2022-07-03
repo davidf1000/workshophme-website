@@ -1,7 +1,7 @@
 import TopCover from "../dashboard/basiccomponent/TopCover";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { ErrorRegisterForm, LoginForm, RegisterForm } from "./auth.types";
+import { ErrorRegisterForm, RegisterForm } from "./auth.types";
 import { validateRegisterForm } from "../../utils/authFormValidator";
 import { CreateAdminInput, CreateAdminResponse } from "../../graphql/adminQuery.types";
 import { useMutation } from "@apollo/client";
@@ -181,11 +181,8 @@ const Register = (): JSX.Element => {
               </span>
             </div> : <>Register</>
             }
-
           </button>
         }
-
-
         {
           alert && (
             <div

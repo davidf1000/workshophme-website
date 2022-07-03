@@ -1,7 +1,5 @@
 import { gql } from '@apollo/client';
 
-export {};
-
 export const LOGIN_ADMIN = gql`
   mutation Login($createLoginInput: LoginAdminInput!) {
     login(createLoginInput: $createLoginInput) {
@@ -15,7 +13,6 @@ export const LOGIN_ADMIN = gql`
     }
   }
 `;
-
 
 export const REGISTER_ADMIN = gql`
   mutation CreateAdmin($createAdminInput: CreateAdminInput!) {

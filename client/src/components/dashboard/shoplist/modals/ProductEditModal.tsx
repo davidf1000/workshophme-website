@@ -1,5 +1,4 @@
 import { useMutation } from "@apollo/client";
-import moment from "moment";
 import { useState } from "react";
 import { UPDATE_SHOP } from "../../../../graphql/shopQuery";
 import { UpdateShopInput, UpdateShopResponse } from "../../../../graphql/shopQuery.types";

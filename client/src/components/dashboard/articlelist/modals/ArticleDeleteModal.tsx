@@ -9,7 +9,6 @@ const ArticleDeleteModal = ({ formData, setFormData, setShowModal, setActionResu
 
     const onDelete = async (e): Promise<any> => {
         e.preventDefault();
-
         try {
             // Mutate Delete gql
             const article = await deleteArticle({ variables: { removeArticleId: formData.id } })

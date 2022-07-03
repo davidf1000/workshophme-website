@@ -1,4 +1,4 @@
-import { Rent, RentDateRaw, RentRaw } from '../components/rent/rent.types';
+import { RentDateRaw, RentRaw } from '../components/rent/rent.types';
 
 export interface CreateRentInput {
   createRentInput: {

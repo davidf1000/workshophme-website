@@ -1,10 +1,8 @@
 import moment from "moment";
-import { calculateBetweenTwoDate, numberToIDR } from "../../../utils/utils";
+import { numberToIDR } from "../../../utils/utils";
 import { Rent, Tool } from "../../rent/rent.types";
 
 const LogTable = ({ header, data, onReturn, tools }: LogTableProps): JSX.Element => {
-    // Get dist between 2 date 
-    // if > 1 hour, get Z day X hour y minutes difference, minute > 0 then hour++  
     return (
         <table className="border-separate border-spacing-x-3 table-auto bg-transparent mb-4 mt-6 w-full mx-auto">
             <thead className="container bg-ws-orange rounded-t w-auto">

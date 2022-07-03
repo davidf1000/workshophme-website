@@ -1,5 +1,4 @@
 const SearchBar = ({ wordSearch, onChange, placeholder }: SearchBarProps): JSX.Element => {
-
     return (<>
         <div className="flex flex-col mb-5 mt-6 mx-auto">
             <input
@@ -14,7 +13,6 @@ const SearchBar = ({ wordSearch, onChange, placeholder }: SearchBarProps): JSX.E
         </div>
     </>);
 }
-
 
 interface SearchBarProps {
     wordSearch: string;

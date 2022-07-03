@@ -63,7 +63,6 @@ const ArticleAddModal = ({ formData, setFormData, setShowModal, setActionResult,
             await refreshData();
             window.location.reload();
         }
-
     }
     const onChange = (e: any): void => {
         if (e.target.name === 'publishedDate') {

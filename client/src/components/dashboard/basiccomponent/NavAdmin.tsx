@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Admin } from "../../rent/rent.types";
 
 const NavAdmin = ({ selected, admin }: NavAdminProps): JSX.Element => {
-    // Summary Pickup Return Log Tools
-    // Full Width, Bg box dark orange when selected, sticky nav
     const navigate = useNavigate();
 
     const [dropdown, setDropdown] = useState<string>("hidden");

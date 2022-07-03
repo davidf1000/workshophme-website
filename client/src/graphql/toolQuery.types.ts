@@ -1,4 +1,5 @@
 import { Tool } from '../components/rent/rent.types';
+
 export interface CreateToolInput {
   createToolInput: {
     name: string;

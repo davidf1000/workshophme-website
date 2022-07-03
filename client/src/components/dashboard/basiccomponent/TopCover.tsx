@@ -1,7 +1,6 @@
 import wslogo from '../../../assets/img/wslogo.png'
 
 const TopCover = ({ title, desc }: TopCoverProps): JSX.Element => {
-    // Full Width, with BG, and dark overlay 
     const backStyle = {
         backgroundImage: "url('/images/bgadmin.jpg')",
         backgroundColor: "#cccccc",
