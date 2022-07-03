@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { toolsData } from "../../../dummydata/tools.data";
 import { Tool } from "../../rent/rent.types";
 import { AlertData } from "../basiccomponent/basic.types";
 import SearchBar from "../basiccomponent/SearchBar";

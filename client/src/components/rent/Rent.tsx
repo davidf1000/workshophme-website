@@ -18,7 +18,7 @@ import AlertCard from '../dashboard/basiccomponent/AlertCard';
 import { CreateRentInput, CreateRentResponse } from '../../graphql/rentQuery.types';
 
 const Rent = (): JSX.Element => {
-  const [createRent, { data: gqlData, loading: gqlLoading, error: gqlError }] = useMutation<CreateRentResponse>(CREATE_RENT);
+  const [createRent, { error: gqlError }] = useMutation<CreateRentResponse>(CREATE_RENT);
   const [showAlert, setShowAlert] = useState<boolean>(true);
 
   const [showModal, setShowModal] = useState<boolean>(false);

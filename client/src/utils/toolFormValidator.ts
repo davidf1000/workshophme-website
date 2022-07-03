@@ -2,8 +2,7 @@ import validator from 'validator';
 import { Tool } from '../components/rent/rent.types';
 
 export const validateToolForm = (formData: Tool) => {
-  const { id, name, image, activated, totalStock, priceHour, priceDay } =
-    formData;
+  const { name, totalStock, priceHour, priceDay } = formData;
   const res = {
     error: false,
     result: {

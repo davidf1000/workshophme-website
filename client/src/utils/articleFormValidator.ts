@@ -2,7 +2,7 @@ import { Article } from '../components/article/article.types';
 import validator from 'validator';
 
 export const validateArticleForm = (formData: Article) => {
-  const { id, title, desc, imageUrl, publishedDate, duration, link } = formData;
+  const { title, desc, imageUrl, publishedDate, duration, link } = formData;
   const res = {
     error: false,
     result: {

@@ -52,7 +52,7 @@ export const calculatePrices = (
   // if hargajam > hargaperhari, then hargajam = hargaperhari
 
   let sum = 0;
-  buys.map((item) => {
+  buys.forEach((item) => {
     const find = tools.find((x) => x.id === item.toolId);
     if (!find) return;
     let totalDayPrice = item.quantity * find.priceDay * days;

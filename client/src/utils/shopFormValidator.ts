@@ -2,7 +2,7 @@ import validator from 'validator';
 import { Product } from '../components/shop/shop.types';
 
 export const validateShopForm = (formData: Product) => {
-  const { id, title, imageUrl, link, price } = formData;
+  const { title, imageUrl, link, price } = formData;
   const res = {
     error: false,
     result: {

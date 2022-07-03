@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { Fragment, useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Article from './components/article/Article';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/auth/PrivateRoute';

@@ -10,13 +10,13 @@ const LogTable = ({ header, data, onReturn, tools }: LogTableProps): JSX.Element
                     <th key="no" className="w-10 col text-gray-800 align-middle py-1 text-md font-bold text-left">
                         No
                     </th>
-                    {header.map(x => (x === 'Rent') ? (
+                    {header.map(x => (x === 'Rent' ? (
                         <th key={x} className="w-60 col text-gray-800 align-middle py-1 text-md font-bold text-center">
                             {x}
                         </th>) :
                         (<th key={x} className="w-40 col text-gray-800 align-middle py-1 text-md font-bold text-center">
                             {x}
-                        </th>)
+                        </th>))
                     )}
                     <th key="action" className="w-40 col text-gray-800 align-middle py-1 text-md font-bold text-center">
                         Action
