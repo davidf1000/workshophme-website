@@ -28,16 +28,6 @@ export const validateToolForm = (formData: Tool) => {
     res.error = true;
     res.result.name = 'Name cannot be empty !';
   }
-  // image includes /uploads/
-  if (!image.includes('/uploads/')) {
-    res.error = true;
-    res.result.image = 'Image path not valid !';
-  }
-  //   image not empty
-  if (!image) {
-    res.error = true;
-    res.result.image = 'Image cannot be empty !';
-  }
 
   // totalStock is integer
   if (!validator.isInt(totalStock.toString()) || totalStock < 0) {

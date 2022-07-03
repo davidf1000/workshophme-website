@@ -1,8 +1,14 @@
+import { useMutation } from "@apollo/client";
 import { useState } from "react";
+import { CreateToolInput, CreateToolResponse } from "../../../../graphql/toolQuery.types";
+import { CREATE_TOOL } from "../../../../graphql/toolsQuery";
+import { checkToken } from "../../../../utils/jwtvalidator";
 import { validateToolForm } from "../../../../utils/toolFormValidator";
 import { Tool, ToolError } from "../../../rent/rent.types";
+import axios from 'axios';
 
 const ToolAddModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ToolAddModalProps): JSX.Element => {
+    const [addTool] = useMutation<CreateToolResponse>(CREATE_TOOL);
     const [loading, setLoading] = useState<boolean>(false);
     const [image, setImage] = useState<File | null>(null);
     const [error, setError] = useState<ToolError>({
@@ -18,29 +24,58 @@ const ToolAddModal = ({ formData, setFormData, setShowModal, setActionResult, re
         setError(res);
         if (!err) {
             setLoading(true);
-            // Post req to get image path /uploads/xxx.png, then update into formData
-            const data: any = new FormData();
-            data.append("file", image);
+            try {
+                // Post req to get image path /uploads/xxx.png, then update into formData
+                const bodyFormData: any = new FormData();
+                bodyFormData.append("image", image);
+                const { data: { path } } = await axios.post(process.env.REACT_APP_API_BASE_URL + '/api/upload', bodyFormData, {
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    }
+                })
+                console.log(path);
 
-            // gql mutation
-            await new Promise(r => setTimeout(r, 2000));
+                // gql mutation
+                const variables: CreateToolInput = {
+                    createToolInput: {
+                        name: formData.name,
+                        image: process.env.REACT_APP_API_BASE_URL + (path as string),
+                        activated: true,
+                        totalStock: Number(formData.totalStock),
+                        priceHour: Number(formData.priceHour),
+                        priceDay: Number(formData.priceDay),
+                    }
+                }
+                const tool = await addTool({ variables })
 
-            // set Action Result
-            setActionResult({
-                title: "Success!",
-                desc: "Tool added successfully.",
-                type: "success",
-            })
+                if (tool.data) {
+                    setActionResult({
+                        title: "Success!",
+                        desc: "Tool added successfully.",
+                        type: "success",
+                    });
+                }
+            }
+            catch (e: any) {
+                console.error(e.message);
+                setActionResult({
+                    title: "Failed!",
+                    desc: e.message,
+                    type: "failed",
+                });
+                checkToken();
+            }
+            await new Promise(r => setTimeout(r, 500));
             setLoading(false);
             // Refresh data 
             // leave the modal
             setShowModal(false);
             await refreshData();
+            window.location.reload();
         }
     }
     const onChange = (e: any): void => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
-
     };
     return (
         <>

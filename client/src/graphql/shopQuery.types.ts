@@ -28,13 +28,13 @@ export interface GetShopsResponse {
 }
 
 export interface CreateShopResponse {
-  createShop: Product[];
+  createShop: Product;
 }
 
 export interface UpdateShopResponse {
-  updateShop: Product[];
+  updateShop: Product;
 }
 
 export interface RemoveShopResponse {
-  removeShop: Product[];
+  removeShop: Product;
 }

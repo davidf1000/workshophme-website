@@ -1,19 +1,54 @@
+import { useMutation } from "@apollo/client";
+import { RemoveToolResponse, UpdateToolInput, UpdateToolResponse } from "../../../../graphql/toolQuery.types";
+import { DELETE_TOOL, UPDATE_TOOL } from "../../../../graphql/toolsQuery";
+import { checkToken } from "../../../../utils/jwtvalidator";
 import { Tool } from "../../../rent/rent.types";
 
 const ToolDeleteModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ToolDeleteModalProps): JSX.Element => {
+    const [updateTool] = useMutation<UpdateToolResponse>(UPDATE_TOOL);
 
-    const onDelete = async (): Promise<any> => {
-        // Delete gql (change activated to false)
-        await new Promise(r => setTimeout(r, 1000));
-        // set Action Result
-        setActionResult({
-            title: "Success!",
-            desc: "Tool Deleted successfully.",
-            type: "success",
-        })
+    const onDelete = async (e: any): Promise<any> => {
+        e.preventDefault()
+        try {
+            // only deactivate the tool, not remove it from db
+            // in case the tool is still needed in rent log data
+            // gql mutation
+            const variables: UpdateToolInput = {
+                updateToolInput: {
+                    id: formData.id,
+                    name: formData.name,
+                    image: formData.image,
+                    activated: false,
+                    totalStock: Number(formData.totalStock),
+                    priceHour: Number(formData.priceHour),
+                    priceDay: Number(formData.priceDay),
+                }
+            }
+            const tool = await updateTool({ variables })
+
+            if (tool.data) {
+                setActionResult({
+                    title: "Success!",
+                    desc: "Tool removed successfully.",
+                    type: "success",
+                });
+            }
+        }
+        catch (e: any) {
+            console.error(e.message);
+            setActionResult({
+                title: "Failed!",
+                desc: e.message,
+                type: "failed",
+            });
+            checkToken();
+        }
+        await new Promise(r => setTimeout(r, 500));
+        // Refresh data 
         // leave the modal
         setShowModal(false);
         await refreshData();
+        window.location.reload();
     }
     return (
         <>
@@ -40,7 +75,7 @@ const ToolDeleteModal = ({ formData, setFormData, setShowModal, setActionResult,
                                 <button onClick={() => { setShowModal(false) }} className=" bg-red-500 text-slate-700 hover:bg-red-200 text-xl font-bold py-2 px-4 rounded-lg w-auto">
                                     No
                                 </button>
-                                <button onClick={() => { onDelete() }} className=" bg-green-400 text-slate-700 hover:bg-green-200 text-xl font-bold py-2 px-4 rounded-lg w-auto">
+                                <button onClick={(e) => { onDelete(e) }} className=" bg-green-400 text-slate-700 hover:bg-green-200 text-xl font-bold py-2 px-4 rounded-lg w-auto">
                                     Yes
                                 </button>
                             </div>
