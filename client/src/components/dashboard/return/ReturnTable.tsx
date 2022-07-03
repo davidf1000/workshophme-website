@@ -72,13 +72,15 @@ const ReturnTable = ({ header, data, onReturn, tools }: ReturnTableProps): JSX.E
                             <th key={rent.totalPrice} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                                 {numberToIDR(rent.totalPrice)}
                             </th>
-                            <th key={rent.status} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
-                                {
-                                    rent.status
-                                }
+                            <th key={rent.status} className={`w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto ${rent.status === 'OK' ? 'text-gray-900 bg-green-400' : 'text-red-600'}`}>
+                                <span className="font-semibold">
+                                    {rent.status}
+                                </span>
                             </th>
-                            <th key={rent.fine} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
-                                {rent.fine ? numberToIDR(rent.fine) : 0}
+                            <th key={rent.fine} className={`w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto ${rent.fine === 0 ? 'text-gray-900' : 'text-red-600'}`}>
+                                <span className="font-semibold">
+                                    {rent.fine ? numberToIDR(rent.fine) : 0}
+                                </span>
                             </th>
                             <th key={rent.id + "edit"} className="w-44 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                                 <button onClick={() => { onReturn(rent) }} className=" bg-sky-400 text-slate-700 hover:bg-sky-200 font-bold py-2 px-4 rounded-lg w-auto">

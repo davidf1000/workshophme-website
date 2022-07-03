@@ -58,7 +58,7 @@ const Pickup = (): JSX.Element => {
               expectedReturnDate: new Date(x.expectedReturnDate),
               tools: rentToolsParsed
             })
-          })
+          });
         setFilteredRents(dataFormatted);
         setRents(dataFormatted);
         // Fetch Tools 

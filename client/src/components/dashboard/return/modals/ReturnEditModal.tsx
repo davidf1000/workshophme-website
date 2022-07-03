@@ -1,10 +1,15 @@
+import { useMutation } from "@apollo/client";
 import moment from "moment";
 import { useState } from "react";
+import { UPDATE_RENT } from "../../../../graphql/rentQuery";
+import { UpdateRentInput } from "../../../../graphql/rentQuery.types";
+import { checkToken } from "../../../../utils/jwtvalidator";
 import { validateReturnForm } from "../../../../utils/rentDashboardValidator";
 import { Article } from "../../../article/article.types";
 import { Rent, RentReturnError } from "../../../rent/rent.types";
 
 const ReturnEditModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: ReturnEditModalProps): JSX.Element => {
+    const [updatePickup] = useMutation<UpdateRentInput>(UPDATE_RENT);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<RentReturnError>({
         returnName: '',
@@ -16,31 +21,58 @@ const ReturnEditModal = ({ formData, setFormData, setShowModal, setActionResult,
         setError(res);
         if (!err) {
             setLoading(true);
-
-            // change formDate
-            // status -> finished
-
-            // mutate gql
-            // returnDate set to datenow in ISO format
-            await new Promise(r => setTimeout(r, 2000));
-
-            // set Action Result
-            setActionResult({
-                title: "Success!",
-                desc: "Return successfull.",
-                type: "success",
-            })
+            try {
+                // gql mutation
+                const variables: UpdateRentInput = {
+                    updateRentInput: {
+                        id: formData.id,
+                        rentName: formData.rentName,
+                        rentNim: formData.rentNim,
+                        rentPhone: formData.rentPhone,
+                        rentLineId: formData.rentLineId,
+                        organisation: formData.organisation,
+                        fromDate: formData.fromDate.toISOString(),
+                        expectedReturnDate: formData.expectedReturnDate.toISOString(),
+                        status: 'finished',
+                        totalPrice: formData.totalPrice,
+                        pickupName: formData.pickupName,
+                        pickupNim: formData.pickupNim,
+                        fine: formData.fine,
+                        returnName: formData.returnName,
+                        returnNim: formData.returnNim,
+                        returnDate: (new Date()).toISOString()
+                    }
+                }
+                const rent = await updatePickup({ variables })
+                if (rent.data) {
+                    setActionResult({
+                        title: "Success!",
+                        desc: "Return updated successfully.",
+                        type: "success",
+                    });
+                }
+            }
+            catch (e: any) {
+                console.error(e.message);
+                setActionResult({
+                    title: "Failed!",
+                    desc: e.message,
+                    type: "failed",
+                });
+                checkToken();
+            }
+            await new Promise(r => setTimeout(r, 500));
             setLoading(false);
-
             // Refresh data 
             // leave the modal
             setShowModal(false);
             await refreshData();
+            window.location.reload();
         }
     }
     const onChange = (e: any): void => {
         if (e.target.name === 'publishedDate') {
-            setFormData(item => ({ ...formData, [e.target.name]: (new Date(e.target.value)) }));
+            setFormData(formData => ({ ...formData, [e.target.name]: (new Date(e.target.value)) }));
         }
         else {
             setFormData({ ...formData, [e.target.name]: e.target.value });

@@ -24,7 +24,8 @@ export const range = (
     .map((x, y) => x + y * step);
 
 export const calculateBetweenTwoDate = (date1: Date, date2: Date): number[] => {
-  let seconds = Math.floor((date2.getTime() - date1.getTime()) / 1000);
+  const sign = date2.getTime() - date1.getTime() > 0 ? 1 : -1;
+  let seconds = Math.floor(Math.abs(date2.getTime() - date1.getTime()) / 1000);
   let minutes = Math.floor(seconds / 60);
   let hours = Math.floor(minutes / 60);
   let days = Math.floor(hours / 24);
@@ -36,7 +37,7 @@ export const calculateBetweenTwoDate = (date1: Date, date2: Date): number[] => {
   if (minutes > 0) {
     hours += 1;
   }
-  return [days, hours, minutes, seconds];
+  return [sign * days, sign * hours, sign * minutes, sign * seconds];
 };
 
 export const calculatePrices = (
