@@ -105,7 +105,7 @@ export interface RentRaw {
   pickupNim?: string;
   returnName?: string;
   returnNim?: string;
-  returnDate?: null | Date;
+  returnDate?: string;
 }
 
 export interface RentDateRaw {

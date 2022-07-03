@@ -56,7 +56,8 @@ const Pickup = (): JSX.Element => {
               ...x,
               fromDate: new Date(x.fromDate),
               expectedReturnDate: new Date(x.expectedReturnDate),
-              tools: rentToolsParsed
+              tools: rentToolsParsed,
+              returnDate: null
             })
           });
         setFilteredRents(dataFormatted);

@@ -57,7 +57,8 @@ const Return = (): JSX.Element => {
               ...x,
               fromDate: new Date(x.fromDate),
               expectedReturnDate: new Date(x.expectedReturnDate),
-              tools: rentToolsParsed
+              tools: rentToolsParsed,
+              returnDate: null
             })
           });
         // Check the late condition 
