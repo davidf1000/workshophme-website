@@ -15,7 +15,7 @@ import { useLazyQuery } from "@apollo/client";
 import { checkToken } from "../../../utils/jwtvalidator";
 
 const ArticleDashboard = (): JSX.Element => {
-  const [getArticles, { loading, error }] = useLazyQuery<GetArticlesResponse>(GET_ARTICLES);
+  const [getArticles, { loading, error }] = useLazyQuery<GetArticlesResponse>(GET_ARTICLES, { fetchPolicy: 'cache-and-network' });
   const [showAlert, setShowAlert] = useState<boolean>(true);
 
   const [articles, setArticles] = useState<Article[]>([]);

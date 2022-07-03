@@ -16,8 +16,8 @@ import { GetToolsResponse } from "../../../graphql/toolQuery.types";
 import { GET_TOOLS } from "../../../graphql/toolsQuery";
 
 const Pickup = (): JSX.Element => {
-  const [getRents, { loading: gqlRentsLoading, error: gqlRentsError }] = useLazyQuery<GetRentsResponse>(GET_RENTS);
-  const [getTools, { loading: gqlToolsLoading, error: gqlToolsError }] = useLazyQuery<GetToolsResponse>(GET_TOOLS);
+  const [getRents, { loading: gqlRentsLoading, error: gqlRentsError }] = useLazyQuery<GetRentsResponse>(GET_RENTS, { fetchPolicy: 'cache-and-network' });
+  const [getTools, { loading: gqlToolsLoading, error: gqlToolsError }] = useLazyQuery<GetToolsResponse>(GET_TOOLS, { fetchPolicy: 'cache-and-network' });
   const [showAlert, setShowAlert] = useState<boolean>(true);
 
   const [rents, setRents] = useState<Rent[]>([]);

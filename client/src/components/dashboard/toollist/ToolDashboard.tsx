@@ -17,7 +17,7 @@ import { checkToken } from "../../../utils/jwtvalidator";
 
 
 const ToolDashboard = (): JSX.Element => {
-  const [getTools, { loading, error }] = useLazyQuery<GetToolsResponse>(GET_TOOLS);
+  const [getTools, { loading, error }] = useLazyQuery<GetToolsResponse>(GET_TOOLS, { fetchPolicy: 'cache-and-network' });
   const [showAlert, setShowAlert] = useState<boolean>(true);
 
   const [tools, setTools] = useState<Tool[]>([]);

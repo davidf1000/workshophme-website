@@ -17,7 +17,7 @@ import { checkToken } from "../../../utils/jwtvalidator";
 
 
 const ShopDashboard = (): JSX.Element => {
-  const [getProducts, { loading, error }] = useLazyQuery<GetShopsResponse>(GET_SHOPS);
+  const [getProducts, { loading, error }] = useLazyQuery<GetShopsResponse>(GET_SHOPS, { fetchPolicy: 'cache-and-network' });
   const [showAlert, setShowAlert] = useState<boolean>(true);
 
   const [products, setProducts] = useState<Product[]>([]);
