@@ -6,8 +6,8 @@ import HomeContent from "./HomeContent";
 const Landing = (): JSX.Element => {
   return (
     <>
-      <div className="flex flex-col min-h-screen justify-start">
-        <NavBar selected="home"/>
+      <div className="flex flex-col min-h-screen justify-start smooth-scroll">
+        <NavBar selected="home" />
         <HomeContent />
         <Footer />
       </div>

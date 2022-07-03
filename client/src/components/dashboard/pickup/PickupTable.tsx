@@ -43,16 +43,16 @@ const PickupTable = ({ header, data, onEdit, onDelete, tools }: PickupTableProps
                         <th key={rent.rentLineId} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-justify my-auto">
                             {rent.rentLineId}
                         </th>
-                        <th key={rent.organisation} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-justify my-auto">
+                        <th key={rent.organisation} className=" w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             {rent.organisation}
                         </th>
                         <th key={JSON.stringify(rent.tools)} className="w-60 col border-ws-orange align-middle font-normal text-sm py-2 text-justify my-auto">
-                            <ul className="list-disc text-left">
+                            <ul className="list-disc text-left pl-6 mx-auto">
                                 {rent.tools.map((x, idx) => {
                                     const name = tools.find(y => y.id === x.toolId)?.name;
                                     if (name) {
                                         return (<li key={idx}>
-                                            {name} - {x.quantity}pcs
+                                            {name.length > 20 ? name.substring(0, 20) + '..' : name} - {x.quantity}pcs
                                         </li>)
                                     }
                                 })
@@ -60,10 +60,11 @@ const PickupTable = ({ header, data, onEdit, onDelete, tools }: PickupTableProps
                             </ul>
                         </th>
                         <th key={rent.fromDate.toISOString()} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
-                            {moment(rent.fromDate).format('DD MMM YYYY HH MM A')}
+                            {moment(rent.fromDate).format("DD-MM-YYYY") + ' ' + String(rent.fromDate.getHours()).padStart(2, '0') + ':' + String(rent.fromDate.getMinutes()).padStart(2, '0') + ' WIB'}
                         </th>
                         <th key={rent.expectedReturnDate.toISOString()} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
-                            {moment(rent.expectedReturnDate).format('DD MMM YYYY HH MM A')}
+                            {moment(rent.expectedReturnDate).format("DD-MM-YYYY") + ' ' + String(rent.expectedReturnDate.getHours()).padStart(2, '0') + ':' + String(rent.expectedReturnDate.getMinutes()).padStart(2, '0') + ' WIB'}
+
                         </th>
                         <th key={rent.totalPrice} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             {numberToIDR(rent.totalPrice)}
@@ -74,7 +75,7 @@ const PickupTable = ({ header, data, onEdit, onDelete, tools }: PickupTableProps
                                     Pickup
                                 </button>
                                 <button onClick={() => { onDelete(rent) }} className=" bg-red-500 text-slate-700 hover:bg-red-200 font-bold py-2 px-4 rounded-lg w-auto">
-                                    Delete
+                                    Drop
                                 </button>
                             </div>
                         </th>

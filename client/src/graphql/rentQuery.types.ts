@@ -26,7 +26,7 @@ export interface UpdateRentInput {
     fromDate: string;
     expectedReturnDate: string;
     status: string;
-    totalPrice?: number;
+    totalPrice: number;
     fine?: number;
     pickupName?: string;
     pickupNim?: string;

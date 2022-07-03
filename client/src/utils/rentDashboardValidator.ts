@@ -74,10 +74,7 @@ export const validateReturnForm = (formData: Rent) => {
     res.result.returnName = 'Name cannot be empty !';
   }
   // returnNim is int
-  if (
-    returnNim &&
-    (!validator.isInt(returnNim.toString()) || Number(returnNim) < 0)
-  ) {
+  if (returnNim && (!validator.isInt(returnNim) || Number(returnNim) < 0)) {
     res.error = true;
     res.result.returnNim = 'NIM not proper !';
   }

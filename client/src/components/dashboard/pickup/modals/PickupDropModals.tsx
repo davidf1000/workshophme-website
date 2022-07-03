@@ -1,19 +1,60 @@
+import { useMutation } from "@apollo/client";
+import { UPDATE_RENT } from "../../../../graphql/rentQuery";
+import { UpdateRentInput } from "../../../../graphql/rentQuery.types";
+import { checkToken } from "../../../../utils/jwtvalidator";
 import { Rent } from "../../../rent/rent.types";
 
 const PickupDropModals = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: PickupDropModalsProps): JSX.Element => {
+    const [updatePickup] = useMutation<UpdateRentInput>(UPDATE_RENT);
 
-    const onDelete = async (): Promise<any> => {
-        // Delete gql
-        await new Promise(r => setTimeout(r, 1000));
-        // set Action Result
-        setActionResult({
-            title: "Success!",
-            desc: "Rent dropped successfully.",
-            type: "success",
-        })
+    const onDelete = async (e: any): Promise<any> => {
+        e.preventDefault()
+        try {
+            // gql mutation
+            const variables: UpdateRentInput = {
+                updateRentInput: {
+                    id: formData.id,
+                    rentName: formData.rentName,
+                    rentNim: formData.rentNim,
+                    rentPhone: formData.rentPhone,
+                    rentLineId: formData.rentLineId,
+                    organisation: formData.organisation,
+                    fromDate: formData.fromDate.toISOString(),
+                    expectedReturnDate: formData.expectedReturnDate.toISOString(),
+                    status: 'dropped',
+                    totalPrice: formData.totalPrice,
+                    pickupName: '',
+                    pickupNim: '',
+                    fine: 0,
+                    returnName: '',
+                    returnNim: '',
+                    returnDate: ''
+                }
+            }
+            const rent = await updatePickup({ variables })
+            if (rent.data) {
+                setActionResult({
+                    title: "Success!",
+                    desc: "Rent Dropped successfully.",
+                    type: "success",
+                });
+            }
+        }
+        catch (e: any) {
+            console.error(e.message);
+            setActionResult({
+                title: "Failed!",
+                desc: e.message,
+                type: "failed",
+            });
+            checkToken();
+        }
+        await new Promise(r => setTimeout(r, 500));
+        // Refresh data 
         // leave the modal
         setShowModal(false);
         await refreshData();
+        window.location.reload();
     }
     return (
         <>
@@ -40,7 +81,7 @@ const PickupDropModals = ({ formData, setFormData, setShowModal, setActionResult
                                 <button onClick={() => { setShowModal(false) }} className=" bg-red-500 text-slate-700 hover:bg-red-200 text-xl font-bold py-2 px-4 rounded-lg w-auto">
                                     No
                                 </button>
-                                <button onClick={() => { onDelete() }} className=" bg-green-400 text-slate-700 hover:bg-green-200 text-xl font-bold py-2 px-4 rounded-lg w-auto">
+                                <button onClick={(e) => { onDelete(e) }} className=" bg-green-400 text-slate-700 hover:bg-green-200 text-xl font-bold py-2 px-4 rounded-lg w-auto">
                                     Yes
                                 </button>
                             </div>

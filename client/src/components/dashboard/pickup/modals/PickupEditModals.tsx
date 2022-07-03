@@ -1,10 +1,15 @@
+import { useMutation } from "@apollo/client";
 import moment from "moment";
 import { useState } from "react";
+import { UPDATE_RENT } from "../../../../graphql/rentQuery";
+import { UpdateRentInput } from "../../../../graphql/rentQuery.types";
+import { checkToken } from "../../../../utils/jwtvalidator";
 import { validatePickupForm } from "../../../../utils/rentDashboardValidator";
 import { Article } from "../../../article/article.types";
 import { Rent, RentPickupError } from "../../../rent/rent.types";
 
 const PickupEditModal = ({ formData, setFormData, setShowModal, setActionResult, refreshData }: PickupEditModalProps): JSX.Element => {
+    const [updatePickup] = useMutation<UpdateRentInput>(UPDATE_RENT);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<RentPickupError>({
         pickupName: '',
@@ -16,25 +21,53 @@ const PickupEditModal = ({ formData, setFormData, setShowModal, setActionResult,
         setError(res);
         if (!err) {
             setLoading(true);
-
-            // change formDate
-            // status -> waiting_return
-
-            // mutate gql
-            await new Promise(r => setTimeout(r, 2000));
-
-            // set Action Result
-            setActionResult({
-                title: "Success!",
-                desc: "Pickup successfull.",
-                type: "success",
-            })
+            try {
+                // gql mutation
+                const variables: UpdateRentInput = {
+                    updateRentInput: {
+                        id: formData.id,
+                        rentName: formData.rentName,
+                        rentNim: formData.rentNim,
+                        rentPhone: formData.rentPhone,
+                        rentLineId: formData.rentLineId,
+                        organisation: formData.organisation,
+                        fromDate: formData.fromDate.toISOString(),
+                        expectedReturnDate: formData.expectedReturnDate.toISOString(),
+                        status: 'waiting_return',
+                        totalPrice: formData.totalPrice,
+                        pickupName: formData.pickupName,
+                        pickupNim: formData.pickupNim,
+                        fine: 0,
+                        returnName: '',
+                        returnNim: '',
+                        returnDate: ''
+                    }
+                }
+                const rent = await updatePickup({ variables })
+                if (rent.data) {
+                    setActionResult({
+                        title: "Success!",
+                        desc: "Pickup updated successfully.",
+                        type: "success",
+                    });
+                }
+            }
+            catch (e: any) {
+                console.error(e.message);
+                setActionResult({
+                    title: "Failed!",
+                    desc: e.message,
+                    type: "failed",
+                });
+                checkToken();
+            }
+            await new Promise(r => setTimeout(r, 500));
             setLoading(false);
-
             // Refresh data 
             // leave the modal
             setShowModal(false);
             await refreshData();
+            window.location.reload();
         }
     }
     const onChange = (e: any): void => {
