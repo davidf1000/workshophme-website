@@ -70,7 +70,7 @@ const ReturnTable = ({ header, data, onReturn, tools }: ReturnTableProps): JSX.E
                             <th key={rent.totalPrice} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                                 {numberToIDR(rent.totalPrice)}
                             </th>
-                            <th key={rent.status} className={`w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto ${rent.status === 'OK' ? 'text-gray-900 bg-green-400' : 'text-red-600'}`}>
+                            <th key={rent.status} className={`w-40 col border-ws-orange align-middle font-normal text-md py-2 text-center my-auto ${rent.status === 'OK' ? 'text-green-600' : 'text-red-600'}`}>
                                 <span className="font-semibold">
                                     {rent.status}
                                 </span>

@@ -83,11 +83,11 @@ const LogTable = ({ header, data, onReturn, tools }: LogTableProps): JSX.Element
                             </th>
                             <th key={rent.status} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                                 {rent.status === 'finished' ?
-                                    <div className="container w-20 py-1.5 rounded-md bg-green-400 text-md font-sans font-semibold mx-auto">
+                                    <div className="container w-20 py-1.5 rounded-md text-lg font-sans font-semibold mx-auto text-green-400">
                                         Finished
                                     </div>
                                     :
-                                    <div className="container w-20 py-1.5 rounded-md bg-red-500 text-md font-sans font-semibold mx-auto">
+                                    <div className="container w-20 py-1.5 rounded-md text-lg font-sans font-semibold mx-auto text-red-500">
                                         Dropped
                                     </div>
                                 }
