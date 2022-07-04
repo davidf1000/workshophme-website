@@ -14,32 +14,30 @@ const Shop = (): JSX.Element => {
   return (
     <div className="flex flex-col min-h-screen justify-start bg-ws-orange">
       <NavBar selected="shop" />
-      <main>
-        <div className="flex  h-full w-full mb-auto">
-          <div className="flex flex-col max-w-7xl justify-start mx-auto px-6">
-            <h1 className="font-sans text-4xl font-semibold text-gray-800 mx-auto mt-4 mb-4">
-              WS Shop
-            </h1>
-            <h2 className="font-sans text-lg text-gray-800 text-justify max-w-3xl mx-auto">
-              Workshop HME menyediakan aneka komponen serta kit elektronik dengan harga yang terjangkau dan kualitas barang yang terjamin.
-            </h2>
-            <section id='shopCard'>
-              <div className="flex flex-wrap justify-center w-full items-center mb-8 mt-10">
-                {showAlert && error && <AlertCard data={{
-                  title: 'ERROR',
-                  desc: error.message,
-                  type: 'error'
-                }} onClose={setShowAlert} />}
-                {loading ? <Spinner /> : <>
-                  {data?.shops.map(product => (
-                    <ShopCard product={product} />
-                  ))}
-                </>}
-              </div>
-            </section>
-          </div>
+      <div className="flex  h-full w-full mb-auto">
+        <div className="flex flex-col max-w-7xl justify-start mx-auto px-6">
+          <h1 className="font-sans text-4xl font-semibold text-gray-800 mx-auto mt-4 mb-4">
+            WS Shop
+          </h1>
+          <h2 className="font-sans text-lg text-gray-800 text-justify max-w-3xl mx-auto">
+            Workshop HME menyediakan aneka komponen serta kit elektronik dengan harga yang terjangkau dan kualitas barang yang terjamin.
+          </h2>
+          <section id='shopCard'>
+            <div className="flex flex-wrap justify-center w-full items-center mb-8 mt-10">
+              {showAlert && error && <AlertCard data={{
+                title: 'ERROR',
+                desc: error.message,
+                type: 'error'
+              }} onClose={setShowAlert} />}
+              {loading ? <Spinner /> : <>
+                {data?.shops.map(product => (
+                  <ShopCard product={product} />
+                ))}
+              </>}
+            </div>
+          </section>
         </div>
-      </main>
+      </div>
       <Footer />
     </div>
   );

@@ -31,22 +31,22 @@ const ArticleTable = ({ header, data, onEdit, onDelete }: ArticleTableProps): JS
                             <img className='h-32 w-32 object-cover rounded border-b-2 md:border-b-0 md:border-r-2' src={article.imageUrl} alt={article.title} />
 
                         </th>
-                        <th key={article.id + article.title} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center ">
+                        <th key={article.id + article.title} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             {article.title}
                         </th>
-                        <th key={article.id + article.desc} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-justify">
+                        <th key={article.id + article.desc} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-justify my-auto">
                             {article.desc}
                         </th>
-                        <th key={article.id + article.publishedDate.toISOString()} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center">
+                        <th key={article.id + article.publishedDate.toISOString()} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             {moment(article.publishedDate).format('DD MMM YYYY')}
                         </th>
-                        <th key={article.id + article.duration} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center">
+                        <th key={article.id + article.duration} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             {article.duration} min
                         </th>
-                        <th key={article.id + article.link} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center">
+                        <th key={article.id + article.link} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             <a className="text-blue-700 text-bold hover:text-blue-300" href={article.link} rel="noopener noreferrer" target={'_blank'}>Click Here</a>
                         </th>
-                        <th key={article.id + "edit"} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center">
+                        <th key={article.id + "edit"} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             <div className="flex flex-row gap-x-4">
                                 <button onClick={() => { onEdit(article) }} className=" bg-sky-400 text-slate-700 hover:bg-sky-200 font-bold py-2 px-4 rounded-lg w-auto">
                                     Edit

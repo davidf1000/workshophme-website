@@ -14,7 +14,7 @@ const Step4 = ({
   error,
   setError,
 }: StepProps): JSX.Element => {
-  const { loading: gqlToolsLoading, error: gqlToolsError, data: gqlToolsData } = useQuery<GetToolsResponse>(GET_TOOLS);
+  const { loading: gqlToolsLoading, error: gqlToolsError, data: gqlToolsData } = useQuery<GetToolsResponse>(GET_TOOLS, { fetchPolicy: 'cache-and-network' });
   const [showAlert, setShowAlert] = useState<boolean>(true);
   const pickupDate = new Date(formData.pickupDate);
   pickupDate.setHours(formData.pickupHour);
@@ -45,7 +45,7 @@ const Step4 = ({
       type: 'error'
     }} onClose={setShowAlert} />}
 
-    <div className="overflow-x-auto px-4">
+    <div className="overflow-x-auto overflow-x-hidden px-4">
       {gqlToolsLoading ? <Spinner /> :
         <table className="items-center w-full bg-transparent border-collapse mb-4">
           <thead>

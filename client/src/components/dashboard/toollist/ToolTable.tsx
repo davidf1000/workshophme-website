@@ -32,19 +32,19 @@ const ToolTable = ({ header, data, onEdit, onDelete }: ToolTableProps): JSX.Elem
                             <img className='h-32 w-32 object-cover rounded border-b-2 md:border-b-0 md:border-r-2' src={product.image} alt={product.name} />
 
                         </th>
-                        <th key={product.id + product.name} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center ">
+                        <th key={product.id + product.name} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             {product.name}
                         </th>
-                        <th key={product.id + product.totalStock} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center">
+                        <th key={product.id + product.totalStock} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             {product.totalStock}
                         </th>
-                        <th key={product.id + product.priceHour} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center">
+                        <th key={product.id + product.priceHour} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center marker:my-auto">
                             {numberToIDR(product.priceHour)}
                         </th>
-                        <th key={product.id + product.priceDay} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center">
+                        <th key={product.id + product.priceDay} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             {numberToIDR(product.priceDay)}
                         </th>
-                        <th key={product.id + "edit"} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center">
+                        <th key={product.id + "edit"} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             <div className="flex flex-row gap-x-4">
                                 <button onClick={() => { onEdit(product) }} className=" bg-sky-400 text-slate-700 hover:bg-sky-200 font-bold py-2 px-4 rounded-lg w-auto">
                                     Edit

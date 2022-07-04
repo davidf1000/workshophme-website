@@ -32,16 +32,16 @@ const ProductTable = ({ header, data, onEdit, onDelete }: ProductTableProps): JS
                             <img className='h-32 w-32 object-cover rounded border-b-2 md:border-b-0 md:border-r-2' src={product.imageUrl} alt={product.title} />
 
                         </th>
-                        <th key={product.id + product.title} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center ">
+                        <th key={product.id + product.title} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             {product.title}
                         </th>
-                        <th key={product.id + product.price} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center">
+                        <th key={product.id + product.price} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             {numberToIDR(product.price)}
                         </th>
-                        <th key={product.id + product.link} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center">
+                        <th key={product.id + product.link} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             <a className="text-blue-700 text-bold hover:text-blue-300" href={product.link} rel="noopener noreferrer" target={'_blank'}>Click Here</a>
                         </th>
-                        <th key={product.id + "edit"} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center">
+                        <th key={product.id + "edit"} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             <div className="flex flex-row gap-x-4">
                                 <button onClick={() => { onEdit(product) }} className=" bg-sky-400 text-slate-700 hover:bg-sky-200 font-bold py-2 px-4 rounded-lg w-auto">
                                     Edit
