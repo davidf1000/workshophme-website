@@ -100,7 +100,7 @@ const RentLog = (): JSX.Element => {
                     x.tools.forEach((tol, idx) => {
                       const name = tools.find(y => y.id === tol.toolId)?.name;
                       if (name) {
-                        toolStringify += `${name} - ${tol.quantity}pcs` + (idx === x.tools.length-1 ? '' : '\n');
+                        toolStringify += `${name} - ${tol.quantity}pcs` + (idx === x.tools.length - 1 ? '' : '\n');
                       }
                     });
                     return ({
