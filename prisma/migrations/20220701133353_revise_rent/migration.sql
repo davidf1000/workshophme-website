@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "Rent" ALTER COLUMN "tools" SET NOT NULL,
-ALTER COLUMN "tools" SET DATA TYPE TEXT;
