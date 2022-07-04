@@ -29,7 +29,7 @@ const ReturnTable = ({ header, data, onReturn, tools }: ReturnTableProps): JSX.E
 
                     return (
 
-                        <tr key={rent.id} className={`row flex flex-row justify-between ${idx % 2 === 0 ? 'bg-slate-200' : 'bg-slate-300'}`}>
+                        <tr key={rent.id.toString()+idx.toString()} className={`row flex flex-row justify-between ${idx % 2 === 0 ? 'bg-slate-200' : 'bg-slate-300'}`}>
                             <th key={rent.id} className="w-10 col border-ws-orange align-middle font-normal text-sm whitespace-nowrap py-2 text-center my-auto">
                                 {idx + 1}
                             </th>

@@ -22,7 +22,7 @@ const ArticleTable = ({ header, data, onEdit, onDelete }: ArticleTableProps): JS
 
             <tbody className="container rounded-b w-auto">
                 {data.map((article, idx) => (
-                    <tr key={article.id} className={`row flex flex-row justify-between ${idx % 2 === 0 ? 'bg-slate-200' : 'bg-slate-300'}`}>
+                    <tr key={article.id + idx} className={`row flex flex-row justify-between ${idx % 2 === 0 ? 'bg-slate-200' : 'bg-slate-300'}`}>
                         <th key={article.id} className="w-10 col border-ws-orange align-middle font-normal text-sm whitespace-nowrap py-2 text-center">
                             {idx + 1}
                         </th>

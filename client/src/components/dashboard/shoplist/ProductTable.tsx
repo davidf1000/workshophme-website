@@ -23,7 +23,7 @@ const ProductTable = ({ header, data, onEdit, onDelete }: ProductTableProps): JS
 
             <tbody className="container rounded-b w-auto">
                 {data.map((product, idx) => (
-                    <tr key={product.id} className={`row flex flex-row justify-between ${idx % 2 === 0 ? 'bg-slate-200' : 'bg-slate-300'}`}>
+                    <tr key={product.id+idx} className={`row flex flex-row justify-between ${idx % 2 === 0 ? 'bg-slate-200' : 'bg-slate-300'}`}>
                         <th key={product.id} className="w-10 col border-ws-orange align-middle font-normal text-sm whitespace-nowrap py-2 text-center">
                             {idx + 1}
                         </th>

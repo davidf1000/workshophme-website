@@ -34,7 +34,7 @@ const Article = (): JSX.Element => {
                 <>
                   {
                     data?.articles.map(article => (
-                      <ArticleCard article={article} />
+                      <ArticleCard key={article.id} article={article} />
                     ))
                   }
                 </>

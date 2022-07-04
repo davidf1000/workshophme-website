@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client';
+import { useLazyQuery, useQuery } from '@apollo/client';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { calculateBetweenTwoDate, calculatePrices, numberToIDR } from '../../../utils/utils';
@@ -6,7 +6,7 @@ import { GetToolsResponse } from '../../../graphql/toolQuery.types';
 import { GET_TOOLS } from '../../../graphql/toolsQuery';
 import AlertCard from '../../dashboard/basiccomponent/AlertCard';
 import Spinner from '../../Spinner';
-import { StepProps } from '..//rent.types';
+import { StepProps, Tool } from '..//rent.types';
 
 const Step4 = ({
   formData,
@@ -14,24 +14,29 @@ const Step4 = ({
   error,
   setError
 }: StepProps): JSX.Element => {
-  const { loading: gqlToolsLoading, error: gqlToolsError, data: gqlToolsData, refetch } = useQuery<GetToolsResponse>(GET_TOOLS, { fetchPolicy: 'cache-and-network' });
+  const [getTools, { loading: gqlToolsLoading, error: gqlToolsError, data: gqlToolsData }] = useLazyQuery<GetToolsResponse>(GET_TOOLS, { fetchPolicy: 'cache-and-network' });
   const [showAlert, setShowAlert] = useState<boolean>(true);
   const pickupDate = new Date(formData.pickupDate);
-  pickupDate.setHours(formData.pickupHour);
-  pickupDate.setMinutes(formData.pickupMinute);
+  pickupDate.setHours(Number(formData.pickupHour));
+  pickupDate.setMinutes(Number(formData.pickupMinute));
   const returnDate = new Date(formData.returnDate);
-  returnDate.setHours(formData.returnHour);
-  returnDate.setMinutes(formData.returnMinute);
+  returnDate.setHours(Number(formData.returnHour));
+  returnDate.setMinutes(Number(formData.returnMinute));
   const [days, hours] = calculateBetweenTwoDate(pickupDate, returnDate);
 
   const refreshData = async () => {
-    await refetch();
-    if (!gqlToolsLoading && gqlToolsData) {
-      setFormData({ ...formData, totalPrice: calculatePrices(formData.tools, gqlToolsData.tools, days, hours) })
+    const toolsData = await getTools();
+    if (!gqlToolsLoading && toolsData.data) {
+      setFormData(formData => ({ ...formData, totalPrice: calculatePrices(formData.tools, toolsData.data?.tools as Tool[], days, hours) }))
     }
   }
   useEffect(() => {
+    console.log("REFETCH");
+
     refreshData();
+    console.log(formData);
+    console.log(formData);
+
   }, [])
 
   return <>
@@ -49,8 +54,8 @@ const Step4 = ({
       type: 'error'
     }} onClose={setShowAlert} />}
 
-    <div className="overflow-x-auto overflow-x-hidden px-4">
-      {gqlToolsLoading ? <Spinner /> :
+    {gqlToolsLoading ? <Spinner color='text-ws-orange' /> :
+      <div className="overflow-x-auto overflow-x-hidden px-4">
         <table className="items-center w-full bg-transparent border-collapse mb-4">
           <thead>
             <tr>
@@ -189,8 +194,9 @@ const Step4 = ({
             </tr>
           </tbody>
         </table>
-      }
-    </div>
+      </div>
+
+    }
   </>;
 };
 

@@ -48,6 +48,7 @@ const Rent = (): JSX.Element => {
     returnDate.setHours(formData.returnHour);
     returnDate.setMinutes(formData.returnMinute);
     setLoading(true);
+
     try {
       const variables: CreateRentInput = {
         createRentInput: {
@@ -83,6 +84,7 @@ const Rent = (): JSX.Element => {
     return error;
   }
   const nextStep = () => {
+    console.log(formData);
     if (interceptValidation()) {
       return
     }

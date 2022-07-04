@@ -23,17 +23,16 @@ const LogTable = ({ header, data, onReturn, tools }: LogTableProps): JSX.Element
                     </th>
                 </tr>
             </thead>
-
             <tbody className="container rounded-b w-auto">
+
                 {data.map((rent, idx) => {
 
                     return (
-
-                        <tr key={rent.id} className={`row flex flex-row justify-between ${idx % 2 === 0 ? 'bg-slate-200' : 'bg-slate-300'}`}>
-                            <th key={rent.id} className="w-10 col border-ws-orange align-middle font-normal text-sm whitespace-nowrap py-2 text-center my-auto">
+                        <tr key={rent.id.toString() + idx.toString() + 'tr'} className={`row flex flex-row justify-between ${idx % 2 === 0 ? 'bg-slate-200' : 'bg-slate-300'}`}>
+                            <th key={'idx' + rent.id} className="w-10 col border-ws-orange align-middle font-normal text-sm whitespace-nowrap py-2 text-center my-auto">
                                 {idx + 1}
                             </th>
-                            <th key={rent.rentName} className="w-40 col border-ws-orange align-middle font-normal text-sm whitespace-nowrap py-2 text-center my-auto">
+                            <th key={"Test"} className="w-40 col border-ws-orange align-middle font-normal text-sm whitespace-nowrap py-2 text-center my-auto">
                                 {rent.rentName}
                             </th>
                             <th key={rent.rentNim} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
@@ -70,16 +69,16 @@ const LogTable = ({ header, data, onReturn, tools }: LogTableProps): JSX.Element
                             <th key={rent.totalPrice} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                                 {numberToIDR(rent.totalPrice)}
                             </th>
-                            <th key={rent.pickupName} className="w-40 col border-ws-orange align-middle font-normal text-sm whitespace-nowrap py-2 text-center my-auto">
+                            <th key={'pickupName' + rent.id} className="w-40 col border-ws-orange align-middle font-normal text-sm whitespace-nowrap py-2 text-center my-auto">
                                 {rent.pickupName}
                             </th>
-                            <th key={rent.pickupNim} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
+                            <th key={'pickupNim' + rent.id} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                                 {rent.pickupNim}
                             </th>
-                            <th key={rent.returnName} className="w-40 col border-ws-orange align-middle font-normal text-sm whitespace-nowrap py-2 text-center my-auto">
+                            <th key={'returnName' + rent.id} className="w-40 col border-ws-orange align-middle font-normal text-sm whitespace-nowrap py-2 text-center my-auto">
                                 {rent.returnName}
                             </th>
-                            <th key={rent.returnNim} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
+                            <th key={'returnNim' + rent.id} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                                 {rent.returnNim}
                             </th>
                             <th key={rent.status} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
@@ -93,7 +92,7 @@ const LogTable = ({ header, data, onReturn, tools }: LogTableProps): JSX.Element
                                     </div>
                                 }
                             </th>
-                            <th key={rent.fine} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
+                            <th key={'rentfine' + rent.id} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                                 {rent.fine ? numberToIDR(rent.fine) : 0}
                             </th>
                             <th key={rent.id + "edit"} className="w-44 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
@@ -106,8 +105,8 @@ const LogTable = ({ header, data, onReturn, tools }: LogTableProps): JSX.Element
                 })
                 }
             </tbody>
-
         </table >
+
     );
 }
 

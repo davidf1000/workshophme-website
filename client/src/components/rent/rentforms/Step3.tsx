@@ -49,11 +49,11 @@ const Step3 = ({
               const { pickupDate, pickupHour, pickupMinute, returnDate, returnHour, returnMinute } = formData;
 
               const pickupDateFull = new Date(pickupDate);
-              pickupDateFull.setHours(pickupHour);
-              pickupDateFull.setMinutes(pickupMinute);
+              pickupDateFull.setHours(Number(pickupHour));
+              pickupDateFull.setMinutes(Number(pickupMinute));
               const returnDateFull = new Date(returnDate);
-              returnDateFull.setHours(returnHour);
-              returnDateFull.setMinutes(returnMinute);
+              returnDateFull.setHours(Number(returnHour));
+              returnDateFull.setMinutes(Number(returnMinute));
 
               // filter rents data, only in waiting_pickup and waiting_return
               // for each rent checked, check overlap if there's tools inside rent, cond above met (overlapping dates),
@@ -86,7 +86,7 @@ const Step3 = ({
                 }
               }
               return (
-                <ToolCard tool={{
+                <ToolCard key={item.id} tool={{
                   ...item,
                   totalStock: updatedStock
                 }} formData={formData} setFormData={setFormData} />

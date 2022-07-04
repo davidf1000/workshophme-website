@@ -31,7 +31,7 @@ const Shop = (): JSX.Element => {
               }} onClose={setShowAlert} />}
               {loading ? <Spinner /> : <>
                 {data?.shops.map(product => (
-                  <ShopCard product={product} />
+                  <ShopCard key={product.id} product={product} />
                 ))}
               </>}
             </div>
