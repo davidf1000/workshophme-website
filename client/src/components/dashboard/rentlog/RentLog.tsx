@@ -96,7 +96,13 @@ const RentLog = (): JSX.Element => {
               <div className="flex flex-row w-full justify-center items-center ">
                 <button className=" bg-sky-400 text-slate-700 hover:bg-sky-200 font-bold py-2 px-4 rounded-lg w-auto">
                   <CSVLink data={rents.map(x => {
-                    const toolStringify = JSON.stringify(x.tools);
+                    let toolStringify = ''
+                    x.tools.forEach((tol, idx) => {
+                      const name = tools.find(y => y.id === tol.toolId)?.name;
+                      if (name) {
+                        toolStringify += `${name} - ${tol.quantity}pcs` + (idx === x.tools.length-1 ? '' : '\n');
+                      }
+                    });
                     return ({
                       ...x,
                       tools: toolStringify

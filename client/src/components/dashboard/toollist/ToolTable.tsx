@@ -38,7 +38,7 @@ const ToolTable = ({ header, data, onEdit, onDelete }: ToolTableProps): JSX.Elem
                         <th key={product.id + product.totalStock} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             {product.totalStock}
                         </th>
-                        <th key={product.id + product.priceHour} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center marker:my-auto">
+                        <th key={product.id + product.priceHour} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
                             {numberToIDR(product.priceHour)}
                         </th>
                         <th key={product.id + product.priceDay} className="w-40 col border-ws-orange align-middle font-normal text-sm py-2 text-center my-auto">
