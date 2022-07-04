@@ -12,9 +12,9 @@ const Step4 = ({
   formData,
   setFormData,
   error,
-  setError,
+  setError
 }: StepProps): JSX.Element => {
-  const { loading: gqlToolsLoading, error: gqlToolsError, data: gqlToolsData } = useQuery<GetToolsResponse>(GET_TOOLS, { fetchPolicy: 'cache-and-network' });
+  const { loading: gqlToolsLoading, error: gqlToolsError, data: gqlToolsData, refetch } = useQuery<GetToolsResponse>(GET_TOOLS, { fetchPolicy: 'cache-and-network' });
   const [showAlert, setShowAlert] = useState<boolean>(true);
   const pickupDate = new Date(formData.pickupDate);
   pickupDate.setHours(formData.pickupHour);
@@ -24,11 +24,15 @@ const Step4 = ({
   returnDate.setMinutes(formData.returnMinute);
   const [days, hours] = calculateBetweenTwoDate(pickupDate, returnDate);
 
-  useEffect(() => {
+  const refreshData = async () => {
+    await refetch();
     if (!gqlToolsLoading && gqlToolsData) {
       setFormData({ ...formData, totalPrice: calculatePrices(formData.tools, gqlToolsData.tools, days, hours) })
     }
-  }, [gqlToolsData, gqlToolsLoading])
+  }
+  useEffect(() => {
+    refreshData();
+  }, [])
 
   return <>
     {error.totalPrice && (

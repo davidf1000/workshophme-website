@@ -57,8 +57,8 @@ export const calculatePrices = (
     if (!find) return;
     let totalDayPrice = item.quantity * find.priceDay * days;
     let totalHourPrice = item.quantity * find.priceHour * hours;
-    if (totalHourPrice > find.priceDay) {
-      totalHourPrice = find.priceDay;
+    if (totalHourPrice > item.quantity * find.priceDay) {
+      totalHourPrice = item.quantity * find.priceDay;
     }
     const sumForThisItem = Math.ceil(totalDayPrice + totalHourPrice);
     sum += sumForThisItem;

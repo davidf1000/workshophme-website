@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import moment from 'moment';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GET_RENT_DATES } from '../../../graphql/rentQuery';
 import { GetRentDatesResponse } from '../../../graphql/rentQuery.types';
 import { GetToolsResponse } from '../../../graphql/toolQuery.types';
@@ -14,12 +14,18 @@ const Step3 = ({
   formData,
   setFormData,
   error,
-  setError,
+  setError
 }: StepProps): JSX.Element => {
-  const { error: gqlToolsError, data: gqlToolsData } = useQuery<GetToolsResponse>(GET_TOOLS, { fetchPolicy: 'cache-and-network' });
-  const { error: gqlRentsError, data: gqlRentsData } = useQuery<GetRentDatesResponse>(GET_RENT_DATES, { fetchPolicy: 'cache-and-network' });
+  const { error: gqlToolsError, data: gqlToolsData, refetch: refetchTools } = useQuery<GetToolsResponse>(GET_TOOLS, { fetchPolicy: 'cache-and-network' });
+  const { error: gqlRentsError, data: gqlRentsData, refetch: refetchRents } = useQuery<GetRentDatesResponse>(GET_RENT_DATES, { fetchPolicy: 'cache-and-network' });
   const [showAlert, setShowAlert] = useState<boolean>(true);
-
+  const refreshData = async () => {
+    await refetchTools();
+    await refetchRents();
+  }
+  useEffect(() => {
+    refreshData();
+  }, []);
   return (
     <>
       {showAlert && gqlToolsError && <AlertCard data={{
