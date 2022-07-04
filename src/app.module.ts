@@ -39,7 +39,7 @@ const dateScalar = new GraphQLScalarType({
       isGlobal: true,
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '..', 'client', 'build'),
+      rootPath: join(__dirname, '..', 'client', 'build'),
       exclude: ['/api*', '/graphql'],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
