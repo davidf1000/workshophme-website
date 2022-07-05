@@ -89,8 +89,8 @@ export const validateCreateToolInput = ({
   if (name.length > 30) {
     throw new BadRequestException('Name maximum length is 25');
   }
-  // image includes /uploads/
-  if (!image.includes('/uploads/')) {
+  // image is valid url
+  if (!validator.isURL(image)) {
     throw new BadRequestException('image path not valid');
   }
   // totalStock is integer
