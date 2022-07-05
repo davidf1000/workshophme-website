@@ -1,8 +1,9 @@
 {
   "name": "wshme-website",
-  "version": "0.0.1",
+  "homepage": "https://workshophme.com",
+  "version": "1.0.0",
   "description": "",
-  "author": "",
+  "author": "David Fauzi",
   "private": true,
   "license": "UNLICENSED",
   "prisma": {
