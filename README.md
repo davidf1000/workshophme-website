@@ -31,11 +31,17 @@ https://workshophme.com
 
 ### Home Page
 
+![](https://github.com/davidf1000/workshophme-website/blob/master/docs/gif/landing.gif)
+
 Gives information about WS HME, who we are, what services we provide including tools renting form, electronic kit product listing, and technical article.
+
+![](https://github.com/davidf1000/workshophme-website/blob/master/docs/gif/rent.gif)
 
 User could use the rent form to book a renting appointment by filling user data, rent time range, and list of tools. There's renting guide modal that gives detailed information on how to use our renting services.
 
 ### Admin Dashboard
+
+![](https://github.com/davidf1000/workshophme-website/blob/master/docs/gif/admindashboard.gif)
 
 Admin dashboard is CMS (Content Management Service) intended for internal use (Workshop Crew) to manage tools, article published, product list, and to track tools that are currently being rented.
 
