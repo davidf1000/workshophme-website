@@ -75,8 +75,8 @@ const Return = (): JSX.Element => {
               const tool = fetchToolsData.data?.tools.find(y => y.id === x.toolId);
               if (tool) {
                 let totalHour = x.quantity * tool.priceHour * (hours - 1);
-                if (totalHour > tool.priceDay) {
-                  totalHour = tool.priceDay
+                if (totalHour > (x.quantity * tool.priceDay)) {
+                  totalHour = (x.quantity * tool.priceDay)
                 }
                 let totalDay = x.quantity * tool.priceDay * days;
                 fine += totalHour + totalDay;

@@ -31,8 +31,6 @@ const Step4 = ({
     }
   }
   useEffect(() => {
-    console.log("REFETCH");
-
     refreshData();
     console.log(formData);
     console.log(formData);
