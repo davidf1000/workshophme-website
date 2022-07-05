@@ -28,15 +28,21 @@ const ToolEditModal = ({ formData, setFormData, setShowModal, setActionResult, r
                 // Post req to get image path /uploads/xxx.png, then update into formData
                 // if user reupload the image
                 let newPath = '';
+
                 if (image) {
                     const bodyFormData: any = new FormData();
-                    bodyFormData.append("image", image);
-                    const { data: { path } } = await axios.post(process.env.REACT_APP_API_BASE_URL + '/api/upload', bodyFormData, {
-                        headers: {
-                            'Authorization': 'Bearer ' + localStorage.getItem('token')
-                        }
-                    })
-                    newPath = path;
+
+                    // Using Cloudinary so that the server is stateless
+                    bodyFormData.append("file", image);
+                    bodyFormData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
+                    bodyFormData.append("cloud_name", process.env.REACT_APP_CLOUDINARY_CLOUD_NAME);
+                    const resp = await axios.post(
+                        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`,
+                        bodyFormData
+                    );
+                    console.log(resp.data);
+
+                    newPath = resp.data.url as string;
                 }
 
 
@@ -45,7 +51,7 @@ const ToolEditModal = ({ formData, setFormData, setShowModal, setActionResult, r
                     updateToolInput: {
                         id: formData.id,
                         name: formData.name,
-                        image: newPath ? process.env.REACT_APP_API_BASE_URL + newPath : formData.image,
+                        image: newPath ? newPath : formData.image,
                         activated: true,
                         totalStock: Number(formData.totalStock),
                         priceHour: Number(formData.priceHour),

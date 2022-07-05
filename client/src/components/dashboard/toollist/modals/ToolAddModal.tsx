@@ -25,19 +25,23 @@ const ToolAddModal = ({ formData, setFormData, setShowModal, setActionResult, re
         if (!err) {
             setLoading(true);
             try {
-                // Post req to get image path /uploads/xxx.png, then update into formData
                 const bodyFormData: any = new FormData();
-                bodyFormData.append("image", image);
-                const { data: { path } } = await axios.post(process.env.REACT_APP_API_BASE_URL + '/api/upload', bodyFormData, {
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('token')
-                    }
-                })
+
+                // Using Cloudinary so that the server is stateless
+                bodyFormData.append("file", image);
+                bodyFormData.append("upload_preset", process.env.REACT_APP_REACT_APP_CLOUDINARY_UPLOAD_PRESET);
+                bodyFormData.append("cloud_name", process.env.REACT_APP_REACT_APP_CLOUDINARY_CLOUD_NAME);
+                const resp = await axios.post(
+                    `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`,
+                    bodyFormData
+                );
+
+
                 // gql mutation
                 const variables: CreateToolInput = {
                     createToolInput: {
                         name: formData.name,
-                        image: process.env.REACT_APP_API_BASE_URL + (path as string),
+                        image: process.env.REACT_APP_API_BASE_URL + (resp.data.url as string),
                         activated: true,
                         totalStock: Number(formData.totalStock),
                         priceHour: Number(formData.priceHour),
