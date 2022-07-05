@@ -1,73 +1,84 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Workshop HME Website
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Workshop is a division under the Himpunan Mahasiswa Elektro ITB (HME ITB) which focuses on practical electronics including tool renting, electronic component shop, project freelance, and research in the IT and electronics fields.
+<br />
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Development Status
 
-## Description
+This project is currently in active development, to view the current state of the website :
+<br />
+https://workshophme.com
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Tech Stacks
 
-## Installation
+### Front End
 
-```bash
-$ npm install
-```
+- ReactJS (CRA)
+- Typescript
+- TailwindCSS
+- Apollo Client
 
-## Running the app
+### Back End
 
-```bash
-# development
-$ npm run start
+- NestJS (Express)
+- Typescript
+- PostgreSQL
+- Prisma
+- GraphQL
+- Passport (JWT)
 
-# watch mode
-$ npm run start:dev
+## Features
 
-# production mode
-$ npm run start:prod
-```
+### Home Page
 
-## Test
+Gives information about WS HME, who we are, what services we provide including tools renting form, electronic kit product listing, and technical article.
+
+User could use the rent form to book a renting appointment by filling user data, rent time range, and list of tools. There's renting guide modal that gives detailed information on how to use our renting services.
+
+### Admin Dashboard
+
+Admin dashboard is CMS (Content Management Service) intended for internal use (Workshop Crew) to manage tools, article published, product list, and to track tools that are currently being rented.
+
+## Build and Deployment
+
+For frontend, to develop :
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+    npm run start
 ```
 
-## Support
+use the .env example
+<br/>
+to build:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+    npm run build
+```
 
-## Stay in touch
+For Backend, to develop :
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+    npm run dev
+```
 
-## License
+this script consist of prisma generate, nest start, and type generator (watchmode) ran concurrently.
+<br/>
+use the .env example
+<br/>
+To build :
 
-Nest is [MIT licensed](LICENSE).
+```bash
+    npm run build
+```
+
+To migrate db using prisma :
+
+```bash
+    npx prisma db push
+```
+
+To seed :
+
+```bash
+   npx prisma db seed
+```
